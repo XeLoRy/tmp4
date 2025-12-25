@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OAuth Callback</title>
+</head>
+<body>
+  <p>Authentification en cours...</p>
+  <script>
+    (function() {
+      // Récupérer le token depuis l'URL
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const error = params.get('error');
+
+      if (error) {
+        document.body.innerHTML = '<p>Erreur: ' + error + '</p>';
+        return;
+      }
+
+      if (token && window.opener) {
+        // Envoyer le token au CMS
+        const message = 'authorization:github:success:' + JSON.stringify({
+          token: token,
+          provider: 'github'
+        });
+        window.opener.postMessage(message, window.location.origin);
+        document.body.innerHTML = '<p>Succès ! Cette fenêtre va se fermer...</p>';
+        setTimeout(function() { window.close(); }, 1000);
+      } else if (token) {
+        document.body.innerHTML = '<p>Token reçu mais pas de fenêtre parente. Fermez cette fenêtre et réessayez.</p>';
+      } else {
+        document.body.innerHTML = '<p>Pas de token reçu.</p>';
+      }
+    })();
+  </script>
+</body>
+</html>

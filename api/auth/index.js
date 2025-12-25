@@ -41,40 +41,12 @@ module.exports = async function (context, req) {
     }
 
     const token = data.access_token;
-    const html = `<!DOCTYPE html>
-<html>
-<head><title>Success</title></head>
-<body>
-<p>Authentification réussie. Cette fenêtre va se fermer...</p>
-<script>
-(function() {
-  function sendMessage() {
-    const token = "${token}";
-    const data = JSON.stringify({token: token, provider: "github"});
-    const message = "authorization:github:success:" + data;
-
-    if (window.opener) {
-      window.opener.postMessage(message, "*");
-      setTimeout(function() { window.close(); }, 1000);
-    } else {
-      document.body.innerHTML = "<p>Token: " + token + "</p><p>Copiez ce token et fermez cette fenêtre.</p>";
-    }
-  }
-
-  if (document.readyState === "complete") {
-    sendMessage();
-  } else {
-    window.addEventListener("load", sendMessage);
-  }
-})();
-</script>
-</body>
-</html>`;
+    const callbackUrl = `https://wonderful-coast-0605c9403.4.azurestaticapps.net/admin/callback.html?token=${encodeURIComponent(token)}`;
 
     context.res = {
-      status: 200,
-      headers: { 'Content-Type': 'text/html' },
-      body: html
+      status: 302,
+      headers: { 'Location': callbackUrl },
+      body: ''
     };
   } catch (error) {
     context.res = {
