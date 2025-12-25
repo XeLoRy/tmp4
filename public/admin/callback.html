@@ -13,8 +13,10 @@
       var token = params.get('token');
       var error = params.get('error');
 
-      console.log('Callback loaded, token:', token ? 'present' : 'missing');
-      console.log('window.opener:', window.opener ? 'present' : 'missing');
+      console.log('=== OAUTH CALLBACK ===');
+      console.log('Token:', token ? 'present (' + token.length + ' chars)' : 'missing');
+      console.log('window.opener:', window.opener ? 'present' : 'NULL');
+      console.log('window.parent:', window.parent !== window ? 'different from self' : 'same as self');
 
       if (error) {
         status.textContent = 'Erreur: ' + error;
@@ -26,27 +28,57 @@
         return;
       }
 
-      if (!window.opener) {
-        status.textContent = 'Token recu mais pas de fenetre parente.';
-        return;
+      // Format attendu par Decap CMS
+      var authData = { token: token, provider: 'github' };
+      var message = 'authorization:github:success:' + JSON.stringify(authData);
+
+      console.log('Message format:', message.substring(0, 50) + '...');
+
+      // Stocker dans localStorage comme fallback
+      try {
+        localStorage.setItem('netlify-cms-auth', JSON.stringify(authData));
+        localStorage.setItem('decap-cms-auth', JSON.stringify(authData));
+        console.log('Token stored in localStorage');
+      } catch (e) {
+        console.log('localStorage error:', e);
       }
 
-      // Format attendu par Decap CMS
-      var message = 'authorization:github:success:' + JSON.stringify({
-        token: token,
-        provider: 'github'
-      });
+      var messageSent = false;
 
-      console.log('Sending message:', message);
+      // Essayer window.opener d'abord
+      if (window.opener) {
+        try {
+          window.opener.postMessage(message, '*');
+          console.log('Message sent via window.opener');
+          messageSent = true;
+        } catch (e) {
+          console.log('window.opener.postMessage error:', e);
+        }
+      }
 
-      // Envoyer au parent avec "*" pour accepter tous les origins
-      window.opener.postMessage(message, '*');
+      // Essayer aussi window.parent (pour les iframes)
+      if (window.parent && window.parent !== window) {
+        try {
+          window.parent.postMessage(message, '*');
+          console.log('Message sent via window.parent');
+          messageSent = true;
+        } catch (e) {
+          console.log('window.parent.postMessage error:', e);
+        }
+      }
 
-      status.textContent = 'Token envoye! Fermeture...';
-
-      setTimeout(function() {
-        window.close();
-      }, 1500);
+      if (messageSent) {
+        status.textContent = 'Authentification reussie! Fermeture...';
+        setTimeout(function() {
+          window.close();
+        }, 1500);
+      } else {
+        // Pas de fenetre parente - afficher le token pour copie manuelle
+        status.innerHTML = 'Token recu mais pas de fenetre parente.<br><br>' +
+          'Veuillez fermer cette fenetre et rafraichir la page admin.<br><br>' +
+          '<small>Le token a ete stocke automatiquement.</small>';
+        console.log('No parent window found - token stored in localStorage');
+      }
     })();
   </script>
 </body>
