@@ -86,10 +86,17 @@ module.exports = async function (context, req) {
 
   if (window.opener) {
     try {
-      window.opener.postMessage(message, '*');
-      log('postMessage sent OK');
-      status.textContent = 'OK! Fermeture dans 3s...';
-      setTimeout(function() { window.close(); }, 3000);
+      // Handshake d'abord
+      window.opener.postMessage('authorizing:github', '*');
+      log('Handshake sent');
+
+      // Puis le token apres un court delai
+      setTimeout(function() {
+        window.opener.postMessage(message, '*');
+        log('postMessage sent OK');
+        status.textContent = 'OK! Fermeture dans 3s...';
+        setTimeout(function() { window.close(); }, 3000);
+      }, 100);
     } catch(e) {
       log('postMessage ERROR: ' + e.message);
       status.textContent = 'Erreur postMessage: ' + e.message;
