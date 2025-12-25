@@ -1,11 +1,19 @@
 module.exports = async function (context, req) {
+  context.log('=== AUTH FUNCTION START ===');
+  context.log('Query params:', JSON.stringify(req.query));
+
   const code = req.query.code;
   const clientId = process.env.GITHUB_CLIENT_ID;
   const clientSecret = process.env.GITHUB_CLIENT_SECRET;
   const redirectUri = 'https://uec-oauth.azurewebsites.net/api/auth';
 
+  context.log('ClientID:', clientId ? 'SET' : 'NOT SET');
+  context.log('ClientSecret:', clientSecret ? 'SET' : 'NOT SET');
+  context.log('Code:', code ? 'PRESENT' : 'NOT PRESENT');
+
   if (!code) {
     const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo,user`;
+    context.log('Redirecting to GitHub:', authUrl);
 
     context.res = {
       status: 302,
@@ -16,6 +24,7 @@ module.exports = async function (context, req) {
   }
 
   try {
+    context.log('Exchanging code for token...');
     const response = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
       headers: {
@@ -30,8 +39,10 @@ module.exports = async function (context, req) {
     });
 
     const data = await response.json();
+    context.log('GitHub response:', JSON.stringify(data));
 
     if (data.error) {
+      context.log('ERROR from GitHub:', data.error);
       context.res = {
         status: 400,
         headers: { 'Content-Type': 'text/plain' },
@@ -41,7 +52,9 @@ module.exports = async function (context, req) {
     }
 
     const token = data.access_token;
+    context.log('Token received:', token ? 'YES (length: ' + token.length + ')' : 'NO');
     const callbackUrl = `https://wonderful-coast-0605c9403.4.azurestaticapps.net/admin/callback.html?token=${encodeURIComponent(token)}`;
+    context.log('Redirecting to callback:', callbackUrl);
 
     context.res = {
       status: 302,
