@@ -59,60 +59,24 @@ module.exports = async function (context, req) {
     // Retourner le HTML directement pour preserver window.opener
     const callbackHtml = `<!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8"><title>OAuth</title></head>
-<body>
-<p id="status">Authentification...</p>
-<pre id="debug"></pre>
+<head><meta charset="UTF-8"><title>Authentification</title></head>
+<body style="font-family:system-ui;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;">
+<p id="status">Authentification en cours...</p>
 <script>
 (function() {
-  var debug = document.getElementById('debug');
   var status = document.getElementById('status');
-
-  function log(msg) {
-    console.log(msg);
-    debug.textContent += msg + '\\n';
-  }
-
-  log('=== OAUTH CALLBACK ===');
-  log('URL: ' + window.location.href.substring(0, 80) + '...');
-  log('window.opener: ' + (window.opener ? 'PRESENT' : 'NULL'));
-  log('window.opener type: ' + typeof window.opener);
-
   var token = "${token}";
-  log('Token length: ' + token.length);
-
-  var message = 'authorization:github:success:' + JSON.stringify({token: token, access_token: token, provider: 'github'});
-  log('Message: ' + message.substring(0, 60) + '...');
+  var message = 'authorization:github:success:' + JSON.stringify({token: token, provider: 'github'});
 
   if (window.opener) {
-    try {
-      // Handshake d'abord
-      window.opener.postMessage('authorizing:github', '*');
-      log('Handshake sent');
-
-      // Puis le token apres un court delai
-      setTimeout(function() {
-        window.opener.postMessage(message, '*');
-        log('postMessage sent OK');
-        status.textContent = 'OK! Fermeture dans 3s...';
-        setTimeout(function() { window.close(); }, 3000);
-      }, 100);
-    } catch(e) {
-      log('postMessage ERROR: ' + e.message);
-      status.textContent = 'Erreur postMessage: ' + e.message;
-    }
+    window.opener.postMessage('authorizing:github', '*');
+    setTimeout(function() {
+      window.opener.postMessage(message, '*');
+      status.textContent = 'Connecte! Fermeture...';
+      setTimeout(function() { window.close(); }, 1000);
+    }, 100);
   } else {
-    log('No opener - trying alternatives...');
-
-    // Essayer localStorage
-    try {
-      localStorage.setItem('decap-cms-auth', JSON.stringify({token: token, provider: 'github'}));
-      log('Saved to localStorage');
-    } catch(e) {
-      log('localStorage error: ' + e.message);
-    }
-
-    status.textContent = 'Pas de fenetre parente. Fermez et rafraichissez /admin/';
+    status.textContent = 'Erreur: fermez cette fenetre et reessayez.';
   }
 })();
 </script>
