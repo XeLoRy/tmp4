@@ -5,8 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Admin - Une Énergie Commune</title>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      CMS.init({
+        config: {
+          backend: {
+            name: 'github',
+            repo: 'XeLoRy/tmp4',
+            branch: 'main',
+            auth_type: 'pkce',
+            app_id: 'Ov23liJapgYROtdvvBTD'
+          },
+          media_folder: 'public/images',
+          public_folder: '/images',
+          locale: 'fr',
+          collections: [
+            {
+              name: 'equipe',
+              label: 'Équipe',
+              folder: 'content/equipe',
+              create: true,
+              slug: '{{slug}}',
+              fields: [
+                { label: 'Nom', name: 'nom', widget: 'string' },
+                { label: 'Rôle', name: 'role', widget: 'string', default: 'Colistier' },
+                { label: 'Profession', name: 'profession', widget: 'string' },
+                { label: 'Photo', name: 'photo', widget: 'image', required: false },
+                { label: 'Motivation', name: 'motivation', widget: 'text' },
+                { label: 'Ordre', name: 'ordre', widget: 'number', default: 10 },
+                {
+                  label: 'Position sur photo',
+                  name: 'position',
+                  widget: 'object',
+                  fields: [
+                    { label: 'X (%)', name: 'x', widget: 'number', default: 50 },
+                    { label: 'Y (%)', name: 'y', widget: 'number', default: 50 }
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'thematiques',
+              label: 'Thématiques',
+              folder: 'content/thematiques',
+              create: true,
+              slug: '{{slug}}',
+              fields: [
+                { label: 'Titre', name: 'title', widget: 'string' },
+                { label: 'Icône', name: 'icon', widget: 'string' },
+                { label: 'Description', name: 'description', widget: 'string' },
+                { label: 'Ordre', name: 'ordre', widget: 'number', default: 1 },
+                { label: 'Engagements', name: 'engagements', widget: 'list', field: { label: 'Engagement', name: 'engagement', widget: 'string' } },
+                { label: 'Contenu', name: 'body', widget: 'markdown', required: false }
+              ]
+            },
+            {
+              name: 'actus',
+              label: 'Actualités',
+              folder: 'content/actus',
+              create: true,
+              slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+              fields: [
+                { label: 'Titre', name: 'title', widget: 'string' },
+                { label: 'Date', name: 'date', widget: 'datetime' },
+                { label: 'Image', name: 'image', widget: 'image', required: false },
+                { label: 'Catégorie', name: 'category', widget: 'select', options: ['Événement', 'Communiqué', 'Terrain', 'Programme'] },
+                { label: 'Extrait', name: 'excerpt', widget: 'text' },
+                { label: 'Contenu', name: 'body', widget: 'markdown' }
+              ]
+            }
+          ]
+        }
+      });
+    </script>
   </body>
 </html>
