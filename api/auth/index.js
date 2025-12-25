@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 module.exports = async function (context, req) {
   context.log('=== AUTH FUNCTION START ===');
   context.log('Query params:', JSON.stringify(req.query));
