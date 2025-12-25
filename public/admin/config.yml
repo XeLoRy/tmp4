@@ -1,9 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: XeLoRy/tmp4
   branch: main
-
-# Pour le développement local, décommenter cette ligne :
-# local_backend: true
+  auth_type: pkce
+  app_id: Ov23liJapgYROtdvvBTD
+  base_url: https://api.github.com
 
 media_folder: public/images
 public_folder: /images

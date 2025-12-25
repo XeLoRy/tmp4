@@ -80,7 +80,7 @@ public/
 ## Prochaines étapes
 
 1. [x] Export statique configuré
-2. [ ] Vérifier déploiement Azure SWA
+2. [x] Déploiement Azure SWA ✅ EN LIGNE
 3. [ ] Compléter noms réels des 21 membres
 4. [ ] Ajouter photos individuelles membres (optionnel)
 5. [ ] Configurer Decap CMS auth (GitHub OAuth)
@@ -89,5 +89,5 @@ public/
 
 ## Repository
 
-- GitHub : https://github.com/XeLoRy/tmp4 (privé recommandé)
-- Azure SWA : wonderful-coast-0605c9403.azurestaticapps.net (en attente)
+- GitHub : https://github.com/XeLoRy/tmp4
+- **Site en ligne** : https://wonderful-coast-0605c9403.4.azurestaticapps.net
