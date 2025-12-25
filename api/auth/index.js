@@ -81,7 +81,7 @@ module.exports = async function (context, req) {
   var token = "${token}";
   log('Token length: ' + token.length);
 
-  var message = 'authorization:github:success:' + JSON.stringify({token: token, provider: 'github'});
+  var message = 'authorization:github:success:' + JSON.stringify({token: token, access_token: token, provider: 'github'});
   log('Message: ' + message.substring(0, 60) + '...');
 
   if (window.opener) {
