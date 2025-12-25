@@ -85,11 +85,27 @@
           window.close();
         }, 1500);
       } else {
-        // Pas de fenetre parente - afficher le token pour copie manuelle
-        status.innerHTML = 'Token recu mais pas de fenetre parente.<br><br>' +
-          'Veuillez fermer cette fenetre et rafraichir la page admin.<br><br>' +
-          '<small>Le token a ete stocke automatiquement.</small>';
-        console.log('No parent window found - token stored in localStorage');
+        // Pas de fenetre parente - stocker et rediriger
+        status.textContent = 'Authentification reussie! Redirection...';
+        console.log('No parent window - storing token and redirecting');
+
+        // Stocker dans le format Decap CMS
+        try {
+          var cmsUser = {
+            token: token,
+            provider: 'github',
+            backendName: 'github'
+          };
+          localStorage.setItem('netlify-cms-user', JSON.stringify(cmsUser));
+          console.log('Stored as netlify-cms-user');
+        } catch (e) {
+          console.log('Error storing CMS user:', e);
+        }
+
+        // Rediriger vers la page admin apres 1 seconde
+        setTimeout(function() {
+          window.location.href = '/admin/';
+        }, 1000);
       }
     })();
   </script>
