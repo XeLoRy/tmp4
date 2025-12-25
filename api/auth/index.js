@@ -62,19 +62,50 @@ module.exports = async function (context, req) {
 <head><meta charset="UTF-8"><title>OAuth</title></head>
 <body>
 <p id="status">Authentification...</p>
+<pre id="debug"></pre>
 <script>
 (function() {
-  var token = "${token}";
-  var message = 'authorization:github:success:' + JSON.stringify({token: token, provider: 'github'});
+  var debug = document.getElementById('debug');
+  var status = document.getElementById('status');
 
-  console.log('window.opener:', window.opener ? 'present' : 'null');
+  function log(msg) {
+    console.log(msg);
+    debug.textContent += msg + '\\n';
+  }
+
+  log('=== OAUTH CALLBACK ===');
+  log('URL: ' + window.location.href.substring(0, 80) + '...');
+  log('window.opener: ' + (window.opener ? 'PRESENT' : 'NULL'));
+  log('window.opener type: ' + typeof window.opener);
+
+  var token = "${token}";
+  log('Token length: ' + token.length);
+
+  var message = 'authorization:github:success:' + JSON.stringify({token: token, provider: 'github'});
+  log('Message: ' + message.substring(0, 60) + '...');
 
   if (window.opener) {
-    window.opener.postMessage(message, '*');
-    document.getElementById('status').textContent = 'OK! Fermeture...';
-    setTimeout(function() { window.close(); }, 1000);
+    try {
+      window.opener.postMessage(message, '*');
+      log('postMessage sent OK');
+      status.textContent = 'OK! Fermeture dans 3s...';
+      setTimeout(function() { window.close(); }, 3000);
+    } catch(e) {
+      log('postMessage ERROR: ' + e.message);
+      status.textContent = 'Erreur postMessage: ' + e.message;
+    }
   } else {
-    document.getElementById('status').textContent = 'Erreur: pas de fenetre parente. Fermez et reessayez.';
+    log('No opener - trying alternatives...');
+
+    // Essayer localStorage
+    try {
+      localStorage.setItem('decap-cms-auth', JSON.stringify({token: token, provider: 'github'}));
+      log('Saved to localStorage');
+    } catch(e) {
+      log('localStorage error: ' + e.message);
+    }
+
+    status.textContent = 'Pas de fenetre parente. Fermez et rafraichissez /admin/';
   }
 })();
 </script>

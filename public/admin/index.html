@@ -8,20 +8,20 @@
     <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      // Ecouter les changements localStorage depuis d'autres fenetres
-      window.addEventListener('storage', function(e) {
-        console.log('Storage event:', e.key);
-        if (e.key === 'decap-cms-auth' && e.newValue) {
-          console.log('Auth token detected in localStorage!');
-          try {
-            var data = JSON.parse(e.newValue);
-            localStorage.removeItem('decap-cms-auth');
-            window.location.reload();
-          } catch (err) {
-            console.log('Error:', err);
-          }
-        }
+      console.log('=== ADMIN PAGE LOADED ===');
+
+      // Ecouter TOUS les messages
+      window.addEventListener('message', function(e) {
+        console.log('MESSAGE RECEIVED:', e.data);
+        console.log('From origin:', e.origin);
       });
+
+      // Ecouter les changements localStorage
+      window.addEventListener('storage', function(e) {
+        console.log('Storage event:', e.key, e.newValue);
+      });
+
+      console.log('Message and storage listeners registered');
     </script>
   </head>
   <body>
