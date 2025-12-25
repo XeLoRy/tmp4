@@ -34,9 +34,14 @@
 
       console.log('Message format:', message.substring(0, 50) + '...');
 
-      // Stocker dans localStorage comme fallback
+      // Stocker dans localStorage - format Decap CMS natif
       try {
-        localStorage.setItem('netlify-cms-auth', JSON.stringify(authData));
+        // Format que Decap CMS lit au demarrage
+        localStorage.setItem('netlify-cms-user', JSON.stringify({
+          token: token,
+          backendName: 'github'
+        }));
+        // Cle pour declencher storage event dans la fenetre principale
         localStorage.setItem('decap-cms-auth', JSON.stringify(authData));
         console.log('Token stored in localStorage');
       } catch (e) {
@@ -85,27 +90,12 @@
           window.close();
         }, 1500);
       } else {
-        // Pas de fenetre parente - stocker et rediriger
-        status.textContent = 'Authentification reussie! Redirection...';
-        console.log('No parent window - storing token and redirecting');
+        // Pas de fenetre parente - le storage event va notifier la fenetre principale
+        status.textContent = 'Authentification reussie! Vous pouvez fermer cette fenetre.';
+        console.log('No parent window - storage event should notify main window');
 
-        // Stocker dans le format Decap CMS
-        try {
-          var cmsUser = {
-            token: token,
-            provider: 'github',
-            backendName: 'github'
-          };
-          localStorage.setItem('netlify-cms-user', JSON.stringify(cmsUser));
-          console.log('Stored as netlify-cms-user');
-        } catch (e) {
-          console.log('Error storing CMS user:', e);
-        }
-
-        // Rediriger vers la page admin apres 1 seconde
-        setTimeout(function() {
-          window.location.href = '/admin/';
-        }, 1000);
+        // La fenetre principale va detecter le changement via storage event et se recharger
+        // Ne pas rediriger ici car ca empecherait la fenetre principale de recevoir l'event
       }
     })();
   </script>
