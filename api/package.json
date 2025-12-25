@@ -1,4 +1,6 @@
 {
-  "name": "api",
-  "version": "1.0.0"
+  "name": "uec-oauth-api",
+  "version": "1.0.0",
+  "main": "auth/index.js",
+  "dependencies": {}
 }

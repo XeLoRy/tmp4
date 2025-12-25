@@ -8,6 +8,12 @@
   },
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/images/*", "/admin/*", "*.{css,js,json,yml,yaml,png,jpg,jpeg,gif,svg,ico,webp}"]
-  }
+    "exclude": ["/api/*", "/images/*", "/admin/*", "*.{css,js,json,yml,yaml,png,jpg,jpeg,gif,svg,ico,webp}"]
+  },
+  "routes": [
+    {
+      "route": "/api/*",
+      "allowedRoles": ["anonymous"]
+    }
+  ]
 }

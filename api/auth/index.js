@@ -1,24 +1,19 @@
 module.exports = async function (context, req) {
   const code = req.query.code;
+  const clientId = process.env.GITHUB_CLIENT_ID;
+  const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+  const redirectUri = 'https://uec-oauth.azurewebsites.net/api/auth';
 
   if (!code) {
-    // Redirect to GitHub OAuth
-    const clientId = process.env.GITHUB_CLIENT_ID;
-    const redirectUri = `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}/api/auth`;
-    const scope = 'repo,user';
-
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo,user`;
 
     context.res = {
       status: 302,
-      headers: { Location: authUrl }
+      headers: { 'Location': authUrl },
+      body: ''
     };
     return;
   }
-
-  // Exchange code for token
-  const clientId = process.env.GITHUB_CLIENT_ID;
-  const clientSecret = process.env.GITHUB_CLIENT_SECRET;
 
   try {
     const response = await fetch('https://github.com/login/oauth/access_token', {
@@ -39,37 +34,37 @@ module.exports = async function (context, req) {
     if (data.error) {
       context.res = {
         status: 400,
+        headers: { 'Content-Type': 'text/plain' },
         body: `Error: ${data.error_description || data.error}`
       };
       return;
     }
 
-    // Return HTML that sends token back to CMS
-    const script = `
-      <script>
-        (function() {
-          function receiveMessage(e) {
-            console.log("receiveMessage", e);
-            window.opener.postMessage(
-              'authorization:github:success:${JSON.stringify({ token: data.access_token, provider: 'github' })}',
-              e.origin
-            );
-            window.close();
-          }
-          window.addEventListener("message", receiveMessage, false);
-          window.opener.postMessage("authorizing:github", "*");
-        })();
-      </script>
-    `;
+    const token = data.access_token;
+    const html = `<!DOCTYPE html>
+<html>
+<head><title>OAuth</title></head>
+<body>
+<script>
+(function() {
+  const token = "${token}";
+  const message = "authorization:github:success:" + JSON.stringify({token: token, provider: "github"});
+  window.opener.postMessage(message, "*");
+  window.close();
+})();
+</script>
+</body>
+</html>`;
 
     context.res = {
       status: 200,
       headers: { 'Content-Type': 'text/html' },
-      body: script
+      body: html
     };
   } catch (error) {
     context.res = {
       status: 500,
+      headers: { 'Content-Type': 'text/plain' },
       body: `Error: ${error.message}`
     };
   }
