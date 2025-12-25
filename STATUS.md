@@ -9,7 +9,7 @@ Site de campagne électorale municipale "Une Énergie Commune" pour le village.
 - **Framework** : Next.js 16.1.1
 - **Styling** : Tailwind CSS 4
 - **CMS** : Decap CMS (admin sur /admin)
-- **Hébergement** : Azure Static Web Apps (en cours de déploiement)
+- **Hébergement** : Azure Static Web Apps (export statique)
 
 ## Pages créées
 
@@ -21,7 +21,6 @@ Site de campagne électorale municipale "Une Énergie Commune" pour le village.
 | Actualités | `/actus` | ✅ OK |
 | Contact | `/contact` | ✅ OK |
 | Participer | `/participer` | ✅ OK |
-| Connexion | `/connexion` | ⚠️ Auth à revoir |
 
 ## Contenu
 
@@ -37,19 +36,14 @@ Site de campagne électorale municipale "Une Énergie Commune" pour le village.
 4. 🌿 Économie & Environnement - Développement raisonné
 5. ⭐ Rayonnement - Fierté du territoire
 
-## Problème actuel : Déploiement Azure SWA
+## Déploiement Azure SWA
 
-### Tentatives
-1. ❌ `output: 'export'` + API routes → Erreur : API routes incompatibles
-2. ❌ Next.js SSR (sans export) → Erreur : "Invalid API key" (résolu)
-3. ❌ Next.js SSR → Erreur : "Web app warm up timed out"
+### Solution adoptée : Export statique
+- ✅ `output: 'export'` dans next.config.ts
+- ✅ Supprimé `/api/auth`, `/connexion`, `auth.ts`, `middleware.ts`
+- ✅ Workflow GitHub avec `output_location: "out"`
 
-### Solutions possibles
-1. **Export statique** : Retirer `/api/auth` et `/connexion`, utiliser `output: 'export'`
-2. **Vercel** : Déploiement natif Next.js (gratuit)
-3. **Azure avec retry** : Parfois le timeout est temporaire
-
-### Auth alternatives (si export statique)
+### Auth alternatives (à implémenter plus tard si besoin)
 - Decap CMS : Utilise GitHub OAuth nativement
 - Google Forms : Pour inscriptions citoyens
 - Azure Functions : Dans `/api` folder séparé
@@ -62,9 +56,7 @@ src/
 ├── app/
 │   ├── page.tsx          # Accueil avec hero + mot tête de liste
 │   ├── equipe/page.tsx   # Photo interactive
-│   ├── thematiques/page.tsx
-│   ├── api/auth/         # ⚠️ À retirer si export statique
-│   └── connexion/        # ⚠️ À retirer si export statique
+│   └── thematiques/page.tsx
 ├── components/
 │   ├── EquipeClient.tsx  # Composant interactif photo groupe
 │   ├── Header.tsx
@@ -87,12 +79,13 @@ public/
 
 ## Prochaines étapes
 
-1. [ ] Résoudre déploiement Azure (export statique ou retry)
-2. [ ] Compléter noms réels des 21 membres
-3. [ ] Ajouter photos individuelles membres (optionnel)
-4. [ ] Configurer Decap CMS auth (GitHub OAuth)
-5. [ ] Tester formulaire contact
-6. [ ] Ajouter Google Forms pour enquête citoyenne
+1. [x] Export statique configuré
+2. [ ] Vérifier déploiement Azure SWA
+3. [ ] Compléter noms réels des 21 membres
+4. [ ] Ajouter photos individuelles membres (optionnel)
+5. [ ] Configurer Decap CMS auth (GitHub OAuth)
+6. [ ] Tester formulaire contact
+7. [ ] Ajouter Google Forms pour enquête citoyenne
 
 ## Repository
 
