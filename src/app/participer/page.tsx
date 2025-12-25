@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import EnqueteForm from "@/components/EnqueteForm";
 
 export default function ParticiperPage() {
   return (
@@ -20,7 +21,7 @@ export default function ParticiperPage() {
         </section>
 
         {/* Enquête citoyenne */}
-        <section id="enquete" className="py-16 bg-white scroll-mt-20">
+        <section id="enquete" className="py-16 bg-background-alt scroll-mt-20">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <span className="text-4xl mb-4 block">📝</span>
@@ -33,24 +34,7 @@ export default function ParticiperPage() {
               </p>
             </div>
 
-            <div className="bg-background rounded-2xl p-8 text-center">
-              <p className="text-foreground-muted mb-6">
-                L&apos;enquête sera bientôt disponible. Inscrivez-vous pour être notifié(e) !
-              </p>
-              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Votre email"
-                  className="flex-1 rounded-full px-6 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-                <button
-                  type="submit"
-                  className="rounded-full bg-primary px-6 py-3 text-white font-medium hover:bg-primary-dark transition-colors"
-                >
-                  M&apos;inscrire
-                </button>
-              </form>
-            </div>
+            <EnqueteForm />
           </div>
         </section>
 
