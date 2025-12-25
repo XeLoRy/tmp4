@@ -5,7 +5,7 @@ module.exports = async function (context, req) {
   const code = req.query.code;
   const clientId = process.env.GITHUB_CLIENT_ID;
   const clientSecret = process.env.GITHUB_CLIENT_SECRET;
-  const redirectUri = 'https://uec-oauth.azurewebsites.net/api/auth';
+  const redirectUri = 'https://wonderful-coast-0605c9403.4.azurestaticapps.net/api/auth';
 
   context.log('ClientID:', clientId ? 'SET' : 'NOT SET');
   context.log('ClientSecret:', clientSecret ? 'SET' : 'NOT SET');
@@ -53,13 +53,36 @@ module.exports = async function (context, req) {
 
     const token = data.access_token;
     context.log('Token received:', token ? 'YES (length: ' + token.length + ')' : 'NO');
-    const callbackUrl = `https://wonderful-coast-0605c9403.4.azurestaticapps.net/admin/callback.html?token=${encodeURIComponent(token)}`;
-    context.log('Redirecting to callback:', callbackUrl);
+
+    // Retourner le HTML directement pour preserver window.opener
+    const callbackHtml = `<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>OAuth</title></head>
+<body>
+<p id="status">Authentification...</p>
+<script>
+(function() {
+  var token = "${token}";
+  var message = 'authorization:github:success:' + JSON.stringify({token: token, provider: 'github'});
+
+  console.log('window.opener:', window.opener ? 'present' : 'null');
+
+  if (window.opener) {
+    window.opener.postMessage(message, '*');
+    document.getElementById('status').textContent = 'OK! Fermeture...';
+    setTimeout(function() { window.close(); }, 1000);
+  } else {
+    document.getElementById('status').textContent = 'Erreur: pas de fenetre parente. Fermez et reessayez.';
+  }
+})();
+</script>
+</body>
+</html>`;
 
     context.res = {
-      status: 302,
-      headers: { 'Location': callbackUrl },
-      body: ''
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      body: callbackHtml
     };
   } catch (error) {
     context.res = {
