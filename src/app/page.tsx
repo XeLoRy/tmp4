@@ -84,9 +84,6 @@ export default function Home() {
                       src="/images/mm.png"
                       alt="Mickaël M"
                       className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
                     />
                   </div>
                 </div>
