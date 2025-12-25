@@ -43,6 +43,18 @@
         console.log('localStorage error:', e);
       }
 
+      // Essayer BroadcastChannel comme fallback
+      if (typeof BroadcastChannel !== 'undefined') {
+        try {
+          var channel = new BroadcastChannel('decap-cms-auth');
+          channel.postMessage(authData);
+          console.log('Message sent via BroadcastChannel');
+          channel.close();
+        } catch (e) {
+          console.log('BroadcastChannel error:', e);
+        }
+      }
+
       var messageSent = false;
 
       // Essayer window.opener d'abord

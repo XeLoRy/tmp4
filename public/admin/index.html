@@ -7,6 +7,36 @@
     <title>Admin - Une Énergie Commune</title>
     <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      // Fallback: ecouter BroadcastChannel pour OAuth callback
+      if (typeof BroadcastChannel !== 'undefined') {
+        var authChannel = new BroadcastChannel('decap-cms-auth');
+        authChannel.onmessage = function(event) {
+          console.log('BroadcastChannel message received:', event.data);
+          if (event.data && event.data.token) {
+            window.postMessage('authorization:github:success:' + JSON.stringify(event.data), '*');
+          }
+        };
+      }
+      // Fallback: verifier localStorage periodiquement
+      var checkAuth = setInterval(function() {
+        var authData = localStorage.getItem('decap-cms-auth');
+        if (authData) {
+          console.log('Found auth in localStorage');
+          localStorage.removeItem('decap-cms-auth');
+          localStorage.removeItem('netlify-cms-auth');
+          try {
+            var data = JSON.parse(authData);
+            window.postMessage('authorization:github:success:' + JSON.stringify(data), '*');
+          } catch (e) {
+            console.log('Error parsing auth data:', e);
+          }
+          clearInterval(checkAuth);
+        }
+      }, 1000);
+      // Arreter apres 5 minutes
+      setTimeout(function() { clearInterval(checkAuth); }, 300000);
+    </script>
   </head>
   <body>
     <script>
