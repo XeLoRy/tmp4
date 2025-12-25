@@ -1,5 +1,13 @@
 {
   "platform": {
     "apiRuntime": "node:20"
+  },
+  "mimeTypes": {
+    ".yml": "text/yaml",
+    ".yaml": "text/yaml"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*", "/admin/*", "*.{css,js,json,yml,yaml,png,jpg,jpeg,gif,svg,ico,webp}"]
   }
 }
