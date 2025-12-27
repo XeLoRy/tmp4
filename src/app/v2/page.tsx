@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * PAGE D'ACCUEIL V2 - Design Audacieux
  * Route: /v2
