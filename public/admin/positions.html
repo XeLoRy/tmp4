@@ -471,48 +471,107 @@
       showStatus('Sauvegarde en cours...', 'loading');
 
       const repo = 'XeLoRy/tmp4';
+      const owner = 'XeLoRy';
+      const repoName = 'tmp4';
+      const headers = {
+        'Authorization': `token ${githubToken}`,
+        'Content-Type': 'application/json'
+      };
 
       try {
+        // 1. Get current main branch ref
+        const refRes = await fetch(
+          `https://api.github.com/repos/${repo}/git/ref/heads/main`,
+          { headers }
+        );
+        const refData = await refRes.json();
+        const latestCommitSha = refData.object.sha;
+
+        // 2. Get the tree of the latest commit
+        const commitRes = await fetch(
+          `https://api.github.com/repos/${repo}/git/commits/${latestCommitSha}`,
+          { headers }
+        );
+        const commitData = await commitRes.json();
+        const baseTreeSha = commitData.tree.sha;
+
+        // 3. Create blobs for all modified files
+        const treeItems = [];
+
         for (const membre of membres) {
-          // Update position in original content
           let content = membre.originalContent;
 
-          // Update x position
           content = content.replace(
             /x:\s*[\d.]+/,
             `x: ${Math.round(membre.position.x * 10) / 10}`
           );
-
-          // Update y position
           content = content.replace(
             /y:\s*[\d.]+/,
             `y: ${Math.round(membre.position.y * 10) / 10}`
           );
 
-          // Get current file SHA
-          const fileRes = await fetch(
-            `https://api.github.com/repos/${repo}/contents/content/equipe/${membre.filename}`,
-            { headers: { 'Authorization': `token ${githubToken}` } }
-          );
-          const fileData = await fileRes.json();
-
-          // Update file
-          await fetch(
-            `https://api.github.com/repos/${repo}/contents/content/equipe/${membre.filename}`,
+          // Create blob
+          const blobRes = await fetch(
+            `https://api.github.com/repos/${repo}/git/blobs`,
             {
-              method: 'PUT',
-              headers: {
-                'Authorization': `token ${githubToken}`,
-                'Content-Type': 'application/json'
-              },
+              method: 'POST',
+              headers,
               body: JSON.stringify({
-                message: `Update position for ${membre.nom}`,
-                content: btoa(unescape(encodeURIComponent(content))),
-                sha: fileData.sha
+                content: content,
+                encoding: 'utf-8'
               })
             }
           );
+          const blobData = await blobRes.json();
+
+          treeItems.push({
+            path: `content/equipe/${membre.filename}`,
+            mode: '100644',
+            type: 'blob',
+            sha: blobData.sha
+          });
         }
+
+        // 4. Create new tree
+        const treeRes = await fetch(
+          `https://api.github.com/repos/${repo}/git/trees`,
+          {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+              base_tree: baseTreeSha,
+              tree: treeItems
+            })
+          }
+        );
+        const treeData = await treeRes.json();
+
+        // 5. Create commit
+        const newCommitRes = await fetch(
+          `https://api.github.com/repos/${repo}/git/commits`,
+          {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+              message: `Update positions for ${membres.length} team members`,
+              tree: treeData.sha,
+              parents: [latestCommitSha]
+            })
+          }
+        );
+        const newCommitData = await newCommitRes.json();
+
+        // 6. Update main branch ref
+        await fetch(
+          `https://api.github.com/repos/${repo}/git/refs/heads/main`,
+          {
+            method: 'PATCH',
+            headers,
+            body: JSON.stringify({
+              sha: newCommitData.sha
+            })
+          }
+        );
 
         showStatus('Positions sauvegardees ! Deploiement en cours...', 'success');
       } catch (error) {
