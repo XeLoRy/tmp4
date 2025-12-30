@@ -8,8 +8,8 @@ const navigation = [
   { name: "Édito", href: "/edito" },
   { name: "L'équipe", href: "/equipe" },
   { name: "Nos 5 thématiques", href: "/thematiques" },
-  { name: "Participer", href: "/participer" },
   { name: "Actus", href: "/actus" },
+  { name: "Agenda", href: "/agenda" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -39,10 +39,10 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/participer#soutenir"
+              href="/participer"
               className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
             >
-              Soutenir
+              Participer
             </Link>
           </div>
 
@@ -81,11 +81,11 @@ export default function Header() {
                 </Link>
               ))}
               <Link
-                href="/participer#soutenir"
+                href="/participer"
                 className="inline-flex justify-center rounded-full bg-primary px-4 py-2 text-base font-medium text-white hover:bg-primary-dark"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Soutenir
+                Participer
               </Link>
             </div>
           </div>

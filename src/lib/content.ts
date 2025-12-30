@@ -63,6 +63,17 @@ export interface SiteConfig {
   photoGroupe: string;
 }
 
+export interface Evenement {
+  slug: string;
+  titre: string;
+  date: string;
+  heure: string;
+  lieu: string;
+  ville: string;
+  type: string;
+  description: string;
+}
+
 // Utilitaires
 function getMarkdownFiles(dir: string): string[] {
   const fullPath = path.join(contentDirectory, dir);
@@ -185,4 +196,25 @@ export function getSiteConfig(): SiteConfig {
       photoGroupe: "",
     };
   }
+}
+
+// Agenda
+export function getEvenements(): Evenement[] {
+  const files = getMarkdownFiles("agenda");
+  const evenements = files.map((file) => {
+    const data = parseMarkdownFile<Omit<Evenement, "slug">>(`agenda/${file}`);
+    return {
+      ...data,
+      slug: file.replace(".md", ""),
+    };
+  });
+  // Trier par date croissante (prochains événements en premier)
+  return evenements.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+}
+
+export function getProchainEvenement(): Evenement | null {
+  const evenements = getEvenements();
+  const now = new Date();
+  const prochains = evenements.filter(e => new Date(e.date) >= now);
+  return prochains.length > 0 ? prochains[0] : null;
 }

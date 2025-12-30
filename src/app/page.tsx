@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getThematiques, getArticles, getPageAccueil, getMembres, getSiteConfig } from "@/lib/content";
+import { getThematiques, getArticles, getPageAccueil, getMembres, getSiteConfig, getEvenements } from "@/lib/content";
 
 export default function Home() {
   const thematiques = getThematiques();
@@ -9,6 +9,18 @@ export default function Home() {
   const pageAccueil = getPageAccueil();
   const membres = getMembres();
   const config = getSiteConfig();
+  const evenements = getEvenements().slice(0, 3);
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const jours = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+    const mois = ["jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû", "sep", "oct", "nov", "déc"];
+    return {
+      jour: jours[date.getDay()],
+      numero: date.getDate(),
+      mois: mois[date.getMonth()]
+    };
+  };
 
   return (
     <>
@@ -191,6 +203,61 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Prochains rendez-vous */}
+        {evenements.length > 0 && (
+          <section className="py-16 lg:py-24 bg-background">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between items-center mb-10">
+                <h2 className="text-3xl font-bold text-foreground">
+                  Prochains rendez-vous
+                </h2>
+                <Link
+                  href="/agenda"
+                  className="text-primary font-medium hover:underline hidden sm:inline-flex items-center"
+                >
+                  Voir l&apos;agenda
+                  <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {evenements.map((event) => {
+                  const date = formatDate(event.date);
+                  return (
+                    <div key={event.slug} className="bg-white rounded-xl p-6 shadow-sm flex gap-4">
+                      {/* Date badge */}
+                      <div className="flex-shrink-0 w-16 h-16 bg-primary rounded-lg flex flex-col items-center justify-center text-white">
+                        <span className="text-2xl font-bold leading-none">{date.numero}</span>
+                        <span className="text-xs uppercase">{date.mois}</span>
+                      </div>
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-primary font-medium mb-1">{event.heure}</p>
+                        <h3 className="font-semibold text-foreground truncate">{event.titre}</h3>
+                        <p className="text-sm text-foreground-muted truncate">{event.lieu}, {event.ville}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="text-center mt-8 sm:hidden">
+                <Link
+                  href="/agenda"
+                  className="text-primary font-medium hover:underline inline-flex items-center"
+                >
+                  Voir l&apos;agenda complet
+                  <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* CTA Participer */}
         <section className="py-16 lg:py-24 bg-primary">

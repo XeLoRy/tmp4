@@ -106,6 +106,27 @@
                 { label: 'Extrait', name: 'excerpt', widget: 'text' },
                 { label: 'Contenu', name: 'body', widget: 'markdown' }
               ]
+            },
+            {
+              name: 'agenda',
+              label: 'Agenda',
+              folder: 'content/agenda',
+              create: true,
+              slug: '{{slug}}',
+              fields: [
+                { label: 'Titre', name: 'titre', widget: 'string' },
+                { label: 'Date', name: 'date', widget: 'datetime', date_format: 'YYYY-MM-DD', time_format: false },
+                { label: 'Heure', name: 'heure', widget: 'string', hint: 'Ex: 20h30 ou 8h00 - 12h00' },
+                { label: 'Lieu', name: 'lieu', widget: 'string', hint: 'Ex: Salle du Foyer Rural' },
+                { label: 'Ville', name: 'ville', widget: 'string', hint: 'Ex: Petit-Bornand' },
+                { label: 'Type', name: 'type', widget: 'select', options: [
+                  { label: 'Réunion publique', value: 'reunion' },
+                  { label: 'Permanence', value: 'permanence' },
+                  { label: 'Porte-à-porte', value: 'porte-a-porte' },
+                  { label: 'Marché', value: 'marche' }
+                ]},
+                { label: 'Description', name: 'description', widget: 'text' }
+              ]
             }
           ]
         }
