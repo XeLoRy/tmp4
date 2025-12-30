@@ -3,7 +3,7 @@ nom: Membre 11
 role: Colistier
 profession: À compléter
 photo: ""
-motivation: À compléter
+motivation: "À compléter"
 ordre: 11
 position:
   x: 51
