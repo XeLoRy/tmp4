@@ -17,7 +17,7 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
       {/* Photo de groupe interactive */}
       <section className="py-16 bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-2xl overflow-hidden shadow-lg" style={{ aspectRatio: '16/7' }}>
+          <div className="relative rounded-2xl overflow-hidden shadow-lg" style={{ aspectRatio: '16/9' }}>
             {photoGroupe ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
