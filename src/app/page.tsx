@@ -105,14 +105,14 @@ export default function Home() {
                   <blockquote className="text-xl lg:text-2xl text-foreground leading-relaxed mb-6">
                     &ldquo;Notre village merite une equipe <strong>a son ecoute, dynamique, competente et tournee vers l&apos;avenir</strong>. Avec nos {membres.length} colistiers, issus de tous horizons, nous voulons renforcer les liens entre les generations, soutenir l&apos;economie locale et faire de chaque habitant un acteur de son territoire. C&apos;est cette <strong>Energie Commune</strong> qui nous anime.&rdquo;
                   </blockquote>
-                  <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+                  <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4">
                     <div>
                       <p className="font-semibold text-lg text-foreground">{pageAccueil.teteDeListe || "Mickaël Maistre"}</p>
                       <p className="text-primary font-medium">{pageAccueil.tetteDeListeRole || "Tete de liste"}</p>
                     </div>
                     <Link
                       href="/edito"
-                      className="inline-flex items-center text-primary font-medium hover:underline sm:ml-4"
+                      className="inline-flex items-center text-primary font-medium hover:underline"
                     >
                       Lire l&apos;edito complet
                       <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
