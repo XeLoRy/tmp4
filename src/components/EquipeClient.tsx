@@ -46,15 +46,15 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
                 onMouseLeave={() => setHoveredMembre(null)}
                 aria-label={`Voir le profil de ${membre.nom}`}
               >
-                {/* Cercle cliquable */}
+                {/* Cercle cliquable - subtil mais visible */}
                 <span
                   className={`
                     block w-10 h-10 sm:w-12 sm:h-12 rounded-full
-                    border-2 border-white/60 bg-white/20
+                    border border-white/30 bg-white/10
                     transition-all duration-300 ease-out
                     ${hoveredMembre === membre.slug
-                      ? 'bg-white/40 ring-4 ring-white scale-110'
-                      : 'hover:bg-white/30'}
+                      ? 'bg-white/40 border-white/80 ring-2 ring-white/60 scale-110'
+                      : 'hover:bg-white/25 hover:border-white/50'}
                   `}
                 />
 
