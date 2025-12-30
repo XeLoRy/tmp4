@@ -1,9 +1,9 @@
 ---
-nom: Membre 8
+nom: Benoit Périllat Boiteux
 role: Colistier
-profession: À compléter
+profession: Mécanicien
 photo: ""
-motivation: À compléter
+motivation: Je m'engage pour une municipalité à l'écoute, transparente, objective et intègre ; pour (re)donner énergie et faire valoir notre commune, ses habitants, à hauteur de la richesse de son histoire, ses terroirs et territoires.
 ordre: 8
 position:
   x: 39.6

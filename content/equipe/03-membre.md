@@ -1,9 +1,9 @@
 ---
-nom: Membre 3
+nom: William Bories
 role: Colistier
-profession: À compléter
+profession: Ingénieur informatique
 photo: ""
-motivation: À compléter
+motivation: C'est simple : faire de ce village un lieu ouvert et chaleureux, où les nouveaux habitants sont accueillis et où l'entraide devient la norme.
 ordre: 3
 position:
   x: 22.8

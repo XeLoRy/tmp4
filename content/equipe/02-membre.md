@@ -1,6 +1,6 @@
 ---
-nom: Membre 2
-role: Colistier
+nom: Mickaël Maistre
+role: Tête de liste
 profession: À compléter
 photo: ""
 motivation: À compléter
