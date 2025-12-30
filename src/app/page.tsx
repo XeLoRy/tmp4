@@ -103,7 +103,7 @@ export default function Home() {
                 {/* Citation courte */}
                 <div className="flex-1 text-center md:text-left">
                   <blockquote className="text-xl lg:text-2xl text-foreground leading-relaxed mb-6">
-                    &ldquo;Notre village merite une equipe <strong>a son ecoute, dynamique, competente et tournee vers l&apos;avenir</strong>. Avec nos {membres.length} colistiers, issus de tous horizons, nous voulons renforcer les liens entre les generations, soutenir l&apos;economie locale et faire de chaque habitant un acteur de son territoire. C&apos;est cette <strong>Energie Commune</strong> qui nous anime.&rdquo;
+                    &ldquo;Notre village mérite une équipe <strong>à son écoute, dynamique, compétente et tournée vers l&apos;avenir</strong>. Avec nos {membres.length} colistiers, issus de tous horizons, nous voulons renforcer les liens entre les générations, soutenir l&apos;économie locale et faire de chaque habitant un acteur de son territoire. C&apos;est cette <strong>Énergie Commune</strong> qui nous anime.&rdquo;
                   </blockquote>
                   <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4">
                     <div>
