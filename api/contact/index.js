@@ -26,7 +26,7 @@ async function getAccessToken() {
   return data.access_token;
 }
 
-async function sendEmail(accessToken, { prenom, nom, email, sujet, message }) {
+async function sendEmailToTeam(accessToken, { prenom, nom, email, sujet, message }) {
   const sujetLabels = {
     'question': 'Question generale',
     'programme': 'Question sur le programme',
@@ -74,7 +74,75 @@ async function sendEmail(accessToken, { prenom, nom, email, sujet, message }) {
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`Graph API error: ${response.status} - ${errorText}`);
+    throw new Error(`Graph API error (team): ${response.status} - ${errorText}`);
+  }
+
+  return true;
+}
+
+async function sendConfirmationToVisitor(accessToken, { prenom, nom, email, sujet, message }) {
+  const sujetLabels = {
+    'question': 'Question generale',
+    'programme': 'Question sur le programme',
+    'benevolat': 'Devenir benevole',
+    'presse': 'Contact presse',
+    'autre': 'Autre'
+  };
+
+  const emailContent = {
+    message: {
+      subject: `[Une Energie Commune] Nous avons bien recu votre message`,
+      body: {
+        contentType: 'HTML',
+        content: `
+          <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+            <div style="background:#9bc73e;padding:20px;text-align:center;">
+              <h1 style="color:white;margin:0;font-size:24px;">Une Energie Commune</h1>
+            </div>
+            <div style="padding:30px;background:#ffffff;">
+              <p style="font-size:16px;">Bonjour <strong>${prenom}</strong>,</p>
+              <p style="font-size:16px;">Nous avons bien recu votre message et nous vous en remercions.</p>
+              <p style="font-size:16px;">Notre equipe vous repondra dans les plus brefs delais.</p>
+
+              <div style="background:#f5f5f5;padding:20px;border-radius:8px;margin:20px 0;">
+                <h3 style="margin-top:0;color:#333;">Recapitulatif de votre message :</h3>
+                <p><strong>Sujet :</strong> ${sujetLabels[sujet] || sujet}</p>
+                <p><strong>Message :</strong></p>
+                <div style="background:white;padding:15px;border-left:4px solid #9bc73e;white-space:pre-wrap;">${message}</div>
+              </div>
+
+              <p style="font-size:16px;">A bientot !</p>
+              <p style="font-size:16px;"><strong>L'equipe Une Energie Commune</strong></p>
+            </div>
+            <div style="background:#333;padding:15px;text-align:center;">
+              <p style="color:#999;font-size:12px;margin:0;">
+                Ceci est un message automatique, merci de ne pas y repondre directement.<br>
+                Pour nous contacter : <a href="mailto:${SHARED_MAILBOX}" style="color:#9bc73e;">${SHARED_MAILBOX}</a>
+              </p>
+            </div>
+          </div>
+        `
+      },
+      toRecipients: [{ emailAddress: { address: email, name: `${prenom} ${nom}` } }]
+    },
+    saveToSentItems: 'true'
+  };
+
+  const response = await fetch(
+    `https://graph.microsoft.com/v1.0/users/${SHARED_MAILBOX}/sendMail`,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(emailContent)
+    }
+  );
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Graph API error (confirmation): ${response.status} - ${errorText}`);
   }
 
   return true;
@@ -141,11 +209,16 @@ module.exports = async function (context, req) {
 
     context.log(`Contact from: ${prenom} ${nom} <${email}>`);
 
-    // Get token and send email
+    // Get token and send emails
     const accessToken = await getAccessToken();
-    await sendEmail(accessToken, { prenom, nom, email, sujet, message });
 
-    context.log('Email sent successfully');
+    // 1. Send to team
+    await sendEmailToTeam(accessToken, { prenom, nom, email, sujet, message });
+    context.log('Email sent to team');
+
+    // 2. Send confirmation to visitor
+    await sendConfirmationToVisitor(accessToken, { prenom, nom, email, sujet, message });
+    context.log('Confirmation sent to visitor');
 
     context.res = {
       status: 200,

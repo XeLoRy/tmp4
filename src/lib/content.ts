@@ -43,6 +43,9 @@ export interface PageAccueil {
   heroTitle: string;
   heroCitation: string;
   engagementTexte: string;
+  teteDeListe?: string;
+  tetteDeListeRole?: string;
+  edito?: string;
 }
 
 export interface SiteConfig {

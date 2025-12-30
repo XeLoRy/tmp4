@@ -25,6 +25,25 @@
           locale: 'fr',
           collections: [
             {
+              name: 'pages',
+              label: 'Pages',
+              files: [
+                {
+                  name: 'accueil',
+                  label: 'Page d\'accueil',
+                  file: 'content/pages/accueil.md',
+                  fields: [
+                    { label: 'Titre Hero', name: 'heroTitle', widget: 'string' },
+                    { label: 'Citation Hero', name: 'heroCitation', widget: 'string' },
+                    { label: 'Nom tete de liste', name: 'teteDeListe', widget: 'string' },
+                    { label: 'Role tete de liste', name: 'tetteDeListeRole', widget: 'string' },
+                    { label: 'Edito (texte complet)', name: 'edito', widget: 'markdown' },
+                    { label: 'Texte engagement', name: 'engagementTexte', widget: 'text' }
+                  ]
+                }
+              ]
+            },
+            {
               name: 'equipe',
               label: 'Équipe',
               folder: 'content/equipe',

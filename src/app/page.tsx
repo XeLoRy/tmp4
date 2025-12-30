@@ -75,27 +75,33 @@ export default function Home() {
         <section className="py-16 lg:py-24 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
                 {/* Photo */}
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 mx-auto md:mx-0">
                   <div className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-primary-light/30 overflow-hidden shadow-lg">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/images/mm.png"
-                      alt="Mickaël M"
+                      alt={pageAccueil.teteDeListe || "Tete de liste"}
                       className="w-full h-full object-cover"
                     />
                   </div>
+                  <div className="text-center mt-4">
+                    <p className="font-semibold text-lg text-foreground">{pageAccueil.teteDeListe || "Mickael M."}</p>
+                    <p className="text-primary font-medium">{pageAccueil.tetteDeListeRole || "Tete de liste"}</p>
+                  </div>
                 </div>
 
-                {/* Citation */}
-                <div className="flex-1 text-center md:text-left">
-                  <blockquote className="text-xl lg:text-2xl text-foreground leading-relaxed mb-6">
-                    &ldquo;Notre village mérite une équipe à son écoute, transparente et tournée vers l&apos;avenir. Ensemble, avec nos {membres.length} colistiers issus de tous horizons, nous voulons renforcer les liens entre générations, soutenir notre économie locale et faire de chaque habitant un acteur de notre territoire. C&apos;est cette énergie commune qui nous anime.&rdquo;
-                  </blockquote>
-                  <div>
-                    <p className="font-semibold text-lg text-foreground">Mickaël M.</p>
-                    <p className="text-primary font-medium">Tête de liste</p>
+                {/* Edito */}
+                <div className="flex-1">
+                  <div className="prose prose-lg max-w-none text-foreground leading-relaxed">
+                    {pageAccueil.edito ? (
+                      pageAccueil.edito.split('\n\n').map((paragraph, index) => (
+                        <p key={index} className="mb-4">{paragraph}</p>
+                      ))
+                    ) : (
+                      <p>Notre village merite une equipe a son ecoute, dynamique et tournee vers l&apos;avenir.</p>
+                    )}
                   </div>
                 </div>
               </div>
