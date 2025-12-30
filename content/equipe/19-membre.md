@@ -6,6 +6,6 @@ photo: ""
 motivation: À compléter
 ordre: 19
 position:
-  x: 67.6
-  y: 33.3
+  x: 67.9
+  y: 37.2
 ---

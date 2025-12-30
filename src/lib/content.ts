@@ -48,6 +48,13 @@ export interface PageAccueil {
   edito?: string;
 }
 
+export interface Edito {
+  titre: string;
+  teteDeListe: string;
+  role: string;
+  content: string;
+}
+
 export interface SiteConfig {
   nomListe: string;
   slogan: string;
@@ -146,6 +153,20 @@ export function getPageAccueil(): PageAccueil {
       heroTitle: "Une Énergie Commune",
       heroCitation: "Ensemble, construisons l'avenir de notre village",
       engagementTexte: "Nous sommes une équipe de citoyens engagés.",
+    };
+  }
+}
+
+export function getEdito(): Edito {
+  try {
+    const data = parseMarkdownFile<Edito>("pages/edito.md");
+    return data;
+  } catch {
+    return {
+      titre: "Mot de la tete de liste",
+      teteDeListe: "Mickaël Maistre",
+      role: "Tete de liste",
+      content: "",
     };
   }
 }

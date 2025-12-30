@@ -1,7 +1,7 @@
 ---
 heroTitle: Une Énergie Commune
 heroCitation: Ensemble, construisons l'avenir de notre village
-teteDeListe: Mickael M.
+teteDeListe: Mickaël Maistre
 tetteDeListeRole: Tete de liste
 edito: |
   Cheres Glieroises, chers Glierois,

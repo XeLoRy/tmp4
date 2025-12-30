@@ -36,21 +36,12 @@ export default function ThematiquesPage() {
                     <div className="p-8">
                       <div className="flex items-center gap-4 mb-6">
                         <span className="text-5xl">{theme.icon}</span>
-                        <div>
-                          <span className="text-sm font-medium text-primary">
-                            Thématique {index + 1}
-                          </span>
-                          <h2 className="text-2xl font-bold text-foreground">
-                            {theme.title}
-                          </h2>
-                        </div>
+                        <h2 className="text-2xl font-bold text-foreground">
+                          {theme.title}
+                        </h2>
                       </div>
 
-                      <p className="text-lg text-foreground-muted mb-6">
-                        {theme.description}
-                      </p>
-
-                      <div className="bg-background rounded-xl p-6">
+                      <div className="bg-background rounded-xl p-6 mb-6">
                         <h3 className="font-semibold text-foreground mb-4">
                           Nos engagements :
                         </h3>
@@ -76,6 +67,15 @@ export default function ThematiquesPage() {
                             </li>
                           ))}
                         </ul>
+                      </div>
+
+                      <div className="border-t border-gray-100 pt-6">
+                        <h3 className="font-semibold text-primary mb-2">
+                          Notre objectif :
+                        </h3>
+                        <p className="text-lg text-foreground-muted italic">
+                          {theme.description}
+                        </p>
                       </div>
                     </div>
                   </div>

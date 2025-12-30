@@ -75,9 +75,9 @@ export default function Home() {
         <section className="py-16 lg:py-24 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12">
+              <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                 {/* Photo */}
-                <div className="flex-shrink-0 mx-auto md:mx-0">
+                <div className="flex-shrink-0">
                   <div className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-primary-light/30 overflow-hidden shadow-lg">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -86,22 +86,27 @@ export default function Home() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="text-center mt-4">
-                    <p className="font-semibold text-lg text-foreground">{pageAccueil.teteDeListe || "Mickael M."}</p>
-                    <p className="text-primary font-medium">{pageAccueil.tetteDeListeRole || "Tete de liste"}</p>
-                  </div>
                 </div>
 
-                {/* Edito */}
-                <div className="flex-1">
-                  <div className="prose prose-lg max-w-none text-foreground leading-relaxed">
-                    {pageAccueil.edito ? (
-                      pageAccueil.edito.split('\n\n').map((paragraph, index) => (
-                        <p key={index} className="mb-4">{paragraph}</p>
-                      ))
-                    ) : (
-                      <p>Notre village merite une equipe a son ecoute, dynamique et tournee vers l&apos;avenir.</p>
-                    )}
+                {/* Citation courte */}
+                <div className="flex-1 text-center md:text-left">
+                  <blockquote className="text-xl lg:text-2xl text-foreground leading-relaxed mb-6">
+                    &ldquo;Notre village merite une equipe <strong>a son ecoute, dynamique, competente et tournee vers l&apos;avenir</strong>. Avec nos {membres.length} colistiers, issus de tous horizons, nous voulons renforcer les liens entre les generations, soutenir l&apos;economie locale et faire de chaque habitant un acteur de son territoire. C&apos;est cette <strong>Energie Commune</strong> qui nous anime.&rdquo;
+                  </blockquote>
+                  <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+                    <div>
+                      <p className="font-semibold text-lg text-foreground">{pageAccueil.teteDeListe || "Mickaël Maistre"}</p>
+                      <p className="text-primary font-medium">{pageAccueil.tetteDeListeRole || "Tete de liste"}</p>
+                    </div>
+                    <Link
+                      href="/edito"
+                      className="inline-flex items-center text-primary font-medium hover:underline sm:ml-4"
+                    >
+                      Lire l&apos;edito complet
+                      <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>

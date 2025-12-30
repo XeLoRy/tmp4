@@ -1,11 +1,11 @@
 ---
-nom: Membre 20
+nom: Membre 22
 role: Colistier
 profession: À compléter
 photo: ""
 motivation: À compléter
-ordre: 20
+ordre: 22
 position:
-  x: 71.3
-  y: 43.2
+  x: 50
+  y: 50
 ---
