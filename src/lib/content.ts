@@ -174,9 +174,9 @@ export function getEdito(): Edito {
     return data;
   } catch {
     return {
-      titre: "Mot de la tete de liste",
+      titre: "Mot de la tête de liste",
       teteDeListe: "Mickaël Maistre",
-      role: "Tete de liste",
+      role: "Tête de liste",
       content: "",
     };
   }

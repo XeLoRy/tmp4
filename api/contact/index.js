@@ -28,30 +28,30 @@ async function getAccessToken() {
 
 async function sendEmailToTeam(accessToken, { prenom, nom, email, sujet, message }) {
   const sujetLabels = {
-    'question': 'Question generale',
+    'question': 'Question générale',
     'programme': 'Question sur le programme',
-    'benevolat': 'Devenir benevole',
+    'benevolat': 'Devenir bénévole',
     'presse': 'Contact presse',
     'autre': 'Autre'
   };
 
   const emailContent = {
     message: {
-      subject: `[Une Energie Commune] ${nom} ${prenom} - ${sujetLabels[sujet] || sujet}`,
+      subject: `[Une Énergie Commune] ${nom} ${prenom} - ${sujetLabels[sujet] || sujet}`,
       body: {
         contentType: 'HTML',
         content: `
           <h2>Nouveau message du formulaire de contact</h2>
           <table style="border-collapse:collapse;width:100%;max-width:600px;">
             <tr><td style="padding:8px;border:1px solid #ddd;background:#f9f9f9;"><strong>Nom</strong></td><td style="padding:8px;border:1px solid #ddd;">${nom}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #ddd;background:#f9f9f9;"><strong>Prenom</strong></td><td style="padding:8px;border:1px solid #ddd;">${prenom}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #ddd;background:#f9f9f9;"><strong>Prénom</strong></td><td style="padding:8px;border:1px solid #ddd;">${prenom}</td></tr>
             <tr><td style="padding:8px;border:1px solid #ddd;background:#f9f9f9;"><strong>Email</strong></td><td style="padding:8px;border:1px solid #ddd;"><a href="mailto:${email}">${email}</a></td></tr>
             <tr><td style="padding:8px;border:1px solid #ddd;background:#f9f9f9;"><strong>Sujet</strong></td><td style="padding:8px;border:1px solid #ddd;">${sujetLabels[sujet] || sujet}</td></tr>
           </table>
           <h3>Message</h3>
           <div style="padding:15px;background:#f5f5f5;border-left:4px solid #9bc73e;white-space:pre-wrap;">${message}</div>
           <hr style="margin-top:30px;border:none;border-top:1px solid #ddd;">
-          <p style="color:#666;font-size:12px;">Ce message a ete envoye depuis le formulaire de contact du site Une Energie Commune.</p>
+          <p style="color:#666;font-size:12px;">Ce message a été envoyé depuis le formulaire de contact du site Une Énergie Commune.</p>
         `
       },
       toRecipients: [{ emailAddress: { address: SHARED_MAILBOX } }],
@@ -82,41 +82,41 @@ async function sendEmailToTeam(accessToken, { prenom, nom, email, sujet, message
 
 async function sendConfirmationToVisitor(accessToken, { prenom, nom, email, sujet, message }) {
   const sujetLabels = {
-    'question': 'Question generale',
+    'question': 'Question générale',
     'programme': 'Question sur le programme',
-    'benevolat': 'Devenir benevole',
+    'benevolat': 'Devenir bénévole',
     'presse': 'Contact presse',
     'autre': 'Autre'
   };
 
   const emailContent = {
     message: {
-      subject: `[Une Energie Commune] Nous avons bien recu votre message`,
+      subject: `[Une Énergie Commune] Nous avons bien reçu votre message`,
       body: {
         contentType: 'HTML',
         content: `
           <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
             <div style="background:#9bc73e;padding:20px;text-align:center;">
-              <h1 style="color:white;margin:0;font-size:24px;">Une Energie Commune</h1>
+              <h1 style="color:white;margin:0;font-size:24px;">Une Énergie Commune</h1>
             </div>
             <div style="padding:30px;background:#ffffff;">
               <p style="font-size:16px;">Bonjour <strong>${prenom}</strong>,</p>
-              <p style="font-size:16px;">Nous avons bien recu votre message et nous vous en remercions.</p>
-              <p style="font-size:16px;">Notre equipe vous repondra dans les plus brefs delais.</p>
+              <p style="font-size:16px;">Nous avons bien reçu votre message et nous vous en remercions.</p>
+              <p style="font-size:16px;">Notre équipe vous répondra dans les plus brefs délais.</p>
 
               <div style="background:#f5f5f5;padding:20px;border-radius:8px;margin:20px 0;">
-                <h3 style="margin-top:0;color:#333;">Recapitulatif de votre message :</h3>
+                <h3 style="margin-top:0;color:#333;">Récapitulatif de votre message :</h3>
                 <p><strong>Sujet :</strong> ${sujetLabels[sujet] || sujet}</p>
                 <p><strong>Message :</strong></p>
                 <div style="background:white;padding:15px;border-left:4px solid #9bc73e;white-space:pre-wrap;">${message}</div>
               </div>
 
-              <p style="font-size:16px;">A bientot !</p>
-              <p style="font-size:16px;"><strong>L'equipe Une Energie Commune</strong></p>
+              <p style="font-size:16px;">À bientôt !</p>
+              <p style="font-size:16px;"><strong>L'équipe Une Énergie Commune</strong></p>
             </div>
             <div style="background:#333;padding:15px;text-align:center;">
               <p style="color:#999;font-size:12px;margin:0;">
-                Ceci est un message automatique, merci de ne pas y repondre directement.<br>
+                Ceci est un message automatique, merci de ne pas y répondre directement.<br>
                 Pour nous contacter : <a href="mailto:${SHARED_MAILBOX}" style="color:#9bc73e;">${SHARED_MAILBOX}</a>
               </p>
             </div>
@@ -223,14 +223,14 @@ module.exports = async function (context, req) {
     context.res = {
       status: 200,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ success: true, message: 'Message envoye avec succes' })
+      body: JSON.stringify({ success: true, message: 'Message envoyé avec succès' })
     };
   } catch (error) {
     context.log('ERROR:', error.message);
     context.res = {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'Erreur lors de l\'envoi. Veuillez reessayer.' })
+      body: JSON.stringify({ error: 'Erreur lors de l\'envoi. Veuillez réessayer.' })
     };
   }
 };

@@ -29,7 +29,7 @@ async function getAccessToken() {
 async function sendEmailToTeam(accessToken, data) {
   const emailContent = {
     message: {
-      subject: `[Une Energie Commune] Enquête - ${data.nom || data.email}`,
+      subject: `[Une Énergie Commune] Enquête - ${data.nom || data.email}`,
       body: {
         contentType: 'HTML',
         content: `

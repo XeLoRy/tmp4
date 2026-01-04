@@ -78,7 +78,7 @@ export default function ContactForm() {
               htmlFor="prenom"
               className="block text-sm font-medium text-foreground mb-2"
             >
-              Prenom
+              Prénom
             </label>
             <input
               type="text"

@@ -108,13 +108,13 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4">
                     <div>
                       <p className="font-semibold text-lg text-foreground">{pageAccueil.teteDeListe || "Mickaël Maistre"}</p>
-                      <p className="text-primary font-medium">{pageAccueil.tetteDeListeRole || "Tete de liste"}</p>
+                      <p className="text-primary font-medium">{pageAccueil.tetteDeListeRole || "Tête de liste"}</p>
                     </div>
                     <Link
                       href="/edito"
                       className="inline-flex items-center text-primary font-medium hover:underline"
                     >
-                      Lire l&apos;edito complet
+                      Lire l&apos;édito complet
                       <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
