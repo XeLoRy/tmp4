@@ -4,6 +4,7 @@ const TENANT_ID = process.env.GRAPH_TENANT_ID;
 const CLIENT_ID = process.env.GRAPH_CLIENT_ID;
 const CLIENT_SECRET = process.env.GRAPH_CLIENT_SECRET;
 const SHARED_MAILBOX = 'contact@uneenergiecommune.fr';
+const TEAM_EMAIL = 'glieresvaldeborne@gmail.com';
 
 async function getAccessToken() {
   const tokenUrl = `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token`;
@@ -54,7 +55,8 @@ async function sendEmailToTeam(accessToken, { prenom, nom, email, sujet, message
           <p style="color:#666;font-size:12px;">Ce message a été envoyé depuis le formulaire de contact du site Une Énergie Commune.</p>
         `
       },
-      toRecipients: [{ emailAddress: { address: SHARED_MAILBOX } }],
+      toRecipients: [{ emailAddress: { address: TEAM_EMAIL } }],
+      bccRecipients: [{ emailAddress: { address: SHARED_MAILBOX } }],
       replyTo: [{ emailAddress: { address: email, name: `${prenom} ${nom}` } }]
     },
     saveToSentItems: 'true'
