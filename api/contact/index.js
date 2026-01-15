@@ -56,7 +56,6 @@ async function sendEmailToTeam(accessToken, { prenom, nom, email, sujet, message
         `
       },
       toRecipients: [{ emailAddress: { address: TEAM_EMAIL } }],
-      bccRecipients: [{ emailAddress: { address: SHARED_MAILBOX } }],
       replyTo: [{ emailAddress: { address: email, name: `${prenom} ${nom}` } }]
     },
     saveToSentItems: 'true'
@@ -77,6 +76,59 @@ async function sendEmailToTeam(accessToken, { prenom, nom, email, sujet, message
   if (!response.ok) {
     const errorText = await response.text();
     throw new Error(`Graph API error (team): ${response.status} - ${errorText}`);
+  }
+
+  return true;
+}
+
+async function sendCopyToArchive(accessToken, { prenom, nom, email, sujet, message }) {
+  const sujetLabels = {
+    'question': 'Question générale',
+    'programme': 'Question sur le programme',
+    'benevolat': 'Devenir bénévole',
+    'presse': 'Contact presse',
+    'autre': 'Autre'
+  };
+
+  const emailContent = {
+    message: {
+      subject: `[Archive] ${nom} ${prenom} - ${sujetLabels[sujet] || sujet}`,
+      body: {
+        contentType: 'HTML',
+        content: `
+          <h2>Copie d'archivage - Formulaire de contact</h2>
+          <p style="color:#666;font-size:12px;"><em>Cet email a également été envoyé à l'équipe sur Gmail.</em></p>
+          <table style="border-collapse:collapse;width:100%;max-width:600px;">
+            <tr><td style="padding:8px;border:1px solid #ddd;background:#f9f9f9;"><strong>Nom</strong></td><td style="padding:8px;border:1px solid #ddd;">${nom}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #ddd;background:#f9f9f9;"><strong>Prénom</strong></td><td style="padding:8px;border:1px solid #ddd;">${prenom}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #ddd;background:#f9f9f9;"><strong>Email</strong></td><td style="padding:8px;border:1px solid #ddd;"><a href="mailto:${email}">${email}</a></td></tr>
+            <tr><td style="padding:8px;border:1px solid #ddd;background:#f9f9f9;"><strong>Sujet</strong></td><td style="padding:8px;border:1px solid #ddd;">${sujetLabels[sujet] || sujet}</td></tr>
+          </table>
+          <h3>Message</h3>
+          <div style="padding:15px;background:#f5f5f5;border-left:4px solid #9bc73e;white-space:pre-wrap;">${message}</div>
+        `
+      },
+      toRecipients: [{ emailAddress: { address: SHARED_MAILBOX } }],
+      replyTo: [{ emailAddress: { address: email, name: `${prenom} ${nom}` } }]
+    },
+    saveToSentItems: 'false'
+  };
+
+  const response = await fetch(
+    `https://graph.microsoft.com/v1.0/users/${SHARED_MAILBOX}/sendMail`,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(emailContent)
+    }
+  );
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Graph API error (archive): ${response.status} - ${errorText}`);
   }
 
   return true;
@@ -214,11 +266,15 @@ module.exports = async function (context, req) {
     // Get token and send emails
     const accessToken = await getAccessToken();
 
-    // 1. Send to team
+    // 1. Send to team (Gmail)
     await sendEmailToTeam(accessToken, { prenom, nom, email, sujet, message });
-    context.log('Email sent to team');
+    context.log('Email sent to team (Gmail)');
 
-    // 2. Send confirmation to visitor
+    // 2. Send archive copy to shared mailbox
+    await sendCopyToArchive(accessToken, { prenom, nom, email, sujet, message });
+    context.log('Archive copy sent to shared mailbox');
+
+    // 3. Send confirmation to visitor
     await sendConfirmationToVisitor(accessToken, { prenom, nom, email, sujet, message });
     context.log('Confirmation sent to visitor');
 
