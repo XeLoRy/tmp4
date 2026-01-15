@@ -1,112 +1,215 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getThematiques } from "@/lib/content";
 
-// Import statique des thématiques côté client
 const thematiquesData = [
   {
     slug: "citoyennete",
     title: "Citoyenneté",
     icon: "🗳️",
-    description: "Une équipe municipale à l'écoute, responsable et tournée vers l'avenir",
+    subtitle: "Remettre de la citoyenneté dans la vie du village",
+    objectif: "Une équipe municipale à l'écoute, vouée à la collectivité et non aux intérêts personnels",
     engagements: [
-      "Écouter et impliquer les habitants : consultations publiques, réunions, ateliers participatifs",
-      "Créer un lien direct élus/habitants avec des permanences régulières",
-      "Démocratie participative : sondages, boîtes à idées",
-      "Gestion transparente des finances et de l'urbanisme",
-      "Communication claire et régulière : site web, bulletin municipal, réseaux sociaux"
-    ],
-    actions: [
-      "Organiser des consultations publiques sur les grands projets",
-      "Mettre en place des réunions thématiques et ateliers participatifs",
-      "Créer des permanences régulières des élus",
-      "Proposer un accompagnement aux démarches administratives",
-      "Publier des comptes rendus accessibles et compréhensibles",
-      "Défendre les intérêts de la commune dans l'intercommunalité"
+      {
+        titre: "Écouter et impliquer les habitants : renforcer la participation citoyenne",
+        actions: [
+          "Permanences hebdomadaires du Maire et/ou un adjoint tous les samedis matin",
+          "Commissions ouvertes aux élus et habitants volontaires",
+          "Création et mise en place d'un conseil municipal jeune",
+          "Création d'un relais citoyen au sein de chaque hameau",
+          "Participation des habitants sur les sujets importants : consultations, réunions publiques, référendum",
+          "Gestion transparente (finances, urbanisme,...) avec un élu référent par thématique clairement identifié"
+        ]
+      },
+      {
+        titre: "Défendre les intérêts de la commune et de ses habitants avec les partenaires institutionnels",
+        actions: [
+          "Avoir un partenariat exigeant avec la CCFG : participation constructive mais défense de nos intérêts",
+          "Lors d'un projet, consultation et implication de toutes les associations concernées",
+          "Construire les projets en étroite collaboration avec nos partenaires institutionnels (Département, Région,…)",
+          "Communiquer sur les compétences des différents partenaires d'une Mairie"
+        ]
+      },
+      {
+        titre: "Communication claire et régulière",
+        actions: [
+          "Site web actualisé, bulletin municipal, informations via les réseaux sociaux (Facebook/Instagram)",
+          "Transparence des actions et décisions sur le site internet, réseaux, et sur l'info du mois",
+          "Info bi-mensuelle (site + papier)",
+          "Publication annuelle d'un journal communal ouvert aux élus et aux non élus",
+          "Panneau information entretenu et à jour dans chaque hameau",
+          "Comptes rendus complets du conseil municipal affichés sur les panneaux de la Mairie"
+        ]
+      }
     ]
   },
   {
     slug: "solidarite",
-    title: "Solidarité & Services",
+    title: "Cohésion et Solidarité",
     icon: "🤝",
-    description: "Renforcer l'accès aux soins, à l'éducation et aux services de proximité",
+    subtitle: "Soutenir jeunesse, familles, séniors et renforcer les liens intergénérationnels",
+    objectif: "Une commune dynamique et solidaire où il fait bon grandir, s'épanouir et vieillir",
     engagements: [
-      "Construire une Maison Médicale à Petit-Bornand",
-      "Construire un réfectoire et une salle de motricité à l'école d'Entremont",
-      "Développer les services à la personne et les aides sociales",
-      "Améliorer la mobilité et les transports",
-      "Soutenir les familles et les seniors"
-    ],
-    actions: [
-      "Étudier et lancer le projet de Maison Médicale",
-      "Planifier la construction du réfectoire à Entremont",
-      "Renforcer le CCAS et les aides sociales",
-      "Améliorer les transports à la demande",
-      "Créer des activités intergénérationnelles"
+      {
+        titre: "Entraide à toutes les générations",
+        actions: [
+          "Proposer des rencontres inter-générations autour d'une thématique",
+          "Lancer une application Glières-Val-de-Borne qui propose du covoiturage, un service d'entraide pour tous",
+          "Créer un lieu de rencontre intergénérationnelle avec jeux de société, babyfoot, ping-pong, etc.",
+          "Créer des logements pour les personnes âgées ou handicapées pour qu'elles restent au village",
+          "Construction d'une grande salle « tiers-lieu » au centre du Petit-Bornand, lieu d'échange associatif, de partage et de rencontre"
+        ]
+      },
+      {
+        titre: "Soutenir les écoles",
+        actions: [
+          "Augmentation de l'aide financière pour les sorties pédagogiques et projets culturels",
+          "Créer des espaces d'ombre pour l'été dans les 2 écoles",
+          "Création d'un poste d'ETAPS pour le sport scolaire et les activités extrascolaires",
+          "Création d'une salle de motricité à l'école Tom Morel",
+          "Mettre en place des études encadrées par des enseignants volontaires"
+        ]
+      },
+      {
+        titre: "Favoriser le sport-santé",
+        actions: [
+          "Intervention de l'ETAPS auprès des seniors",
+          "Accompagnement des publics vers différentes activités sportives",
+          "Dynamisation générale du secteur sportif communal",
+          "Réflexion autour de la création d'un pôle compétition en ski nordique",
+          "Étude de faisabilité d'un centre sportif dédié au « Padel »",
+          "Mise en place d'un chèque sport/culture pour tous les jeunes de la Commune de 4 à 20 ans"
+        ]
+      }
     ]
   },
   {
     slug: "vie-locale",
-    title: "Vie Locale & Patrimoine",
+    title: "Vie Locale",
     icon: "🏔️",
-    description: "Préserver notre identité tout en dynamisant la vie du village",
+    subtitle: "Renforcer la vie locale et le lien social",
+    objectif: "Des équipements et services de proximité pour tous les habitants",
     engagements: [
-      "Conserver et réhabiliter la Maison Pédat",
-      "Soutenir les associations et la vie culturelle",
-      "Valoriser notre patrimoine historique et naturel",
-      "Organiser des événements festifs et rassembleurs",
-      "Développer les équipements sportifs et de loisirs"
-    ],
-    actions: [
-      "Lancer l'étude de réhabilitation de la Maison Pédat",
-      "Augmenter le soutien aux associations",
-      "Créer des parcours patrimoine",
-      "Organiser des fêtes villageoises",
-      "Améliorer les équipements sportifs existants"
+      {
+        titre: "Construction d'une Maison médicale à Petit-Bornand",
+        actions: [
+          "Étude de faisabilité d'un nouveau bâtiment sur les terrains communaux du centre",
+          "Consultation publique et/ou Référendum sur le projet",
+          "Montage des dossiers de financement et de subventions en collaboration avec les partenaires institutionnels",
+          "Mise en œuvre et réalisation de la Maison médicale durant le mandat"
+        ]
+      },
+      {
+        titre: "Valoriser les associations et encourager les initiatives locales",
+        actions: [
+          "Construire une grande salle « tiers-lieu » au centre du Petit-Bornand pour les associations, les réunions publiques et les fêtes privées",
+          "Apporter un réel soutien aux associations par tous les moyens dont dispose la Commune (humains, financiers, locaux)",
+          "Organiser une soirée pour remercier et valoriser les associations",
+          "Mettre en avant les associations via les réseaux sociaux et panneaux d'affichage",
+          "Reprise par la Commune de la gestion de la cantine et du péri-scolaire à Entremont"
+        ]
+      },
+      {
+        titre: "Création d'une salle de motricité et d'un réfectoire à l'école d'Entremont",
+        actions: [
+          "Associer le nouveau réfectoire et la nouvelle salle de motricité dans un même projet, en liaison avec la CCFG",
+          "Anticiper la possibilité d'une future cantinière (cuisine aux normes, attentes, normes d'hygiène)",
+          "Associer l'APE et l'équipe enseignante au projet",
+          "Avoir un suivi précis du chantier"
+        ]
+      },
+      {
+        titre: "Mobilités douces, sécurisation",
+        actions: [
+          "Entretien et nettoyage des sentiers",
+          "Étude et réalisation d'un passage à mobilité douce entre La Puya et La Ville",
+          "Aires de covoiturage aux 2 extrémités de la Commune avec 1 application dédiée",
+          "Réhabilitation des abris-bus et créations de parkings à vélo à proximité",
+          "Mise à disposition d'une navette et d'un chauffeur pour les projets des écoles",
+          "Création/réfections des liaisons douces entre les hameaux",
+          "Aménagement d'aires de croisement sur la vieille route des Evaux",
+          "Rétablissement de l'éclairage public"
+        ]
+      }
     ]
   },
   {
     slug: "economie",
-    title: "Économie & Environnement",
+    title: "Économie et Environnement",
     icon: "🌿",
-    description: "Être acteur d'un développement raisonné",
+    subtitle: "Préserver et valoriser l'économie locale",
+    objectif: "Être acteurs d'un développement raisonné",
     engagements: [
-      "Soutenir agriculteurs, producteurs locaux et circuits courts",
-      "Sécuriser les alpages",
-      "Gestion responsable de l'eau, des déchets et de l'énergie",
-      "Préparer l'avenir de l'eau à horizon 2050",
-      "Sensibiliser les jeunes à l'environnement"
-    ],
-    actions: [
-      "Favoriser les circuits courts et la vente directe",
-      "Sécuriser et entretenir les alpages",
-      "Optimiser la gestion des déchets",
-      "Engager une réflexion sur l'eau à long terme",
-      "Créer des programmes de sensibilisation environnementale"
+      {
+        titre: "Soutenir agriculteurs et producteurs locaux, favoriser les circuits-courts",
+        actions: [
+          "Favoriser l'installation de nouveaux agriculteurs sur notre territoire et d'un maraîcher",
+          "Entretenir notre caractère rural en préservant les terres agricoles pour les agriculteurs",
+          "Ouverture de la route de tous nos alpages (y compris Lessy et les Auges)",
+          "Mise en place du nouveau PLU et réflexion autour de la gestion des terrains agricoles",
+          "Créer un point de rencontre avec des produits locaux"
+        ]
+      },
+      {
+        titre: "Économie",
+        actions: [
+          "Étudier la faisabilité d'une zone artisanale pour favoriser l'installation des jeunes artisans de la Commune",
+          "Agrandir et déplacer le marché dominical en l'installant sur les terrains communaux au centre",
+          "Financer un distributeur de produits locaux",
+          "Mettre en place une véritable politique de gestion environnementale et financière de nos forêts avec l'ONF",
+          "Favoriser l'affouage pour entretenir nos forêts et permettre aux habitants de se chauffer à moindre coût"
+        ]
+      },
+      {
+        titre: "Préserver notre environnement",
+        actions: [
+          "Mettre en place une « Journée de la Commune » en mobilisant tous les volontaires pour des travaux d'aménagement",
+          "Aller vers l'assainissement collectif pour chaque hameau",
+          "Apporter un réel soutien financier aux écoles pour des ateliers autour de l'environnement",
+          "Établir une fresque climat",
+          "Préserver l'alpage de Cenise et garder sa vocation agricole",
+          "1 habitant = 1 poule"
+        ]
+      }
     ]
   },
   {
-    slug: "territoire",
-    title: "Aménagement & Cadre de Vie",
-    icon: "🏡",
-    description: "Un développement harmonieux et maîtrisé du territoire",
+    slug: "rayonnement",
+    title: "Rayonnement",
+    icon: "✨",
+    subtitle: "Faire rayonner notre territoire",
+    objectif: "Faire de chacun d'entre nous un ambassadeur fier de son territoire",
     engagements: [
-      "Rétablir les finances de la Commune sans augmenter les impôts",
-      "Maîtriser l'urbanisme et préserver les paysages",
-      "Améliorer les infrastructures routières et la sécurité",
-      "Développer le numérique et la connectivité",
-      "Entretenir et embellir l'espace public"
-    ],
-    actions: [
-      "Réaliser un audit financier complet",
-      "Réviser le PLU avec les habitants",
-      "Sécuriser les points noirs routiers",
-      "Améliorer la couverture numérique",
-      "Entretenir les espaces verts et fleurir le village"
+      {
+        titre: "Aider au développement d'événements et de manifestations culturelles, sportives",
+        actions: [
+          "Soutenir les fêtes de village (moyens financiers, humains, matériel)",
+          "Établir des lieux de décollage et atterrissage labellisés FFVL pour le parapente",
+          "Installer sapins de Noël et illuminations dans les 2 villages",
+          "Étudier la mise en place d'un festival de musique classique autour de l'Abbaye",
+          "Organiser un grand « son et lumière » retraçant l'histoire de la vallée du Borne"
+        ]
+      },
+      {
+        titre: "Préserver et valoriser le patrimoine naturel et culturel",
+        actions: [
+          "Constituer un réservoir de « personnes-ressource » afin d'en faire les gardiens et les vecteurs de nos richesses patrimoniales",
+          "Entretenir et valoriser le bâti patrimonial (chapelles des hameaux, fours à bois,…)",
+          "Soutenir les chasseurs et les pêcheurs dans la préservation de notre faune naturelle",
+          "Valoriser et développer le camping municipal"
+        ]
+      },
+      {
+        titre: "Tourisme",
+        actions: [
+          "Renforcer l'identité propre de GVDB en affirmant son caractère de village de montagne",
+          "Développer l'image du tourisme responsable en valorisant les endroits calmes et discrets",
+          "Aménager des itinéraires de ski de randonnée",
+          "Organiser des promenades gourmandes pour faire connaître nos produits locaux et nos sentiers"
+        ]
+      }
     ]
   }
 ];
@@ -114,8 +217,8 @@ const thematiquesData = [
 export default function ThematiquesPage() {
   const [expandedEngagements, setExpandedEngagements] = useState<Record<string, boolean>>({});
 
-  const toggleEngagement = (themeSlug: string, index: number) => {
-    const key = `${themeSlug}-${index}`;
+  const toggleEngagement = (themeSlug: string, engIndex: number) => {
+    const key = `${themeSlug}-${engIndex}`;
     setExpandedEngagements(prev => ({
       ...prev,
       [key]: !prev[key]
@@ -171,78 +274,79 @@ export default function ThematiquesPage() {
                 >
                   <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
                     <div className="p-8">
-                      <div className="flex items-center gap-4 mb-6">
+                      {/* Header */}
+                      <div className="flex items-center gap-4 mb-2">
                         <span className="text-5xl">{theme.icon}</span>
                         <h2 className="text-2xl font-bold text-foreground">
                           {theme.title}
                         </h2>
                       </div>
+                      <p className="text-lg text-primary font-medium mb-6 ml-16">
+                        {theme.subtitle}
+                      </p>
 
-                      <div className="bg-background rounded-xl p-6 mb-6">
-                        <h3 className="font-semibold text-foreground mb-4">
-                          Nos engagements :
-                        </h3>
-                        <ul className="space-y-4">
-                          {theme.engagements.map((engagement, i) => {
-                            const key = `${theme.slug}-${i}`;
-                            const isExpanded = expandedEngagements[key];
-                            return (
-                              <li key={i} className="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                                <div className="flex items-start gap-3">
+                      {/* Engagements */}
+                      <div className="space-y-4">
+                        {theme.engagements.map((engagement, engIndex) => {
+                          const key = `${theme.slug}-${engIndex}`;
+                          const isExpanded = expandedEngagements[key];
+                          return (
+                            <div key={engIndex} className="bg-background rounded-xl overflow-hidden">
+                              <button
+                                onClick={() => toggleEngagement(theme.slug, engIndex)}
+                                className="w-full p-4 flex items-start gap-3 text-left hover:bg-background-alt transition-colors"
+                              >
+                                <svg
+                                  className="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M5 13l4 4L19 7"
+                                  />
+                                </svg>
+                                <span className="flex-1 font-medium text-foreground">
+                                  {engagement.titre}
+                                </span>
+                                <span className="text-sm text-primary font-medium flex items-center gap-1">
+                                  Voir les actions
                                   <svg
-                                    className="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                                    className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
                                   >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M5 13l4 4L19 7"
-                                    />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                   </svg>
-                                  <div className="flex-1">
-                                    <span className="text-foreground-muted">
-                                      {engagement}
-                                    </span>
-                                    {theme.actions && theme.actions[i] && (
-                                      <>
-                                        <button
-                                          onClick={() => toggleEngagement(theme.slug, i)}
-                                          className="mt-2 text-sm text-primary font-medium hover:underline flex items-center gap-1"
-                                        >
-                                          Voir les actions
-                                          <svg
-                                            className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                          >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                          </svg>
-                                        </button>
-                                        {isExpanded && (
-                                          <div className="mt-3 pl-4 border-l-2 border-primary/30 text-sm text-foreground-muted">
-                                            {theme.actions[i]}
-                                          </div>
-                                        )}
-                                      </>
-                                    )}
-                                  </div>
+                                </span>
+                              </button>
+                              {isExpanded && (
+                                <div className="px-4 pb-4">
+                                  <ul className="ml-8 space-y-2 border-l-2 border-primary/30 pl-4">
+                                    {engagement.actions.map((action, actionIndex) => (
+                                      <li key={actionIndex} className="text-sm text-foreground-muted">
+                                        {action}
+                                      </li>
+                                    ))}
+                                  </ul>
                                 </div>
-                              </li>
-                            );
-                          })}
-                        </ul>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
 
-                      <div className="border-t border-gray-100 pt-6">
+                      {/* Objectif */}
+                      <div className="border-t border-gray-100 pt-6 mt-6">
                         <h3 className="font-semibold text-primary mb-2">
                           Notre objectif :
                         </h3>
                         <p className="text-lg text-foreground-muted italic">
-                          {theme.description}
+                          {theme.objectif}
                         </p>
                       </div>
 
