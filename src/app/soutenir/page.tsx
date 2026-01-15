@@ -26,14 +26,23 @@ export default function SoutenirPage() {
     };
 
     try {
-      // Pour l'instant, simule un envoi réussi
-      // TODO: Connecter à l'API
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch("/api/soutenir", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Erreur lors de l'envoi");
+      }
+
       setStatus("success");
       (e.target as HTMLFormElement).reset();
-    } catch {
+    } catch (err) {
       setStatus("error");
-      setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
+      setErrorMessage(err instanceof Error ? err.message : "Une erreur est survenue. Veuillez réessayer.");
     }
   };
 
