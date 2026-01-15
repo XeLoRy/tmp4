@@ -18,8 +18,8 @@ export default function EquipePage() {
             <h1 className="font-cursive text-4xl sm:text-5xl text-primary mb-4">
               Notre équipe
             </h1>
-            <p className="text-xl text-foreground-muted max-w-2xl mx-auto">
-              Une équipe jeune, dynamique et compétente, unie pour notre village
+            <p className="text-xl text-foreground-muted max-w-3xl mx-auto">
+              Une équipe engagée, dynamique et unie avec des compétences complémentaires pour Glières-Val-de-Borne
             </p>
           </div>
         </section>

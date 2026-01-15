@@ -1,6 +1,6 @@
 ---
 heroTitle: Une Énergie Commune
-heroCitation: Ensemble, construisons l'avenir de notre village
+heroCitation: Avec engagement, transparence et ouverture, ENSEMBLE pour Glières-Val-de-Borne !
 teteDeListe: Mickaël Maistre
 tetteDeListeRole: Tête de liste
 edito: |

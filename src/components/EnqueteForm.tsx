@@ -15,21 +15,11 @@ const PRIORITES = [
   'Numérique et modernisation',
 ];
 
-const QUARTIERS = [
-  'Centre-ville',
-  'Quartier Nord',
-  'Quartier Sud',
-  'Quartier Est',
-  'Quartier Ouest',
-  'Autre',
-];
-
 export default function EnqueteForm() {
   const [formData, setFormData] = useState({
     nom: '',
     email: '',
     telephone: '',
-    quartier: '',
     priorite1: '',
     priorite2: '',
     priorite3: '',
@@ -72,7 +62,6 @@ export default function EnqueteForm() {
           nom: '',
           email: '',
           telephone: '',
-          quartier: '',
           priorite1: '',
           priorite2: '',
           priorite3: '',
@@ -141,43 +130,24 @@ export default function EnqueteForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div>
-          <label htmlFor="telephone" className="block text-sm font-medium text-foreground mb-2">
-            Téléphone (optionnel)
-          </label>
-          <input
-            type="tel"
-            id="telephone"
-            name="telephone"
-            value={formData.telephone}
-            onChange={handleChange}
-            className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary"
-          />
-        </div>
-        <div>
-          <label htmlFor="quartier" className="block text-sm font-medium text-foreground mb-2">
-            Votre quartier
-          </label>
-          <select
-            id="quartier"
-            name="quartier"
-            value={formData.quartier}
-            onChange={handleChange}
-            className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary bg-white"
-          >
-            <option value="">Sélectionner...</option>
-            {QUARTIERS.map((q) => (
-              <option key={q} value={q}>{q}</option>
-            ))}
-          </select>
-        </div>
+      <div>
+        <label htmlFor="telephone" className="block text-sm font-medium text-foreground mb-2">
+          Téléphone (optionnel)
+        </label>
+        <input
+          type="tel"
+          id="telephone"
+          name="telephone"
+          value={formData.telephone}
+          onChange={handleChange}
+          className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary"
+        />
       </div>
 
       {/* Priorités */}
       <div className="border-t pt-6">
         <h3 className="text-lg font-semibold text-foreground mb-4">
-          Vos 3 priorités pour le village
+          Vos 3 priorités pour Glières Val-de-Borne
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[1, 2, 3].map((num) => (
@@ -246,7 +216,7 @@ export default function EnqueteForm() {
             className="mt-1 rounded border-primary-light/30 text-primary focus:ring-primary"
           />
           <label htmlFor="benevolat" className="text-sm text-foreground-muted">
-            Je suis intéressé(e) pour devenir bénévole
+            Je suis intéressé(e) pour devenir bénévole (organisation d&apos;événements, échanges avec les habitants)
           </label>
         </div>
       </div>

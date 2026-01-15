@@ -77,10 +77,6 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
       {/* Grille alternative */}
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
-            Découvrez nos {membres.length} candidats
-          </h2>
-
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
             {membres.map((membre) => (
               <button

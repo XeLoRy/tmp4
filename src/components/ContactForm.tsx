@@ -22,6 +22,7 @@ export default function ContactForm() {
       email: formData.get("email") as string,
       sujet: formData.get("sujet") as string || "autre",
       message: formData.get("message") as string,
+      newsletter: formData.get("newsletter") === "on",
       rgpd: formData.get("rgpd") === "on",
     };
 
@@ -53,11 +54,11 @@ export default function ContactForm() {
       <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
         <div className="text-5xl mb-4">&#10003;</div>
         <h2 className="text-2xl font-semibold text-primary mb-2">
-          Message envoye !
+          Message envoyé !
         </h2>
         <p className="text-foreground-muted mb-6">
-          Merci pour votre message. Nous vous repondrons dans les plus brefs
-          delais.
+          Merci pour votre message. Nous vous répondrons dans les plus brefs
+          délais.
         </p>
         <button
           onClick={() => setStatus("idle")}
@@ -138,9 +139,9 @@ export default function ContactForm() {
             className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary bg-white disabled:bg-gray-100"
           >
             <option value="">Choisir un sujet</option>
-            <option value="question">Question generale</option>
+            <option value="question">Question générale</option>
             <option value="programme">Question sur le programme</option>
-            <option value="benevolat">Devenir benevole</option>
+            <option value="benevolat">Devenir bénévole</option>
             <option value="presse">Contact presse</option>
             <option value="autre">Autre</option>
           </select>
@@ -164,19 +165,34 @@ export default function ContactForm() {
           />
         </div>
 
-        <div className="flex items-start gap-3">
-          <input
-            type="checkbox"
-            id="rgpd"
-            name="rgpd"
-            required
-            disabled={status === "sending"}
-            className="mt-1 rounded border-primary-light/30 text-primary focus:ring-primary"
-          />
-          <label htmlFor="rgpd" className="text-sm text-foreground-muted">
-            J&apos;accepte que mes donnees soient utilisees pour repondre a ma
-            demande. Elles ne seront jamais partagees avec des tiers.
-          </label>
+        <div className="space-y-3">
+          <div className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="newsletter"
+              name="newsletter"
+              disabled={status === "sending"}
+              className="mt-1 rounded border-primary-light/30 text-primary focus:ring-primary"
+            />
+            <label htmlFor="newsletter" className="text-sm text-foreground-muted">
+              Je souhaite recevoir les actualités de la campagne par email
+            </label>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="rgpd"
+              name="rgpd"
+              required
+              disabled={status === "sending"}
+              className="mt-1 rounded border-primary-light/30 text-primary focus:ring-primary"
+            />
+            <label htmlFor="rgpd" className="text-sm text-foreground-muted">
+              J&apos;accepte que mes données soient utilisées pour répondre à ma
+              demande. Elles ne seront jamais partagées avec des tiers. *
+            </label>
+          </div>
         </div>
 
         {status === "error" && (

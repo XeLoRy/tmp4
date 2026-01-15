@@ -63,7 +63,7 @@ export default function Home() {
                   href="/thematiques"
                   className="inline-flex justify-center rounded-full bg-white px-8 py-3 text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"
                 >
-                  Découvrir notre projet
+                  Découvrir notre programme
                 </Link>
                 <Link
                   href="/equipe"
@@ -123,38 +123,24 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Notre engagement */}
-        <section className="py-16 lg:py-24 bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-6">
-                Notre engagement
-              </h2>
-              <p className="text-lg text-foreground-muted leading-relaxed">
-                {pageAccueil.engagementTexte}
-              </p>
-            </div>
-
-            {/* Chiffres clés */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
+            {/* Chiffres clés - directement sous l'édito */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mt-12">
+              <div className="bg-background rounded-xl p-6 text-center shadow-sm">
                 <p className="text-3xl font-bold text-primary mb-1">{membres.length}</p>
-                <p className="text-sm text-foreground-muted">candidats</p>
+                <p className="text-sm text-foreground-muted">personnes</p>
               </div>
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
+              <div className="bg-background rounded-xl p-6 text-center shadow-sm">
                 <p className="text-3xl font-bold text-primary mb-1">{thematiques.length}</p>
                 <p className="text-sm text-foreground-muted">thématiques</p>
               </div>
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
+              <div className="bg-background rounded-xl p-6 text-center shadow-sm">
                 <p className="text-3xl font-bold text-primary mb-1">1</p>
                 <p className="text-sm text-foreground-muted">équipe unie</p>
               </div>
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
+              <div className="bg-background rounded-xl p-6 text-center shadow-sm">
                 <p className="text-3xl font-bold text-primary mb-1">100%</p>
-                <p className="text-sm text-foreground-muted">transparence</p>
+                <p className="text-sm text-foreground-muted">transparence et engagement</p>
               </div>
             </div>
           </div>
@@ -165,10 +151,10 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                Nos {thematiques.length} thématiques
+                Notre programme
               </h2>
               <p className="text-lg text-foreground-muted">
-                Les piliers de notre projet pour le village
+                Les {thematiques.length} thématiques de notre projet pour Glières-Val-de-Borne
               </p>
             </div>
 

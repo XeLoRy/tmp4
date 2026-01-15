@@ -6,7 +6,7 @@ import { useState } from "react";
 const navigation = [
   { name: "Accueil", href: "/" },
   { name: "L'équipe", href: "/equipe" },
-  { name: "Nos 5 thématiques", href: "/thematiques" },
+  { name: "Le programme", href: "/thematiques" },
   { name: "Actus", href: "/actus" },
   { name: "Agenda", href: "/agenda" },
   { name: "Contact", href: "/contact" },
@@ -38,10 +38,16 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/participer"
+              href="/participer#enquete"
+              className="rounded-full border-2 border-primary px-4 py-2 text-sm font-medium text-primary hover:bg-primary hover:text-white transition-colors"
+            >
+              Enquête citoyenne
+            </Link>
+            <Link
+              href="/soutenir"
               className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
             >
-              Participer
+              Je soutiens
             </Link>
           </div>
 
@@ -80,11 +86,18 @@ export default function Header() {
                 </Link>
               ))}
               <Link
-                href="/participer"
+                href="/participer#enquete"
+                className="inline-flex justify-center rounded-full border-2 border-primary px-4 py-2 text-base font-medium text-primary hover:bg-primary hover:text-white"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Enquête citoyenne
+              </Link>
+              <Link
+                href="/soutenir"
                 className="inline-flex justify-center rounded-full bg-primary px-4 py-2 text-base font-medium text-white hover:bg-primary-dark"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Participer
+                Je soutiens
               </Link>
             </div>
           </div>
