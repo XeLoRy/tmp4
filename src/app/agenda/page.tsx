@@ -191,7 +191,7 @@ export default function AgendaPage() {
     <>
       <Header />
 
-      <main className="min-h-screen bg-background">
+      <main id="main-content" className="min-h-screen bg-background">
         {/* Hero compact */}
         <section className="bg-gradient-to-b from-background-alt to-background py-10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">

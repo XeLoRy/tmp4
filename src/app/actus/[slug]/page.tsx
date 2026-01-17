@@ -27,7 +27,7 @@ export default async function ArticlePage({ params }: Props) {
     <>
       <Header />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {/* Hero */}
         <section className="bg-gradient-to-b from-background-alt to-background py-16">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

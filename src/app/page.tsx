@@ -26,7 +26,7 @@ export default function Home() {
     <>
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero Section avec photo */}
         <section className="relative min-h-[75vh] landscape:min-h-screen sm:min-h-[70vh] lg:min-h-[80vh] flex items-end">
           {/* Image de fond croppée */}
@@ -92,7 +92,7 @@ export default function Home() {
                   <div className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-primary-light/30 overflow-hidden shadow-lg">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="/images/mika.jpeg"
+                      src="/images/mika.webp"
                       alt={pageAccueil.teteDeListe || "Tete de liste"}
                       className="w-full h-full object-cover"
                     />

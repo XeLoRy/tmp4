@@ -13,7 +13,7 @@ export default function ConfidentialitePage() {
     <>
       <Header />
 
-      <main className="min-h-screen bg-background">
+      <main id="main-content" className="min-h-screen bg-background">
         <section className="py-16">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <h1 className="font-cursive text-4xl text-primary mb-8">

@@ -16,7 +16,7 @@ export default function EditoPage() {
     <>
       <Header />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {/* Hero */}
         <section className="bg-gradient-to-b from-background-alt to-background pt-12 pb-6">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -35,7 +35,7 @@ export default function EditoPage() {
                 <div className="w-20 h-20 rounded-full bg-primary-light/30 overflow-hidden shadow-md">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/mika.jpeg"
+                    src="/images/mika.webp"
                     alt={edito.teteDeListe}
                     className="w-full h-full object-cover"
                   />

@@ -17,7 +17,7 @@ export default function EquipePage() {
     <>
       <Header />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {/* Hero */}
         <section className="bg-gradient-to-b from-background-alt to-background py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
