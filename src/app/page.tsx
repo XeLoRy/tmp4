@@ -102,7 +102,7 @@ export default function Home() {
                 {/* Citation courte */}
                 <div className="flex-1 text-center md:text-left">
                   <blockquote className="text-xl lg:text-2xl text-foreground leading-relaxed mb-6">
-                    &ldquo;Notre village mérite une équipe <strong>expérimentée, à son écoute, compétente et tournée vers l&apos;avenir</strong>. Avec nos {membres.length} colistiers, issus de tous horizons, nous voulons renforcer les liens entre les générations, soutenir l&apos;économie locale et faire de chaque habitant un acteur de son territoire. C&apos;est cette <strong>Énergie Commune</strong> qui nous anime.&rdquo;
+                    &ldquo;Notre village mérite une équipe <strong>expérimentée, à son écoute, compétente et tournée vers l&apos;avenir</strong>. Avec nos 25 colistiers, issus de tous horizons, nous voulons renforcer les liens entre les générations, soutenir l&apos;économie locale et faire de chaque habitant un acteur de son territoire. C&apos;est cette <strong>Énergie Commune</strong> qui nous anime.&rdquo;
                   </blockquote>
                   <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4">
                     <div>
@@ -126,8 +126,8 @@ export default function Home() {
             {/* Chiffres clés - directement sous l'édito */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mt-12">
               <div className="bg-background rounded-xl p-6 text-center shadow-sm">
-                <p className="text-3xl font-bold text-primary mb-1">{membres.length}</p>
-                <p className="text-sm text-foreground-muted">personnes</p>
+                <p className="text-3xl font-bold text-primary mb-1">25</p>
+                <p className="text-sm text-foreground-muted">candidats</p>
               </div>
               <div className="bg-background rounded-xl p-6 text-center shadow-sm">
                 <p className="text-3xl font-bold text-primary mb-1">{thematiques.length}</p>
