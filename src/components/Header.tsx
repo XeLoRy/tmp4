@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const navigation = [
@@ -20,10 +21,15 @@ export default function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="font-cursive text-2xl text-primary">
-              Une Énergie Commune
-            </span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/logo.png"
+              alt="Une Énergie Commune"
+              width={180}
+              height={50}
+              className="h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop navigation */}

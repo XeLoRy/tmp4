@@ -71,9 +71,17 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    other: [
+      { rel: "android-chrome-192x192", url: "/android-chrome-192x192.png" },
+      { rel: "android-chrome-512x512", url: "/android-chrome-512x512.png" },
+    ],
   },
 };
 
@@ -88,7 +96,7 @@ const jsonLd = {
       url: siteUrl,
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/favicon.svg`,
+        url: `${siteUrl}/images/logo.png`,
       },
       description:
         "Liste citoyenne pour les élections municipales 2026 à Glières-Val-de-Borne",
