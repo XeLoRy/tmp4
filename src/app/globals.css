@@ -57,3 +57,12 @@ html {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

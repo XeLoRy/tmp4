@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -198,6 +198,35 @@ const thematiquesData = [
 
 export default function ThematiquesPage() {
   const [expandedEngagements, setExpandedEngagements] = useState<Record<string, boolean>>({});
+  const [showStickyNav, setShowStickyNav] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
+  const navRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show sticky nav when scrolled past the main navigation
+      if (navRef.current) {
+        const navBottom = navRef.current.getBoundingClientRect().bottom;
+        setShowStickyNav(navBottom < 0);
+      }
+
+      // Detect active section
+      const sections = thematiquesData.map(t => t.slug);
+      for (const slug of sections.reverse()) {
+        const element = document.getElementById(slug);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150) {
+            setActiveSection(slug);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleEngagement = (themeSlug: string, engIndex: number) => {
     const key = `${themeSlug}-${engIndex}`;
@@ -215,6 +244,33 @@ export default function ThematiquesPage() {
     <>
       <Header />
 
+      {/* Sticky Navigation */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-md transition-transform duration-300 ${
+          showStickyNav ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <div className="mx-auto max-w-7xl px-4 py-2">
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+            {thematiquesData.map((theme) => (
+              <a
+                key={theme.slug}
+                href={`#${theme.slug}`}
+                className={`flex items-center gap-2 px-3 py-2 rounded-full whitespace-nowrap transition-colors ${
+                  activeSection === theme.slug
+                    ? "bg-primary text-white"
+                    : "bg-background hover:bg-background-alt text-foreground-muted"
+                }`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={theme.icon} alt="" className="w-5 h-5" />
+                <span className="text-sm font-medium">{theme.title}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <main className="min-h-screen">
         {/* Hero */}
         <section className="bg-gradient-to-b from-background-alt to-background py-16">
@@ -227,7 +283,7 @@ export default function ThematiquesPage() {
             </p>
 
             {/* Navigation par icônes */}
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            <div ref={navRef} className="flex flex-wrap justify-center gap-4 sm:gap-6">
               {thematiquesData.map((theme) => (
                 <a
                   key={theme.slug}
