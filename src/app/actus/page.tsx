@@ -1,7 +1,13 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getArticles } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "Actualités - Suivez notre campagne",
+  description: "Toutes les actualités de la campagne Une Énergie Commune pour les élections municipales 2026 à Glières-Val-de-Borne.",
+};
 
 export default function ActusPage() {
   const articles = getArticles();

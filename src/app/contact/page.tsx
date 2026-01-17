@@ -1,6 +1,12 @@
+import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
+
+export const metadata: Metadata = {
+  title: "Contact - Nous écrire",
+  description: "Contactez l'équipe Une Énergie Commune. Une question sur notre programme ? Envoyez-nous un message.",
+};
 
 export default function ContactPage() {
   return (

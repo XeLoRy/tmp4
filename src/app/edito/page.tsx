@@ -1,7 +1,13 @@
+import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getEdito } from "@/lib/content";
 import ReactMarkdown from "react-markdown";
+
+export const metadata: Metadata = {
+  title: "Édito - Le mot de Mickaël Maistre",
+  description: "Découvrez le message de Mickaël Maistre, tête de liste Une Énergie Commune pour les élections municipales 2026 à Glières-Val-de-Borne.",
+};
 
 export default function EditoPage() {
   const edito = getEdito();

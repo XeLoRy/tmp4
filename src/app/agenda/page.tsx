@@ -1,7 +1,13 @@
+import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { getEvenements } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "Agenda - Nos prochains rendez-vous",
+  description: "Retrouvez les dates des cafés rencontre et réunions publiques de la liste Une Énergie Commune à Glières-Val-de-Borne.",
+};
 
 export default function AgendaPage() {
   const evenements = getEvenements();

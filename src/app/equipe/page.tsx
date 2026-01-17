@@ -1,7 +1,13 @@
+import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EquipeClient from "@/components/EquipeClient";
 import { getMembres, getSiteConfig } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "L'équipe - 25 candidats engagés",
+  description: "Découvrez les 25 candidats de la liste Une Énergie Commune pour les élections municipales 2026 à Glières-Val-de-Borne.",
+};
 
 export default function EquipePage() {
   const membres = getMembres();

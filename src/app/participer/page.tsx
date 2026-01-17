@@ -1,6 +1,12 @@
+import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnqueteForm from "@/components/EnqueteForm";
+
+export const metadata: Metadata = {
+  title: "Participer - Enquête citoyenne",
+  description: "Participez à notre enquête citoyenne et donnez votre avis sur l'avenir de Glières-Val-de-Borne. Votre voix compte !",
+};
 
 export default function ParticiperPage() {
   return (
