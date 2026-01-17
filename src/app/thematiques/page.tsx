@@ -251,7 +251,7 @@ export default function ThematiquesPage() {
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 py-2">
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide justify-center">
             {thematiquesData.map((theme) => (
               <a
                 key={theme.slug}
