@@ -21,6 +21,7 @@ export default function AgendaPage() {
   const getTypeLabel = (type: string) => {
     switch (type) {
       case "reunion": return "Réunion publique";
+      case "cafe": return "Café rencontre";
       case "permanence": return "Permanence";
       case "porte-a-porte": return "Porte-à-porte";
       case "marche": return "Marché";
@@ -31,6 +32,7 @@ export default function AgendaPage() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case "reunion": return "bg-primary text-white";
+      case "cafe": return "bg-amber-600 text-white";
       case "permanence": return "bg-blue-500 text-white";
       case "porte-a-porte": return "bg-orange-500 text-white";
       case "marche": return "bg-purple-500 text-white";
