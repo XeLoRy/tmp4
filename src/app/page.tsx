@@ -92,7 +92,7 @@ export default function Home() {
                   <div className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-primary-light/30 overflow-hidden shadow-lg">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="/images/mm.png"
+                      src="/images/mika.jpeg"
                       alt={pageAccueil.teteDeListe || "Tete de liste"}
                       className="w-full h-full object-cover"
                     />
