@@ -246,8 +246,8 @@ export default function ThematiquesPage() {
 
       {/* Sticky Navigation */}
       <div
-        className={`fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-md transition-transform duration-300 ${
-          showStickyNav ? "translate-y-0" : "-translate-y-full"
+        className={`fixed top-16 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300 ${
+          showStickyNav ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 py-2">
@@ -309,7 +309,7 @@ export default function ThematiquesPage() {
                 <article
                   key={theme.slug}
                   id={theme.slug}
-                  className="scroll-mt-24"
+                  className="scroll-mt-32"
                 >
                   <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
                     <div className="p-8">
