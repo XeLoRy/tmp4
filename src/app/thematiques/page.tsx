@@ -82,7 +82,7 @@ const thematiquesData = [
     title: "Vie Locale",
     icon: "/images/pictos/vie-locale.png",
     subtitle: "Renforcer la vie locale et le lien social entre les habitants",
-    objectif: "Des équipements et services de proximité pour tous les habitants",
+    objectif: "Renforcer la vie locale et le lien social entre les habitants",
     engagements: [
       {
         titre: "Construction d'un centre de services de proximité au Petit-Bornand",
