@@ -28,7 +28,7 @@ export default function Home() {
 
       <main>
         {/* Hero Section avec photo */}
-        <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh] flex items-end">
+        <section className="relative min-h-[75vh] sm:min-h-[70vh] lg:min-h-[80vh] flex items-end">
           {/* Image de fond croppée */}
           <div className="absolute inset-0 z-0">
             {config.photoGroupe ? (
@@ -37,37 +37,36 @@ export default function Home() {
                 <img
                   src={config.photoGroupe}
                   alt="L'équipe Une Énergie Commune"
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: '50% 35%' }} /* Personnes plus visibles sur mobile */
+                  className="w-full h-full object-cover object-[50%_15%] sm:object-[50%_35%]"
                 />
                 {/* Overlay gradient - plus fort en bas pour le texte */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               </>
             ) : (
               <div className="w-full h-full bg-gradient-to-b from-primary/20 to-primary/5" />
             )}
           </div>
 
-          {/* Contenu en bas - padding réduit sur mobile */}
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12 sm:pb-20 pt-6 sm:pt-10">
+          {/* Contenu en bas */}
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-6 sm:pb-20 pt-6 sm:pt-10">
             <div className="text-center">
-              <h1 className="font-cursive text-3xl sm:text-5xl lg:text-7xl text-white mb-3 sm:mb-6 drop-shadow-lg">
+              <h1 className="font-cursive text-3xl sm:text-5xl lg:text-7xl text-white mb-2 sm:mb-6 drop-shadow-lg">
                 {pageAccueil.heroTitle}
               </h1>
-              <p className="text-base sm:text-2xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-10 drop-shadow-md px-2">
+              <p className="text-sm sm:text-2xl text-white/90 max-w-3xl mx-auto mb-4 sm:mb-10 drop-shadow-md px-2">
                 &ldquo;{pageAccueil.heroCitation}&rdquo;
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center">
                 <Link
                   href="/thematiques"
-                  className="inline-flex justify-center rounded-full bg-white px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"
+                  className="inline-flex justify-center rounded-full bg-white px-5 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"
                 >
                   Découvrir notre programme
                 </Link>
                 <Link
                   href="/equipe"
-                  className="inline-flex justify-center rounded-full border-2 border-white px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-medium text-white hover:bg-white hover:text-primary transition-colors"
+                  className="inline-flex justify-center rounded-full border-2 border-white px-5 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg font-medium text-white hover:bg-white hover:text-primary transition-colors"
                 >
                   Rencontrer l&apos;équipe
                 </Link>
