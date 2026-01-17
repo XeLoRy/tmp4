@@ -67,7 +67,8 @@ export default function SoutenirPage() {
         <section id="soutenir" className="py-16 bg-background scroll-mt-20">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <span className="text-4xl mb-4 block">💪</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/pictos/soutenir.png" alt="Soutenir" className="w-16 h-16 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 Déclarer mon soutien
               </h2>
@@ -230,7 +231,8 @@ export default function SoutenirPage() {
         <section id="don" className="py-16 bg-white scroll-mt-20">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <span className="text-4xl mb-4 block">❤️</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/pictos/don.png" alt="Don" className="w-16 h-16 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 Faire un don
               </h2>
