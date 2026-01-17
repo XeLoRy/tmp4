@@ -87,7 +87,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.helloasso.com"
+                  href="https://www.helloasso.com/associations/une-energie-commune-pour-glieres-val-de-borne"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-gray-400 hover:text-white transition-colors"

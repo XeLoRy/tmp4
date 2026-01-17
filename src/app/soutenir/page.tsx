@@ -248,7 +248,7 @@ export default function SoutenirPage() {
                 Vous recevrez un reçu fiscal si applicable.
               </p>
               <a
-                href="https://www.helloasso.com"
+                href="https://www.helloasso.com/associations/une-energie-commune-pour-glieres-val-de-borne"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex justify-center rounded-full bg-accent px-8 py-3 text-lg font-medium text-white hover:bg-accent-light hover:text-foreground transition-colors"
