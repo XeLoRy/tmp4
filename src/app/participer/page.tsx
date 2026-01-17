@@ -11,6 +11,8 @@ export default function ParticiperPage() {
         {/* Hero */}
         <section className="bg-gradient-to-b from-background-alt to-background py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/pictos/enquete.png" alt="Enquête" className="w-16 h-16 mx-auto mb-4" />
             <h1 className="font-cursive text-4xl sm:text-5xl text-primary mb-4">
               Enquête citoyenne
             </h1>
