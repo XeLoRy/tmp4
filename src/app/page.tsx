@@ -37,7 +37,7 @@ export default function Home() {
                 <img
                   src={config.photoGroupe}
                   alt="L'équipe Une Énergie Commune"
-                  className="w-full h-full object-cover object-[50%_15%] sm:object-[50%_20%] lg:object-[50%_35%]"
+                  className="w-full h-full object-cover object-[50%_15%] landscape:object-[50%_30%] sm:landscape:object-[50%_35%] lg:object-[50%_35%]"
                 />
                 {/* Overlay gradient - plus fort en bas pour le texte */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
