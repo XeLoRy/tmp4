@@ -276,25 +276,40 @@ export default function ThematiquesPage() {
                             <div key={engIndex} className="bg-background rounded-xl overflow-hidden">
                               <button
                                 onClick={() => toggleEngagement(theme.slug, engIndex)}
-                                className="w-full p-4 flex items-start gap-3 text-left hover:bg-background-alt transition-colors"
+                                className="w-full p-4 text-left hover:bg-background-alt transition-colors"
                               >
-                                <svg
-                                  className="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M5 13l4 4L19 7"
-                                  />
-                                </svg>
-                                <span className="flex-1 font-medium text-foreground">
-                                  {engagement.titre}
-                                </span>
-                                <span className="text-sm text-primary font-medium flex items-center gap-1">
+                                <div className="flex items-start gap-3">
+                                  <svg
+                                    className="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M5 13l4 4L19 7"
+                                    />
+                                  </svg>
+                                  <span className="flex-1 font-medium text-foreground">
+                                    {engagement.titre}
+                                  </span>
+                                  {/* Sur desktop: à côté du titre */}
+                                  <span className="hidden sm:flex text-sm text-primary font-medium items-center gap-1">
+                                    Voir les actions
+                                    <svg
+                                      className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                    >
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                  </span>
+                                </div>
+                                {/* Sur mobile: en dessous du titre */}
+                                <span className="flex sm:hidden text-sm text-primary font-medium items-center gap-1 mt-2 ml-8">
                                   Voir les actions
                                   <svg
                                     className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
@@ -310,8 +325,9 @@ export default function ThematiquesPage() {
                                 <div className="px-4 pb-4">
                                   <ul className="ml-8 space-y-2 border-l-2 border-primary/30 pl-4">
                                     {engagement.actions.map((action, actionIndex) => (
-                                      <li key={actionIndex} className="text-sm text-foreground-muted">
-                                        {action}
+                                      <li key={actionIndex} className="text-sm text-foreground-muted flex items-start gap-2">
+                                        <span className="text-primary font-bold">•</span>
+                                        <span>{action}</span>
                                       </li>
                                     ))}
                                   </ul>

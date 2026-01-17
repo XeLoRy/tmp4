@@ -200,9 +200,9 @@ export default function EnqueteForm() {
             name="newsletter"
             checked={formData.newsletter}
             onChange={handleChange}
-            className="mt-1 rounded border-primary-light/30 text-primary focus:ring-primary"
+            className="mt-0.5 w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
           />
-          <label htmlFor="newsletter" className="text-sm text-foreground-muted">
+          <label htmlFor="newsletter" className="text-sm text-foreground-muted cursor-pointer">
             Je souhaite recevoir les actualités de la campagne par email
           </label>
         </div>
@@ -213,9 +213,9 @@ export default function EnqueteForm() {
             name="benevolat"
             checked={formData.benevolat}
             onChange={handleChange}
-            className="mt-1 rounded border-primary-light/30 text-primary focus:ring-primary"
+            className="mt-0.5 w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
           />
-          <label htmlFor="benevolat" className="text-sm text-foreground-muted">
+          <label htmlFor="benevolat" className="text-sm text-foreground-muted cursor-pointer">
             Je suis intéressé(e) pour devenir bénévole (organisation d&apos;événements, échanges avec les habitants)
           </label>
         </div>

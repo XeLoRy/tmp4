@@ -172,9 +172,9 @@ export default function ContactForm() {
               id="newsletter"
               name="newsletter"
               disabled={status === "sending"}
-              className="mt-1 rounded border-primary-light/30 text-primary focus:ring-primary"
+              className="mt-0.5 w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
             />
-            <label htmlFor="newsletter" className="text-sm text-foreground-muted">
+            <label htmlFor="newsletter" className="text-sm text-foreground-muted cursor-pointer">
               Je souhaite recevoir les actualités de la campagne par email
             </label>
           </div>
@@ -186,9 +186,9 @@ export default function ContactForm() {
               name="rgpd"
               required
               disabled={status === "sending"}
-              className="mt-1 rounded border-primary-light/30 text-primary focus:ring-primary"
+              className="mt-0.5 w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
             />
-            <label htmlFor="rgpd" className="text-sm text-foreground-muted">
+            <label htmlFor="rgpd" className="text-sm text-foreground-muted cursor-pointer">
               J&apos;accepte que mes données soient utilisées pour répondre à ma
               demande. Elles ne seront jamais partagées avec des tiers. *
             </label>
