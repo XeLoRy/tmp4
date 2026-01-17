@@ -101,18 +101,26 @@ const evenementsData = [
 
 export default function Agenda2Page() {
   const [countdown, setCountdown] = useState({ jours: 0, heures: 0, minutes: 0, secondes: 0 });
+  const [isClient, setIsClient] = useState(false);
 
-  // Trier par date et filtrer les événements futurs
-  const now = new Date();
-  const evenementsFuturs = evenementsData
-    .filter(e => new Date(e.date) >= new Date(now.toDateString()))
+  // Trier par date (tous les événements pour le rendu initial)
+  const tousEvenements = evenementsData
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  // Filtrer côté client uniquement
+  const evenementsFuturs = isClient
+    ? tousEvenements.filter(e => new Date(e.date) >= new Date(new Date().toDateString()))
+    : tousEvenements;
 
   const prochainEvent = evenementsFuturs[0];
   const autresEvents = evenementsFuturs.slice(1);
 
   useEffect(() => {
-    if (!prochainEvent) return;
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!prochainEvent || !isClient) return;
 
     const updateCountdown = () => {
       const eventDate = new Date(prochainEvent.date + "T09:00:00");
@@ -135,7 +143,7 @@ export default function Agenda2Page() {
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [prochainEvent]);
+  }, [prochainEvent, isClient]);
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
