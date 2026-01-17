@@ -19,15 +19,17 @@ export default function Header() {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo + Social */}
-          <div className="flex items-center gap-4">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="font-cursive text-2xl text-primary">
-                Une Énergie Commune
-              </span>
-            </Link>
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <span className="font-cursive text-2xl text-primary">
+              Une Énergie Commune
+            </span>
+          </Link>
+
+          {/* Desktop navigation */}
+          <div className="hidden md:flex md:items-center md:gap-6">
             {/* Social icons */}
-            <div className="hidden sm:flex items-center gap-2">
+            <div className="flex items-center gap-3 pr-2 mr-2 border-r border-gray-200">
               <a
                 href="https://www.instagram.com/une_energie_commune/"
                 target="_blank"
@@ -51,10 +53,6 @@ export default function Header() {
                 </svg>
               </a>
             </div>
-          </div>
-
-          {/* Desktop navigation */}
-          <div className="hidden md:flex md:items-center md:gap-6">
             {navigation.map((item) => (
               <Link
                 key={item.name}
