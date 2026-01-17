@@ -1,6 +1,6 @@
 ---
 title: Vie Locale
-icon: "🏔️"
+icon: "/images/pictos/vie-locale.png"
 description: Renforcer la vie locale et le lien social entre les habitants
 ordre: 3
 engagements:

@@ -8,7 +8,7 @@ const thematiquesData = [
   {
     slug: "citoyennete",
     title: "Citoyenneté",
-    icon: "🗳️",
+    icon: "/images/pictos/citoyennete.png",
     subtitle: "Remettre de la citoyenneté dans la vie du village",
     objectif: "Une équipe municipale à l'écoute, responsable et tournée vers l'avenir.",
     engagements: [
@@ -45,7 +45,7 @@ const thematiquesData = [
   {
     slug: "solidarite",
     title: "Cohésion et Solidarité",
-    icon: "🤝",
+    icon: "/images/pictos/solidarite.png",
     subtitle: "Soutenir jeunesse, familles, séniors et renforcer les liens intergénérationnels",
     objectif: "Une commune dynamique et solidaire où il fait bon grandir, s'épanouir et vieillir",
     engagements: [
@@ -80,7 +80,7 @@ const thematiquesData = [
   {
     slug: "vie-locale",
     title: "Vie Locale",
-    icon: "🏔️",
+    icon: "/images/pictos/vie-locale.png",
     subtitle: "Renforcer la vie locale et le lien social entre les habitants",
     objectif: "Des équipements et services de proximité pour tous les habitants",
     engagements: [
@@ -125,7 +125,7 @@ const thematiquesData = [
   {
     slug: "economie",
     title: "Économie et Environnement",
-    icon: "🌿",
+    icon: "/images/pictos/economie.png",
     subtitle: "Préserver et valoriser l'économie locale",
     objectif: "Être acteurs d'un développement raisonné",
     engagements: [
@@ -162,7 +162,7 @@ const thematiquesData = [
   {
     slug: "rayonnement",
     title: "Rayonnement",
-    icon: "✨",
+    icon: "/images/pictos/rayonnement.png",
     subtitle: "Faire rayonner notre territoire",
     objectif: "Faire de chacun d'entre nous un ambassadeur fier de son territoire et de son histoire",
     engagements: [
@@ -234,7 +234,8 @@ export default function ThematiquesPage() {
                   href={`#${theme.slug}`}
                   className="group flex flex-col items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all hover:scale-105"
                 >
-                  <span className="text-4xl mb-2">{theme.icon}</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={theme.icon} alt={theme.title} className="w-12 h-12 mb-2" />
                   <span className="text-sm font-medium text-foreground-muted group-hover:text-primary transition-colors">
                     {theme.title}
                   </span>
@@ -258,7 +259,8 @@ export default function ThematiquesPage() {
                     <div className="p-8">
                       {/* Header */}
                       <div className="flex items-center gap-4 mb-2">
-                        <span className="text-5xl">{theme.icon}</span>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={theme.icon} alt={theme.title} className="w-14 h-14" />
                         <h2 className="text-2xl font-bold text-foreground">
                           {theme.title}
                         </h2>

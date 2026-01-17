@@ -1,6 +1,6 @@
 ---
 title: Rayonnement
-icon: "✨"
+icon: "/images/pictos/rayonnement.png"
 description: Faire rayonner notre territoire
 ordre: 5
 engagements:

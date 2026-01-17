@@ -1,6 +1,6 @@
 ---
 title: Économie et Environnement
-icon: "🌿"
+icon: "/images/pictos/economie.png"
 description: Préserver et valoriser l'économie locale
 ordre: 4
 engagements:

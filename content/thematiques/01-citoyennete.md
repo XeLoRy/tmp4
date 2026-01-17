@@ -1,6 +1,6 @@
 ---
 title: Citoyenneté
-icon: "🗳️"
+icon: "/images/pictos/citoyennete.png"
 description: Remettre de la citoyenneté dans la vie du village
 ordre: 1
 engagements:

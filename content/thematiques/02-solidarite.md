@@ -1,6 +1,6 @@
 ---
 title: Cohésion et Solidarité
-icon: "🤝"
+icon: "/images/pictos/solidarite.png"
 description: Soutenir jeunesse, familles, séniors et renforcer les liens intergénérationnels
 ordre: 2
 engagements:

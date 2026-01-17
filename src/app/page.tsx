@@ -164,7 +164,8 @@ export default function Home() {
                   href={`/thematiques#${theme.slug}`}
                   className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow text-center"
                 >
-                  <div className="text-4xl mb-4">{theme.icon}</div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={theme.icon} alt={theme.title} className="w-12 h-12 mx-auto mb-4" />
                   <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {theme.title}
                   </h3>
