@@ -77,6 +77,67 @@ export const metadata: Metadata = {
   },
 };
 
+// JSON-LD structured data
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Une Énergie Commune",
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/favicon.svg`,
+      },
+      description:
+        "Liste citoyenne pour les élections municipales 2026 à Glières-Val-de-Borne",
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: "Glières-Val-de-Borne",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Glières-Val-de-Borne",
+          addressRegion: "Haute-Savoie",
+          postalCode: "74130",
+          addressCountry: "FR",
+        },
+      },
+      sameAs: [
+        "https://www.instagram.com/une_energie_commune/",
+        "https://www.facebook.com/profile.php?id=61585981854300",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Une Énergie Commune",
+      description:
+        "Site officiel de la liste Une Énergie Commune pour les élections municipales 2026 à Glières-Val-de-Borne",
+      publisher: {
+        "@id": `${siteUrl}/#organization`,
+      },
+      inLanguage: "fr-FR",
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/#webpage`,
+      url: siteUrl,
+      name: "Une Énergie Commune | Élections municipales 2026 Glières-Val-de-Borne",
+      isPartOf: {
+        "@id": `${siteUrl}/#website`,
+      },
+      about: {
+        "@id": `${siteUrl}/#organization`,
+      },
+      description:
+        "Liste citoyenne pour les élections municipales 2026 à Glières-Val-de-Borne. 25 candidats engagés pour un village dynamique et solidaire.",
+      inLanguage: "fr-FR",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -84,6 +145,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${montserrat.variable} ${satisfy.variable} antialiased`}
       >
