@@ -3,7 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
   <title>Positionnement des membres - Admin</title>
+  <script>
+    // Check authentication
+    (function() {
+      const token = localStorage.getItem('admin_token');
+      const tokenExpiry = localStorage.getItem('admin_token_expiry');
+
+      if (!token || !tokenExpiry || Date.now() >= parseInt(tokenExpiry)) {
+        localStorage.removeItem('admin_token');
+        localStorage.removeItem('admin_token_expiry');
+        window.location.href = '/admin/login.html';
+      }
+    })();
+  </script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -191,6 +205,7 @@
           <button class="btn-secondary" onclick="resetPositions()">Reinitialiser</button>
           <button class="btn-secondary" onclick="exportJSON()">Exporter JSON</button>
           <button class="btn-primary" id="saveBtn" onclick="saveToGitHub()">Sauvegarder sur GitHub</button>
+          <button class="btn-danger" onclick="logout()">Déconnexion</button>
         </div>
       </div>
 
@@ -592,6 +607,13 @@
           status.className = 'status';
         }, 4000);
       }
+    }
+
+    function logout() {
+      localStorage.removeItem('admin_token');
+      localStorage.removeItem('admin_token_expiry');
+      localStorage.removeItem('netlify-cms-user');
+      window.location.href = '/admin/login.html';
     }
 
     // Initialize

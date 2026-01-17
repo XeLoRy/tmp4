@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Admin - Connexion</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #9bc73e 0%, #7da832 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo h1 {
+      font-family: 'Satisfy', cursive;
+      font-size: 28px;
+      color: #9bc73e;
+    }
+    .logo p {
+      color: #666;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.2s;
+    }
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #9bc73e;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #9bc73e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #8ab835;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .error {
+      background: #fee;
+      color: #c00;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      display: none;
+    }
+    .error.show { display: block; }
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-link a {
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .back-link a:hover {
+      color: #9bc73e;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <h1>Une Énergie Commune</h1>
+      <p>Administration</p>
+    </div>
+
+    <div class="error" id="error"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" id="submitBtn">Se connecter</button>
+    </form>
+
+    <div class="back-link">
+      <a href="/">← Retour au site</a>
+    </div>
+  </div>
+
+  <script>
+    // Check if already logged in
+    const token = localStorage.getItem('admin_token');
+    const tokenExpiry = localStorage.getItem('admin_token_expiry');
+
+    if (token && tokenExpiry && Date.now() < parseInt(tokenExpiry)) {
+      // Already logged in, redirect to admin
+      window.location.href = '/admin/';
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const password = document.getElementById('password').value;
+      const submitBtn = document.getElementById('submitBtn');
+      const errorDiv = document.getElementById('error');
+
+      errorDiv.classList.remove('show');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Connexion...';
+
+      try {
+        const response = await fetch('/api/admin-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          // Store token
+          localStorage.setItem('admin_token', data.token);
+          localStorage.setItem('admin_token_expiry', Date.now() + (data.expiresIn * 1000));
+
+          // Redirect to admin
+          window.location.href = '/admin/';
+        } else {
+          errorDiv.textContent = data.error || 'Mot de passe incorrect';
+          errorDiv.classList.add('show');
+        }
+      } catch (error) {
+        errorDiv.textContent = 'Erreur de connexion. Veuillez réessayer.';
+        errorDiv.classList.add('show');
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Se connecter';
+    });
+  </script>
+</body>
+</html>

@@ -5,10 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Admin - Une Énergie Commune</title>
+    <script>
+      // Check authentication
+      (function() {
+        const token = localStorage.getItem('admin_token');
+        const tokenExpiry = localStorage.getItem('admin_token_expiry');
+
+        if (!token || !tokenExpiry || Date.now() >= parseInt(tokenExpiry)) {
+          // Not logged in or token expired
+          localStorage.removeItem('admin_token');
+          localStorage.removeItem('admin_token_expiry');
+          window.location.href = '/admin/login.html';
+        }
+      })();
+    </script>
     <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <style>
+      .logout-btn {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 10000;
+        padding: 8px 16px;
+        background: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-family: system-ui, sans-serif;
+      }
+      .logout-btn:hover { background: #c82333; }
+    </style>
   </head>
   <body>
+    <button class="logout-btn" onclick="logout()">Déconnexion</button>
+    <script>
+      function logout() {
+        localStorage.removeItem('admin_token');
+        localStorage.removeItem('admin_token_expiry');
+        localStorage.removeItem('netlify-cms-user');
+        window.location.href = '/admin/login.html';
+      }
+    </script>
     <script>
       CMS.init({
         config: {
