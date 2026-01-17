@@ -10,24 +10,23 @@ const thematiquesData = [
     title: "Citoyenneté",
     icon: "🗳️",
     subtitle: "Remettre de la citoyenneté dans la vie du village",
-    objectif: "Une équipe municipale à l'écoute, vouée à la collectivité et non aux intérêts personnels",
+    objectif: "Une équipe municipale à l'écoute, responsable et tournée vers l'avenir.",
     engagements: [
       {
         titre: "Écouter et impliquer les habitants : renforcer la participation citoyenne",
         actions: [
           "Permanences hebdomadaires du Maire et/ou un adjoint tous les samedis matin",
           "Commissions ouvertes aux élus et habitants volontaires",
-          "Création et mise en place d'un conseil municipal jeune",
-          "Création d'un relais citoyen au sein de chaque hameau",
+          "Création et mise en place d'un conseil municipal des jeunes",
           "Participation des habitants sur les sujets importants : consultations, réunions publiques, référendum",
-          "Gestion transparente (finances, urbanisme,...) avec un élu référent par thématique clairement identifié"
+          "Gestion transparente (finances, urbanisme,...) avec un élu référent par thématique clairement identifié et disponible"
         ]
       },
       {
-        titre: "Défendre les intérêts de la commune et de ses habitants avec les partenaires institutionnels",
+        titre: "Défendre les intérêts de la Commune et de ses habitants avec les partenaires institutionnels",
         actions: [
           "Avoir un partenariat exigeant avec la CCFG : participation constructive mais défense de nos intérêts",
-          "Lors d'un projet, consultation et implication de toutes les associations concernées",
+          "Consultation et implication de toutes les associations et acteurs concernés dans la conception des projets",
           "Construire les projets en étroite collaboration avec nos partenaires institutionnels (Département, Région,…)",
           "Communiquer sur les compétences des différents partenaires d'une Mairie"
         ]
@@ -35,12 +34,10 @@ const thematiquesData = [
       {
         titre: "Communication claire et régulière",
         actions: [
-          "Site web actualisé, bulletin municipal, informations via les réseaux sociaux (Facebook/Instagram)",
-          "Transparence des actions et décisions sur le site internet, réseaux, et sur l'info du mois",
-          "Info bi-mensuelle (site + papier)",
-          "Publication annuelle d'un journal communal ouvert aux élus et aux non élus",
-          "Panneau information entretenu et à jour dans chaque hameau",
-          "Comptes rendus complets du conseil municipal affichés sur les panneaux de la Mairie"
+          "Site internet régulièrement mis à jour",
+          "Bulletin municipal annuel et lettres d'information mensuelles",
+          "Réseaux sociaux",
+          "Affichage public d'informations de la vie municipale"
         ]
       }
     ]
@@ -55,32 +52,27 @@ const thematiquesData = [
       {
         titre: "Entraide à toutes les générations",
         actions: [
-          "Proposer des rencontres inter-générations autour d'une thématique",
-          "Lancer une application Glières-Val-de-Borne qui propose du covoiturage, un service d'entraide pour tous",
-          "Créer un lieu de rencontre intergénérationnelle avec jeux de société, babyfoot, ping-pong, etc.",
-          "Créer des logements pour les personnes âgées ou handicapées pour qu'elles restent au village",
-          "Construction d'une grande salle « tiers-lieu » au centre du Petit-Bornand, lieu d'échange associatif, de partage et de rencontre"
+          "Accompagnement des habitants pour faciliter leur vie quotidienne grâce aux outils digitaux (covoiturage, démarches administratives, services à la personne, entraide entre habitants...)",
+          "Soutenir la mise en place de rencontres intergénérationnelles entre les enfants des écoles et les anciens du village",
+          "Aménager des lieux de rencontre intergénérationnelle (jeux de société, babyfoot, ping-pong, etc)"
         ]
       },
       {
         titre: "Soutenir les écoles",
         actions: [
-          "Augmentation de l'aide financière pour les sorties pédagogiques et projets culturels",
+          "Création d'un poste d'éducateur sportif (ETAPS) pour le sport scolaire et les activités extrascolaires",
           "Créer des espaces d'ombre pour l'été dans les 2 écoles",
-          "Création d'un poste d'ETAPS pour le sport scolaire et les activités extrascolaires",
-          "Création d'une salle de motricité à l'école Tom Morel",
-          "Mettre en place des études encadrées par des enseignants volontaires"
+          "Mettre en place un accompagnement aux devoirs après la classe",
+          "Augmentation de l'aide financière pour les sorties pédagogiques"
         ]
       },
       {
         titre: "Favoriser le sport-santé",
         actions: [
-          "Intervention de l'ETAPS auprès des seniors",
-          "Accompagnement des publics vers différentes activités sportives",
-          "Dynamisation générale du secteur sportif communal",
+          "Mise en place d'un chèque sport/culture pour tous les jeunes de la Commune de 4 à 20 ans",
           "Réflexion autour de la création d'un pôle compétition en ski nordique",
-          "Étude de faisabilité d'un centre sportif dédié au « Padel »",
-          "Mise en place d'un chèque sport/culture pour tous les jeunes de la Commune de 4 à 20 ans"
+          "Étude du réaménagement de l'ancien stade du Petit Bornand en un espace multisport (tennis, padel, sports collectifs…)",
+          "Intervention de l'ETAPS auprès des seniors"
         ]
       }
     ]
@@ -89,48 +81,43 @@ const thematiquesData = [
     slug: "vie-locale",
     title: "Vie Locale",
     icon: "🏔️",
-    subtitle: "Renforcer la vie locale et le lien social",
+    subtitle: "Renforcer la vie locale et le lien social entre les habitants",
     objectif: "Des équipements et services de proximité pour tous les habitants",
     engagements: [
       {
-        titre: "Construction d'une Maison médicale à Petit-Bornand",
+        titre: "Construction d'un centre de services de proximité au Petit-Bornand",
         actions: [
-          "Étude de faisabilité d'un nouveau bâtiment sur les terrains communaux du centre",
-          "Consultation publique et/ou Référendum sur le projet",
-          "Montage des dossiers de financement et de subventions en collaboration avec les partenaires institutionnels",
-          "Mise en œuvre et réalisation de la Maison médicale durant le mandat"
+          "Une Maison médicale (médecin, cabinet d'infirmière libérale, professions paramédicales, espace bien-être…)",
+          "Une salle polyvalente pour les associations, les réunions publiques et les fêtes privées (anniversaires, baptêmes, cousinades,…)",
+          "Des logements adaptés pour personnes âgées en perte d'autonomie pour qu'elles restent au village",
+          "Un dispositif d'hébergements d'urgence"
         ]
       },
       {
         titre: "Valoriser les associations et encourager les initiatives locales",
         actions: [
-          "Construire une grande salle « tiers-lieu » au centre du Petit-Bornand pour les associations, les réunions publiques et les fêtes privées",
-          "Apporter un réel soutien aux associations par tous les moyens dont dispose la Commune (humains, financiers, locaux)",
+          "Création d'un service à la vie associative pour apporter un réel soutien aux associations par tous les moyens dont dispose la Commune (humains, financiers, locaux à disposition, communication, planning des rendez-vous associatifs…)",
           "Organiser une soirée pour remercier et valoriser les associations",
-          "Mettre en avant les associations via les réseaux sociaux et panneaux d'affichage",
-          "Reprise par la Commune de la gestion de la cantine et du péri-scolaire à Entremont"
+          "Harmoniser la gestion de la cantine et du péri-scolaire entre les écoles du Petit-Bornand et d'Entremont"
         ]
       },
       {
         titre: "Création d'une salle de motricité et d'un réfectoire à l'école d'Entremont",
         actions: [
           "Associer le nouveau réfectoire et la nouvelle salle de motricité dans un même projet, en liaison avec la CCFG",
-          "Anticiper la possibilité d'une future cantinière (cuisine aux normes, attentes, normes d'hygiène)",
-          "Associer l'APE et l'équipe enseignante au projet",
-          "Avoir un suivi précis du chantier"
+          "Anticiper la possibilité d'une future cuisine sur place",
+          "Associer l'APE et l'équipe enseignante au projet"
         ]
       },
       {
         titre: "Mobilités douces, sécurisation",
         actions: [
-          "Entretien et nettoyage des sentiers",
-          "Étude et réalisation d'un passage à mobilité douce entre La Puya et La Ville",
-          "Aires de covoiturage aux 2 extrémités de la Commune avec 1 application dédiée",
-          "Réhabilitation des abris-bus et créations de parkings à vélo à proximité",
-          "Mise à disposition d'une navette et d'un chauffeur pour les projets des écoles",
+          "Étude et réalisation d'un passage à mobilité douce reliant les deux villages en concertation avec les propriétaires et les habitants",
+          "Stimuler le covoiturage entre les habitants",
+          "Réhabilitation des abris-bus et sécurisation, créations de parkings-vélo à proximité",
           "Création/réfections des liaisons douces entre les hameaux",
-          "Aménagement d'aires de croisement sur la vieille route des Evaux",
-          "Rétablissement de l'éclairage public"
+          "Sécurisation des voies piétonnes sur la RD12 en concertation avec la CCFG",
+          "Rétablissement de l'éclairage public à des horaires adaptés pour la sécurité"
         ]
       }
     ]
@@ -145,32 +132,29 @@ const thematiquesData = [
       {
         titre: "Soutenir agriculteurs et producteurs locaux, favoriser les circuits-courts",
         actions: [
-          "Favoriser l'installation de nouveaux agriculteurs sur notre territoire et d'un maraîcher",
-          "Entretenir notre caractère rural en préservant les terres agricoles pour les agriculteurs",
-          "Ouverture de la route de tous nos alpages (y compris Lessy et les Auges)",
-          "Mise en place du nouveau PLU et réflexion autour de la gestion des terrains agricoles",
-          "Créer un point de rencontre avec des produits locaux"
+          "Entretenir notre caractère rural en préservant les terres agricoles pour nos agriculteurs",
+          "Étudier le projet d'installation d'un maraîcher sur la Commune ou mener un état des lieux des espaces naturels accessibles pour installer des agriculteurs diversifiés à échelle humaine (maraîchers, arboriculteurs, céréaliers)",
+          "Garantir l'accès aux alpages pour les agriculteurs et aux propriétaires (y compris Lessy et les Auges)",
+          "Créer un annuaire des producteurs locaux à destination des habitants et des touristes"
         ]
       },
       {
-        titre: "Économie",
+        titre: "Soutenir le tissu économique",
         actions: [
           "Étudier la faisabilité d'une zone artisanale pour favoriser l'installation des jeunes artisans de la Commune",
-          "Agrandir et déplacer le marché dominical en l'installant sur les terrains communaux au centre",
-          "Financer un distributeur de produits locaux",
-          "Mettre en place une véritable politique de gestion environnementale et financière de nos forêts avec l'ONF",
-          "Favoriser l'affouage pour entretenir nos forêts et permettre aux habitants de se chauffer à moindre coût"
+          "Agrandir le marché dominical en l'installant sur les terrains communaux en connexion avec le centre de service de proximité",
+          "Favoriser l'affouage pour entretenir nos forêts et permettre aux habitants de se chauffer à moindre coût",
+          "Réflexion participative sur la gestion et l'avenir des bâtiments communaux (Ancienne Poste, maisons Pédat, Caouin, Dénarié,...)"
         ]
       },
       {
         titre: "Préserver notre environnement",
         actions: [
-          "Mettre en place une « Journée de la Commune » en mobilisant tous les volontaires pour des travaux d'aménagement",
-          "Aller vers l'assainissement collectif pour chaque hameau",
-          "Apporter un réel soutien financier aux écoles pour des ateliers autour de l'environnement",
-          "Établir une fresque climat",
-          "Préserver l'alpage de Cenise et garder sa vocation agricole",
-          "1 habitant = 1 poule"
+          "Mettre en place une « Journée de la Commune » en mobilisant tous les volontaires pour des travaux d'aménagement du village/collecte de déchets, avec garde d'enfants et repas citoyen",
+          "Mettre en place une véritable politique de la gestion environnementale et financière de nos forêts avec l'ONF",
+          "Faire un point sur l'assainissement collectif en cours pour chaque hameau et sa progression future",
+          "Proposer des ateliers de sensibilisation autour de l'environnement aux écoles et aux habitants (fresque climat, faune et flore, gestion et préservation des ressources…)",
+          "Préserver l'alpage de Cenise et garder sa vocation agricole"
         ]
       }
     ]
@@ -180,34 +164,32 @@ const thematiquesData = [
     title: "Rayonnement",
     icon: "✨",
     subtitle: "Faire rayonner notre territoire",
-    objectif: "Faire de chacun d'entre nous un ambassadeur fier de son territoire",
+    objectif: "Faire de chacun d'entre nous un ambassadeur fier de son territoire et de son histoire",
     engagements: [
       {
-        titre: "Aider au développement d'événements et de manifestations culturelles, sportives",
+        titre: "Aider au développement d'événements et de manifestations culturelles, sportives…",
         actions: [
           "Soutenir les fêtes de village (moyens financiers, humains, matériel)",
-          "Établir des lieux de décollage et atterrissage labellisés FFVL pour le parapente",
           "Installer sapins de Noël et illuminations dans les 2 villages",
-          "Étudier la mise en place d'un festival de musique classique autour de l'Abbaye",
-          "Organiser un grand « son et lumière » retraçant l'histoire de la vallée du Borne"
+          "Soutenir les initiatives de créations d'événements culturels (son et lumière, concerts, musique classique, conférences…)"
         ]
       },
       {
         titre: "Préserver et valoriser le patrimoine naturel et culturel",
         actions: [
-          "Constituer un réservoir de « personnes-ressource » afin d'en faire les gardiens et les vecteurs de nos richesses patrimoniales",
+          "Valoriser les acteurs du patrimoine de la commune pour préserver et transmettre nos richesses patrimoniales et historiques",
           "Entretenir et valoriser le bâti patrimonial (chapelles des hameaux, fours à bois,…)",
-          "Soutenir les chasseurs et les pêcheurs dans la préservation de notre faune naturelle",
-          "Valoriser et développer le camping municipal"
+          "Soutenir les chasseurs et les pêcheurs dans la préservation et la sensibilisation de la gestion de la faune"
         ]
       },
       {
         titre: "Tourisme",
         actions: [
-          "Renforcer l'identité propre de GVDB en affirmant son caractère de village de montagne",
-          "Développer l'image du tourisme responsable en valorisant les endroits calmes et discrets",
-          "Aménager des itinéraires de ski de randonnée",
-          "Organiser des promenades gourmandes pour faire connaître nos produits locaux et nos sentiers"
+          "Renforcer l'identité propre de Glières-Val-de-Borne en affirmant son caractère de village de montagne",
+          "Mise en place d'un guide pratique des services et activités du village (activités culturelles, sportives, de pleine nature, transports, hébergements, restauration…)",
+          "Développer l'image d'un tourisme responsable en soutenant l'entretien et le nettoyage des sentiers et en valorisant durablement les espaces naturels",
+          "Soutenir la mise en place de balades thématiques (produits locaux, artisanat, histoire…)",
+          "Valoriser et développer les hébergements touristiques (camping municipal, gîtes, meublés…)"
         ]
       }
     ]
