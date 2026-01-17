@@ -29,7 +29,7 @@ export default function EditoPage() {
                 <div className="w-20 h-20 rounded-full bg-primary-light/30 overflow-hidden shadow-md">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/mm.png"
+                    src="/images/mika.jpeg"
                     alt={edito.teteDeListe}
                     className="w-full h-full object-cover"
                   />
