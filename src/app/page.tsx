@@ -48,9 +48,6 @@ export default function Home() {
           {/* Contenu en bas - superposé sur l'image */}
           <div className="absolute bottom-0 left-0 right-0 z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-6 sm:pb-16">
             <div className="text-center">
-              <h1 className="font-cursive text-3xl sm:text-5xl lg:text-7xl text-white mb-2 sm:mb-6 drop-shadow-lg">
-                {pageAccueil.heroTitle}
-              </h1>
               <p className="text-sm sm:text-2xl text-white/90 max-w-3xl mx-auto mb-4 sm:mb-10 drop-shadow-md px-2">
                 &ldquo;{pageAccueil.heroCitation}&rdquo;
               </p>
