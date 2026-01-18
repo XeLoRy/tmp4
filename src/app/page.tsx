@@ -28,27 +28,25 @@ export default function Home() {
 
       <main id="main-content">
         {/* Hero Section avec photo */}
-        <section className="relative min-h-[50vh] landscape:min-h-[70vh] sm:min-h-[55vh] lg:min-h-[60vh] flex items-end">
-          {/* Image de fond croppée */}
-          <div className="absolute inset-0 z-0">
-            {config.photoGroupe ? (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={config.photoGroupe}
-                  alt="L'équipe Une Énergie Commune"
-                  className="w-full h-full object-cover object-[50%_30%] landscape:object-[50%_35%] lg:object-[50%_40%]"
-                />
-                {/* Overlay gradient - plus fort en bas pour le texte */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              </>
-            ) : (
-              <div className="w-full h-full bg-gradient-to-b from-primary/20 to-primary/5" />
-            )}
-          </div>
+        <section className="relative bg-black">
+          {/* Image sans recadrage */}
+          {config.photoGroupe ? (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={config.photoGroupe}
+                alt="L'équipe Une Énergie Commune"
+                className="w-full h-auto block"
+              />
+              {/* Overlay gradient pour le texte */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            </>
+          ) : (
+            <div className="w-full aspect-video bg-gradient-to-b from-primary/20 to-primary/5" />
+          )}
 
-          {/* Contenu en bas */}
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-6 sm:pb-20 pt-6 sm:pt-10">
+          {/* Contenu en bas - superposé sur l'image */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-6 sm:pb-16">
             <div className="text-center">
               <h1 className="font-cursive text-3xl sm:text-5xl lg:text-7xl text-white mb-2 sm:mb-6 drop-shadow-lg">
                 {pageAccueil.heroTitle}
