@@ -52,28 +52,28 @@ export default function Home() {
                 &ldquo;{pageAccueil.heroCitation}&rdquo;
               </p>
 
-              <div className="flex flex-row gap-1.5 sm:gap-4 justify-center mb-0 sm:mb-6">
+              <div className="flex flex-row gap-1.5 sm:gap-4 justify-center">
                 <Link
                   href="/thematiques"
-                  className="inline-flex justify-center rounded-full bg-white px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"
+                  className="inline-flex justify-center rounded-full bg-white px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors shadow-lg sm:min-w-[200px]"
                 >
                   Notre programme
                 </Link>
                 <Link
                   href="/equipe"
-                  className="inline-flex justify-center rounded-full border-2 border-white px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-lg font-medium text-white hover:bg-white hover:text-primary transition-colors"
+                  className="inline-flex justify-center rounded-full border-2 border-white px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-lg font-medium text-white hover:bg-white hover:text-primary transition-colors sm:min-w-[200px]"
                 >
                   L&apos;équipe
                 </Link>
               </div>
-
-              {/* Indicateur scroll - caché sur mobile */}
-              <div className="hidden sm:flex justify-center animate-bounce">
-                <svg className="w-6 h-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </div>
             </div>
+          </div>
+
+          {/* Indicateur scroll - position absolue centrée */}
+          <div className="hidden sm:block absolute bottom-6 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+            <svg className="w-6 h-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
           </div>
         </section>
 
