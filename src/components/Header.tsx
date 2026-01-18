@@ -19,15 +19,15 @@ export default function Header() {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 sm:h-24 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo.png"
               alt="Une Énergie Commune"
-              width={180}
-              height={50}
-              className="h-12 w-auto"
+              width={280}
+              height={80}
+              className="h-14 sm:h-20 w-auto"
               priority
             />
           </Link>
