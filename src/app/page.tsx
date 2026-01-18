@@ -46,24 +46,24 @@ export default function Home() {
           )}
 
           {/* Contenu en bas - superposé sur l'image */}
-          <div className="absolute bottom-0 left-0 right-0 z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-6 sm:pb-16">
+          <div className="absolute bottom-0 left-0 right-0 z-10 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 pb-3 sm:pb-16">
             <div className="text-center">
-              <p className="text-sm sm:text-2xl text-white/90 max-w-3xl mx-auto mb-4 sm:mb-10 drop-shadow-md px-2">
+              <p className="text-xs sm:text-2xl text-white/90 max-w-3xl mx-auto mb-2 sm:mb-10 drop-shadow-md px-1">
                 &ldquo;{pageAccueil.heroCitation}&rdquo;
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center">
+              <div className="flex flex-row gap-1.5 sm:gap-4 justify-center">
                 <Link
                   href="/thematiques"
-                  className="inline-flex justify-center rounded-full bg-white px-5 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"
+                  className="inline-flex justify-center rounded-full bg-white px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"
                 >
-                  Découvrir notre programme
+                  Notre programme
                 </Link>
                 <Link
                   href="/equipe"
-                  className="inline-flex justify-center rounded-full border-2 border-white px-5 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg font-medium text-white hover:bg-white hover:text-primary transition-colors"
+                  className="inline-flex justify-center rounded-full border-2 border-white px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-lg font-medium text-white hover:bg-white hover:text-primary transition-colors"
                 >
-                  Rencontrer l&apos;équipe
+                  L&apos;équipe
                 </Link>
               </div>
             </div>
