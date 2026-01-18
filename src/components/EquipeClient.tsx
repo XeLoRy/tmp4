@@ -24,7 +24,7 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
                 src={photoGroupe}
                 alt="Photo de groupe de l'équipe"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: '50% 38%', transform: 'scale(1.8)' }}
+                style={{ objectPosition: '50% 35%', transform: 'scale(1.1)' }}
               />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center text-foreground-muted bg-primary-light/20">
