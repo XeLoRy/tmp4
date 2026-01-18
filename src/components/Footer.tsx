@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/logo-blanc.png"
+              src="/images/LOGO NOIR ET BLANC JPEG.jpg"
               alt="Une Énergie Commune"
               className="h-16 w-auto"
             />
