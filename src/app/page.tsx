@@ -68,8 +68,8 @@ export default function Home() {
               </div>
 
               {/* Indicateur scroll - caché sur mobile */}
-              <div className="hidden sm:block animate-bounce">
-                <svg className="w-6 h-6 text-white/70 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="hidden sm:flex justify-center animate-bounce">
+                <svg className="w-6 h-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
               </div>
