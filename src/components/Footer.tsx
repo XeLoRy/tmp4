@@ -116,6 +116,17 @@ export default function Footer() {
               </Link>
             </div>
           </div>
+          <p className="text-center text-xs text-gray-600 mt-6">
+            Site réalisé par{" "}
+            <a
+              href="https://www.itbubbly.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-400 transition-colors"
+            >
+              IT Bubbly
+            </a>
+          </p>
         </div>
       </div>
     </footer>
