@@ -28,7 +28,7 @@ export default function Home() {
 
       <main id="main-content">
         {/* Hero Section avec photo */}
-        <section className="relative min-h-[75vh] landscape:min-h-screen sm:min-h-[70vh] lg:min-h-[80vh] flex items-end">
+        <section className="relative min-h-[50vh] landscape:min-h-[70vh] sm:min-h-[55vh] lg:min-h-[60vh] flex items-end">
           {/* Image de fond croppée */}
           <div className="absolute inset-0 z-0">
             {config.photoGroupe ? (
