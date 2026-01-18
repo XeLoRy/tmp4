@@ -172,7 +172,7 @@ export default function SoutenirPage() {
                         id="afficherPublic"
                         name="afficherPublic"
                         disabled={status === "sending"}
-                        className="mt-0.5 w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
+                        className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
                       />
                       <label htmlFor="afficherPublic" className="text-sm text-foreground-muted cursor-pointer">
                         J&apos;accepte que mon nom figure dans la liste publique des soutiens
@@ -185,7 +185,7 @@ export default function SoutenirPage() {
                         id="faireDon"
                         name="faireDon"
                         disabled={status === "sending"}
-                        className="mt-0.5 w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
+                        className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
                       />
                       <label htmlFor="faireDon" className="text-sm text-foreground-muted cursor-pointer">
                         Je souhaite également faire un don pour soutenir la campagne
@@ -199,7 +199,7 @@ export default function SoutenirPage() {
                         name="rgpd"
                         required
                         disabled={status === "sending"}
-                        className="mt-0.5 w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
+                        className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
                       />
                       <label htmlFor="rgpd" className="text-sm text-foreground-muted cursor-pointer">
                         J&apos;accepte que mes données soient utilisées pour recevoir des informations
