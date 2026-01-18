@@ -1,4 +1,7 @@
+// Admin login API for UEC CMS
 module.exports = async function (context, req) {
+  context.log('adminlogin function invoked');
+
   // CORS headers
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
