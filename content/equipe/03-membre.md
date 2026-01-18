@@ -3,7 +3,9 @@ nom: William Bories
 role: Colistier
 profession: Ingénieur informatique
 photo: ""
-motivation: "C'est simple : faire de ce village un lieu ouvert et chaleureux, où les nouveaux habitants sont accueillis et où l'entraide devient la norme."
+motivation: "C'est simple : faire de ce village un lieu ouvert et chaleureux, où
+  les nouveaux habitants sont accueillis et où l'entraide devient la norme.
+  Test"
 ordre: 3
 position:
   x: 22.8
