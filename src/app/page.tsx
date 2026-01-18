@@ -46,13 +46,13 @@ export default function Home() {
           )}
 
           {/* Contenu en bas - superposé sur l'image */}
-          <div className="absolute bottom-0 left-0 right-0 z-10 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 pb-3 sm:pb-16">
+          <div className="absolute bottom-0 left-0 right-0 z-10 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 pb-3 sm:pb-8">
             <div className="text-center">
-              <p className="text-xs sm:text-2xl text-white/90 max-w-3xl mx-auto mb-2 sm:mb-10 drop-shadow-md px-1">
+              <p className="text-xs sm:text-2xl text-white/90 max-w-3xl mx-auto mb-2 sm:mb-8 drop-shadow-md px-1">
                 &ldquo;{pageAccueil.heroCitation}&rdquo;
               </p>
 
-              <div className="flex flex-row gap-1.5 sm:gap-4 justify-center">
+              <div className="flex flex-row gap-1.5 sm:gap-4 justify-center mb-0 sm:mb-6">
                 <Link
                   href="/thematiques"
                   className="inline-flex justify-center rounded-full bg-white px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors shadow-lg"
@@ -66,14 +66,14 @@ export default function Home() {
                   L&apos;équipe
                 </Link>
               </div>
-            </div>
-          </div>
 
-          {/* Indicateur scroll - caché sur mobile */}
-          <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce hidden sm:block">
-            <svg className="w-6 h-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
+              {/* Indicateur scroll - caché sur mobile */}
+              <div className="hidden sm:block animate-bounce">
+                <svg className="w-6 h-6 text-white/70 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </div>
+            </div>
           </div>
         </section>
 
