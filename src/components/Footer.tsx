@@ -7,11 +7,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <span className="font-cursive text-2xl text-primary-light">
-              Une Énergie Commune
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo-blanc.png"
+              alt="Une Énergie Commune"
+              className="h-16 w-auto"
+            />
             <p className="mt-4 text-sm text-gray-400">
-              Ensemble, construisons l&apos;avenir de notre village.
+              Avec engagement, transparence et ouverture, ENSEMBLE pour Glières-Val-de-Borne&nbsp;!
             </p>
             {/* Social icons */}
             <div className="flex gap-4 mt-4">
