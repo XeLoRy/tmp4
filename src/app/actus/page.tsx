@@ -109,7 +109,7 @@ export default function ActusPage() {
               />
               <button
                 type="submit"
-                className="rounded-full bg-white px-6 py-3 text-primary font-medium hover:bg-accent-light transition-colors"
+                className="rounded-full bg-white px-6 py-3 text-primary font-medium hover:bg-primary hover:text-white transition-colors"
               >
                 S&apos;inscrire
               </button>

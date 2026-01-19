@@ -429,7 +429,7 @@ export default function ThematiquesPage() {
             </p>
             <a
               href="/participer#enquete"
-              className="inline-flex justify-center rounded-full bg-white px-8 py-3 text-lg font-medium text-primary hover:bg-accent-light transition-colors"
+              className="inline-flex justify-center rounded-full bg-white px-8 py-3 text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors"
             >
               Donner mon avis
             </a>
