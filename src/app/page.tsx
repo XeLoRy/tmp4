@@ -48,7 +48,7 @@ export default function Home() {
           {/* Contenu en bas - superposé sur l'image */}
           <div className="absolute bottom-0 left-0 right-0 z-10 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 pb-3 sm:pb-8">
             <div className="text-center">
-              <p className="text-xs sm:text-2xl text-white/90 max-w-3xl mx-auto mb-2 sm:mb-8 drop-shadow-md px-1">
+              <p className="text-sm sm:text-3xl font-bold text-white max-w-3xl mx-auto mb-2 sm:mb-8 drop-shadow-lg px-1">
                 &ldquo;{pageAccueil.heroCitation}&rdquo;
               </p>
 
