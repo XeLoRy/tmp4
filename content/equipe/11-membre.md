@@ -10,6 +10,6 @@ hameau: Beffay
 village: Petit-Bornand
 enfants: 3
 position:
-  x: 50
-  y: 50
+  x: 47.4
+  y: 31.4
 ---

@@ -10,6 +10,6 @@ hameau: La Pesse
 village: Entremont
 enfants: 2
 position:
-  x: 50
-  y: 50
+  x: 51.5
+  y: 31.8
 ---

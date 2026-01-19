@@ -4,8 +4,8 @@
     "nom": "Mickaël Maistre",
     "ordre": 1,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 51.5,
+      "y": 31.8
     }
   },
   {
@@ -13,8 +13,8 @@
     "nom": "Hélène Plouvier",
     "ordre": 2,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 46.3,
+      "y": 35
     }
   },
   {
@@ -22,8 +22,8 @@
     "nom": "Guillaume Le Car",
     "ordre": 3,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 82.8,
+      "y": 28.9
     }
   },
   {
@@ -31,8 +31,8 @@
     "nom": "Sandrine Vasseur",
     "ordre": 4,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 33.6,
+      "y": 42.7
     }
   },
   {
@@ -40,8 +40,8 @@
     "nom": "Sébastien Basthard-Bogain",
     "ordre": 5,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 62.1,
+      "y": 36.9
     }
   },
   {
@@ -49,8 +49,8 @@
     "nom": "Isabelle Charré",
     "ordre": 6,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 9.8,
+      "y": 38.3
     }
   },
   {
@@ -58,8 +58,8 @@
     "nom": "Aurélie Chatain",
     "ordre": 7,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 34.6,
+      "y": 32.9
     }
   },
   {
@@ -67,8 +67,8 @@
     "nom": "Mélanie Gros",
     "ordre": 8,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 72.6,
+      "y": 39.1
     }
   },
   {
@@ -76,8 +76,8 @@
     "nom": "Anabelle Goisque",
     "ordre": 9,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 66.8,
+      "y": 36
     }
   },
   {
@@ -85,8 +85,8 @@
     "nom": "Jérôme Lambersend",
     "ordre": 10,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 80.3,
+      "y": 35.7
     }
   },
   {
@@ -94,8 +94,8 @@
     "nom": "Laetitia Brunet",
     "ordre": 11,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 47.4,
+      "y": 31.4
     }
   },
   {
@@ -103,8 +103,8 @@
     "nom": "Benoît Perillat-Boiteux",
     "ordre": 12,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 41.1,
+      "y": 30.3
     }
   },
   {
@@ -112,8 +112,8 @@
     "nom": "Chantal Abbe-Decarroux",
     "ordre": 13,
     "position": {
-      "x": 58.4,
-      "y": 41.6
+      "x": 65.2,
+      "y": 31.1
     }
   },
   {
@@ -121,8 +121,8 @@
     "nom": "Robin Donzel",
     "ordre": 14,
     "position": {
-      "x": 64.9,
-      "y": 49.4
+      "x": 61.4,
+      "y": 29.3
     }
   },
   {
@@ -130,8 +130,8 @@
     "nom": "William Bories",
     "ordre": 15,
     "position": {
-      "x": 64.2,
-      "y": 39
+      "x": 14.6,
+      "y": 30.7
     }
   },
   {
@@ -139,8 +139,8 @@
     "nom": "Louise Loop",
     "ordre": 16,
     "position": {
-      "x": 69.1,
-      "y": 42.3
+      "x": 30.3,
+      "y": 35.9
     }
   },
   {
@@ -148,8 +148,8 @@
     "nom": "Sabrina Perrissin-Fabert",
     "ordre": 17,
     "position": {
-      "x": 74.2,
-      "y": 43.6
+      "x": 56.3,
+      "y": 31.1
     }
   },
   {
@@ -157,8 +157,8 @@
     "nom": "Arthur Jalle",
     "ordre": 18,
     "position": {
-      "x": 78.6,
-      "y": 51.2
+      "x": 75.3,
+      "y": 27.8
     }
   },
   {
@@ -166,7 +166,7 @@
     "nom": "Clémence Baille",
     "ordre": 19,
     "position": {
-      "x": 82.3,
+      "x": 87.2,
       "y": 37.7
     }
   },
@@ -175,8 +175,8 @@
     "nom": "Gabriel Guillaume",
     "ordre": 20,
     "position": {
-      "x": 88.8,
-      "y": 47.2
+      "x": 18.8,
+      "y": 37.7
     }
   },
   {
@@ -184,8 +184,8 @@
     "nom": "Antoine Angelloz-Nicoud",
     "ordre": 21,
     "position": {
-      "x": 92.1,
-      "y": 39.6
+      "x": 69.4,
+      "y": 32.3
     }
   },
   {
@@ -193,8 +193,8 @@
     "nom": "Carole Arvis-Combier",
     "ordre": 22,
     "position": {
-      "x": 99,
-      "y": 47.2
+      "x": 56.8,
+      "y": 36.8
     }
   },
   {
@@ -202,8 +202,8 @@
     "nom": "Thierry Debornes",
     "ordre": 23,
     "position": {
-      "x": 97.5,
-      "y": 37.6
+      "x": 24,
+      "y": 34.6
     }
   },
   {
@@ -211,8 +211,8 @@
     "nom": "Jérémy Besneau",
     "ordre": 24,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 27.6,
+      "y": 34.4
     }
   },
   {
@@ -220,8 +220,8 @@
     "nom": "Constan Pochat-Cottilloux",
     "ordre": 25,
     "position": {
-      "x": 50,
-      "y": 50
+      "x": 38.2,
+      "y": 36.2
     }
   }
 ]

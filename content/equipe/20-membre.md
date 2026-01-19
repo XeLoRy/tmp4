@@ -10,6 +10,6 @@ hameau: Les Charbonnières
 village: Entremont
 enfants: 2
 position:
-  x: 88.8
-  y: 47.2
+  x: 18.8
+  y: 37.7
 ---

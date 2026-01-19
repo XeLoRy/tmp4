@@ -10,6 +10,6 @@ hameau: Morat
 village: Petit-Bornand
 enfants: 2
 position:
-  x: 50
-  y: 50
+  x: 62.1
+  y: 36.9
 ---

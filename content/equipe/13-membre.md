@@ -10,6 +10,6 @@ hameau: Les Cars
 village: Entremont
 enfants: 3
 position:
-  x: 58.4
-  y: 41.6
+  x: 65.2
+  y: 31.1
 ---

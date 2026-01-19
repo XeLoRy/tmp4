@@ -10,6 +10,6 @@ hameau: Creravy
 village: Petit-Bornand
 enfants: 0
 position:
-  x: 69.1
-  y: 42.3
+  x: 30.3
+  y: 35.9
 ---

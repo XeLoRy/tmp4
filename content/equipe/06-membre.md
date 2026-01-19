@@ -10,6 +10,6 @@ hameau: Les Lignères
 village: Petit-Bornand
 enfants: 2
 position:
-  x: 50
-  y: 50
+  x: 9.8
+  y: 38.3
 ---

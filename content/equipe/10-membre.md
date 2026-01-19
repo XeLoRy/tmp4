@@ -10,6 +10,6 @@ hameau: Le Villard
 village: Petit-Bornand
 enfants: 1
 position:
-  x: 50
-  y: 50
+  x: 80.3
+  y: 35.7
 ---

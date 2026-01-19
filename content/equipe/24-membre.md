@@ -10,6 +10,6 @@ hameau: Le Champey
 village: Entremont
 enfants: 2
 position:
-  x: 50
-  y: 50
+  x: 27.6
+  y: 34.4
 ---

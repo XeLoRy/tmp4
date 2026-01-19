@@ -10,6 +10,6 @@ hameau: Vers l'église
 village: Petit-Bornand
 enfants: 1
 position:
-  x: 97.5
-  y: 37.6
+  x: 24
+  y: 34.6
 ---

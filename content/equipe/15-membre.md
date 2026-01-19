@@ -10,6 +10,6 @@ hameau: Sérès
 village: Petit-Bornand
 enfants: 2
 position:
-  x: 64.2
-  y: 39
+  x: 14.6
+  y: 30.7
 ---

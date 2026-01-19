@@ -10,6 +10,6 @@ hameau: La Cellaz
 village: Entremont
 enfants: 0
 position:
-  x: 78.6
-  y: 51.2
+  x: 75.3
+  y: 27.8
 ---

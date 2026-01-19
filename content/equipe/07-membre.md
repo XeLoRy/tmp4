@@ -10,6 +10,6 @@ hameau: Pont Nord
 village: Entremont
 enfants: 2
 position:
-  x: 50
-  y: 50
+  x: 34.6
+  y: 32.9
 ---

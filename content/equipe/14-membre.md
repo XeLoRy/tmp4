@@ -10,6 +10,6 @@ hameau: Malvoisin
 village: Entremont
 enfants: 3
 position:
-  x: 64.9
-  y: 49.4
+  x: 61.4
+  y: 29.3
 ---

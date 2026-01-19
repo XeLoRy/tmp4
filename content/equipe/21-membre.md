@@ -10,6 +10,6 @@ hameau: L'île
 village: Entremont
 enfants: 0
 position:
-  x: 92.1
-  y: 39.6
+  x: 69.4
+  y: 32.3
 ---

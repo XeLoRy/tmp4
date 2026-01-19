@@ -10,6 +10,6 @@ hameau: Termine
 village: Petit-Bornand
 enfants: 2
 position:
-  x: 50
-  y: 50
+  x: 82.8
+  y: 28.9
 ---
