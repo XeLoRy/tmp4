@@ -5,19 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
   <title>Positionnement des membres - Admin</title>
-  <script>
-    // Check authentication
-    (function() {
-      const token = localStorage.getItem('admin_token');
-      const tokenExpiry = localStorage.getItem('admin_token_expiry');
-
-      if (!token || !tokenExpiry || Date.now() >= parseInt(tokenExpiry)) {
-        localStorage.removeItem('admin_token');
-        localStorage.removeItem('admin_token_expiry');
-        window.location.href = '/admin/login.html';
-      }
-    })();
-  </script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
