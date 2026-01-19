@@ -232,7 +232,7 @@ export default function SoutenirPage() {
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/pictos/don.png" alt="Don" className="w-16 h-16 mx-auto mb-4" />
+              <img src="/images/pictos/don.png" alt="Don" className="w-24 h-24 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 Faire un don
               </h2>
