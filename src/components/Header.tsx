@@ -40,7 +40,7 @@ export default function Header() {
                 href="https://www.instagram.com/une_energie_commune/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground-muted hover:text-primary transition-colors"
+                className="text-foreground hover:text-primary transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -51,7 +51,7 @@ export default function Header() {
                 href="https://www.facebook.com/profile.php?id=61585981854300"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground-muted hover:text-primary transition-colors"
+                className="text-foreground hover:text-primary transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -63,7 +63,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-foreground-muted hover:text-primary transition-colors"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
                 {item.name}
               </Link>
@@ -85,7 +85,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-foreground-muted hover:text-primary"
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-primary"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
           >
@@ -110,7 +110,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-base font-medium text-foreground-muted hover:text-primary"
+                  className="text-base font-medium text-foreground hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -136,7 +136,7 @@ export default function Header() {
                   href="https://www.instagram.com/une_energie_commune/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground-muted hover:text-primary transition-colors"
+                  className="text-foreground hover:text-primary transition-colors"
                   aria-label="Instagram"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -147,7 +147,7 @@ export default function Header() {
                   href="https://www.facebook.com/profile.php?id=61585981854300"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground-muted hover:text-primary transition-colors"
+                  className="text-foreground hover:text-primary transition-colors"
                   aria-label="Facebook"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
