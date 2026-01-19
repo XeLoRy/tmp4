@@ -91,17 +91,17 @@
 
     .circle {
       position: absolute;
-      width: 40px;
-      height: 40px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      border: 3px solid rgba(255,255,255,0.8);
-      background: rgba(155, 199, 62, 0.4);
+      border: 2px solid rgba(255,255,255,0.9);
+      background: rgba(155, 199, 62, 0.7);
       cursor: grab;
       transform: translate(-50%, -50%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 10px;
+      font-size: 8px;
       font-weight: bold;
       color: white;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
@@ -109,16 +109,38 @@
       user-select: none;
     }
     .circle:hover {
-      box-shadow: 0 0 0 4px rgba(155, 199, 62, 0.5);
+      box-shadow: 0 0 0 3px rgba(155, 199, 62, 0.5);
+    }
+    .circle:hover .circle-label {
+      opacity: 1;
     }
     .circle.dragging {
       cursor: grabbing;
-      box-shadow: 0 0 0 4px rgba(155, 199, 62, 0.8);
+      box-shadow: 0 0 0 3px rgba(155, 199, 62, 0.8);
       z-index: 100;
     }
     .circle.selected {
       border-color: #ffc107;
-      box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.5);
+      box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.5);
+    }
+    .circle.selected .circle-label {
+      opacity: 1;
+      background: rgba(255, 193, 7, 0.95);
+    }
+    .circle-label {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      white-space: nowrap;
+      margin-top: 4px;
+      pointer-events: none;
+      opacity: 0.9;
     }
 
     .sidebar {
@@ -363,6 +385,12 @@
         circle.style.top = membre.position.y + '%';
         circle.textContent = membre.ordre;
         circle.title = membre.nom;
+
+        // Add name label
+        const label = document.createElement('span');
+        label.className = 'circle-label';
+        label.textContent = membre.nom;
+        circle.appendChild(label);
 
         circle.addEventListener('mousedown', startDrag);
         circle.addEventListener('touchstart', startDrag, { passive: false });
