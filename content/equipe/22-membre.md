@@ -2,7 +2,7 @@
 nom: Carole Arvis-Combier
 role: Colistière
 profession: Proviseur adjoint
-photo: ""
+photo: "/images/equipe/Carole.jpg"
 motivation: "Je défends les valeurs de transparence, de vivre-ensemble, de respect des différences, d'écoute, de solidarité et de participation citoyenne. J'aimerais à présent partager cette conviction."
 ordre: 22
 age: 59

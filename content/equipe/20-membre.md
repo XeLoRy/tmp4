@@ -2,7 +2,7 @@
 nom: Gabriel Guillaume
 role: Colistier
 profession: Retraité
-photo: ""
+photo: "/images/equipe/Gabriel.jpg"
 motivation: "Je m'engage pour soutenir les jeunes de la liste et pour représenter les anciens de ma Commune."
 ordre: 20
 age: 80
