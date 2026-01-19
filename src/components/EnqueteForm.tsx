@@ -28,7 +28,6 @@ export default function EnqueteForm() {
     priorite3: '',
     commentaire: '',
     newsletter: false,
-    benevolat: false,
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -70,7 +69,6 @@ export default function EnqueteForm() {
           priorite3: '',
           commentaire: '',
           newsletter: false,
-          benevolat: false,
         });
       } else {
         setStatus('error');
@@ -207,19 +205,6 @@ export default function EnqueteForm() {
           />
           <label htmlFor="newsletter" className="text-sm text-foreground-muted cursor-pointer">
             Je souhaite recevoir les actualités de la campagne par email
-          </label>
-        </div>
-        <div className="flex items-start gap-3">
-          <input
-            type="checkbox"
-            id="benevolat"
-            name="benevolat"
-            checked={formData.benevolat}
-            onChange={handleChange}
-            className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
-          />
-          <label htmlFor="benevolat" className="text-sm text-foreground-muted cursor-pointer">
-            Je suis intéressé(e) pour devenir bénévole (organisation d&apos;événements, échanges avec les habitants)
           </label>
         </div>
       </div>
