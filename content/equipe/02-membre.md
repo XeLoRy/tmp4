@@ -1,11 +1,15 @@
 ---
-nom: Mickaël Maistre
-role: Tête de liste
-profession: À compléter
+nom: Hélène Plouvier
+role: Colistière
+profession: Responsable Formation CFMM
 photo: ""
-motivation: "À compléter"
+motivation: "Mon métier, basé sur l'écoute, l'accompagnement et la mise en œuvre de projets concrets, nourrit mon désir de m'engager pour une commune plus proche de ses habitants et transparente à leur égard."
 ordre: 2
+age: 47
+hameau: Les Lignères
+village: Petit-Bornand
+enfants: 1
 position:
-  x: 18.8
-  y: 45.8
+  x: 50
+  y: 50
 ---

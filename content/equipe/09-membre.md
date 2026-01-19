@@ -1,11 +1,15 @@
 ---
-nom: Sabrina Perrissin-Fabert
+nom: Anabelle Goisque
 role: Colistière
-profession: Monitrice ski de fond / Animatrice Nature
+profession: Kinésithérapeute
 photo: ""
-motivation: "Pour faire partie d'un projet collectif, pour comprendre le fonctionnement d'une mairie et me réconcilier avec la politique, pour partager des idées sur le bien être et l'autonomie de notre commune et mettre en place des actions concrètes et simples. Pour vivre cette expérience."
+motivation: "Je souhaite développer la cohésion et la communication entre les deux villages, afin de développer le lien social intergénérationnel par le sport et l'entraide."
 ordre: 9
+age: 46
+hameau: Le Regard
+village: Entremont
+enfants: 3
 position:
-  x: 44.3
-  y: 46.2
+  x: 50
+  y: 50
 ---

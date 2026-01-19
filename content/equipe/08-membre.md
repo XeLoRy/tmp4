@@ -1,11 +1,15 @@
 ---
-nom: Benoit Périllat Boiteux
-role: Colistier
-profession: Mécanicien
+nom: Mélanie Gros
+role: Colistière
+profession: Exploitante agricole
 photo: ""
-motivation: "Je m'engage pour une municipalité à l'écoute, transparente, objective et intègre ; pour (re)donner énergie et faire valoir notre commune, ses habitants, à hauteur de la richesse de son histoire, ses terroirs et territoires."
+motivation: "Je m'engage pour partager mes valeurs et mes idées face aux enjeux modernes vécus par notre commune, dans un fonctionnement collectif réel."
 ordre: 8
+age: 42
+hameau: Encombe
+village: Petit-Bornand
+enfants: 3
 position:
-  x: 39.6
-  y: 53.5
+  x: 50
+  y: 50
 ---

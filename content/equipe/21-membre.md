@@ -1,10 +1,14 @@
 ---
-nom: Membre 21
+nom: Antoine Angelloz-Nicoud
 role: Colistier
-profession: À compléter
+profession: Entrepreneur
 photo: ""
-motivation: "À compléter"
+motivation: "Je veux mettre mon savoir-faire au service des habitants et rendre les politiques municipales plus transparentes."
 ordre: 21
+age: 29
+hameau: L'île
+village: Entremont
+enfants: 0
 position:
   x: 92.1
   y: 39.6

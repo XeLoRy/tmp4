@@ -1,11 +1,15 @@
 ---
-nom: Jérôme Lambersend
-role: Colistier
-profession: Opérateur Régleur bois
+nom: Isabelle Charré
+role: Colistière
+profession: Musicienne intervenante
 photo: ""
-motivation: "Contribuer et essayer de remettre du bon sens dans le fonctionnement de la vie municipale. Développer et mettre en avant les sentiers pédestres de la commune."
+motivation: "Ma profession me pousse à porter des projets concernant la vie des Jeunes et le domaine scolaire. J'aimerais moderniser l'école d'Entremont, sa cantine et la doter d'une salle de motricité."
 ordre: 6
+age: 47
+hameau: Les Lignères
+village: Petit-Bornand
+enfants: 2
 position:
-  x: 33.4
-  y: 47.5
+  x: 50
+  y: 50
 ---

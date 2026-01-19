@@ -1,13 +1,15 @@
 ---
-nom: William Bories
+nom: Guillaume Le Car
 role: Colistier
-profession: Ingénieur informatique
+profession: Sapeur-pompier
 photo: ""
-motivation: "C'est simple : faire de ce village un lieu ouvert et chaleureux, où
-  les nouveaux habitants sont accueillis et où l'entraide devient la norme.
-  Test"
+motivation: "J'ai envie de m'impliquer dans les orientations politiques de la commune, avec une totale transparence citoyenne. J'aime à travailler collectivement pour réaliser des promesses concrètes et réalistes."
 ordre: 3
+age: 38
+hameau: Termine
+village: Petit-Bornand
+enfants: 2
 position:
-  x: 22.8
-  y: 47.5
+  x: 50
+  y: 50
 ---

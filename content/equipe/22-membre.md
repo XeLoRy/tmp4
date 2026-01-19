@@ -1,10 +1,14 @@
 ---
-nom: Membre 22
-role: Colistier
-profession: À compléter
+nom: Carole Arvis-Combier
+role: Colistière
+profession: Proviseur adjoint
 photo: ""
-motivation: "À compléter"
+motivation: "Je défends les valeurs de transparence, de vivre-ensemble, de respect des différences, d'écoute, de solidarité et de participation citoyenne. J'aimerais à présent partager cette conviction."
 ordre: 22
+age: 59
+hameau: Le Villard
+village: Petit-Bornand
+enfants: 0
 position:
   x: 99
   y: 47.2

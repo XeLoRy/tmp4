@@ -1,11 +1,15 @@
 ---
-nom: Isabelle Charré
-role: Colistière
-profession: Musicienne intervenante
+nom: Sébastien Basthard-Bogain
+role: Colistier
+profession: Agriculteur
 photo: ""
-motivation: "Je m'engage pour soutenir Mickaël qui m'a convaincu de son honnêteté à vouloir œuvrer pour le bien de la commune."
+motivation: "Je voudrais opérer un changement dans ma commune, afin de défendre son territoire et mettre en valeur ses activités agricoles."
 ordre: 5
+age: 46
+hameau: Morat
+village: Petit-Bornand
+enfants: 2
 position:
-  x: 27.5
-  y: 54.2
+  x: 50
+  y: 50
 ---

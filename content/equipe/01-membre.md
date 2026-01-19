@@ -1,11 +1,15 @@
 ---
-nom: Sandrine Vasseur
-role: Colistière
-profession: Référente financière
+nom: Mickaël Maistre
+role: Tête de liste
+profession: Enseignant
 photo: ""
-motivation: "Afin de contribuer à réunifier l'ensemble des habitants autour de notre commune, œuvrer à l'amélioration de la qualité de vie de tous, redonner du lien entre les citoyens et leurs élus et faire de mes compétences professionnelles un atout à la bonne gestion de la commune."
+motivation: "Je veux m'engager pleinement au service de notre commune et de ses habitants. Je crois en une action locale fondée sur l'écoute, le rassemblement et l'action : RÉUNIR pour construire ensemble et AGIR pour apporter des solutions concrètes au service de tous !"
 ordre: 1
+age: 50
+hameau: La Pesse
+village: Entremont
+enfants: 2
 position:
-  x: 14.9
-  y: 46.1
+  x: 50
+  y: 50
 ---

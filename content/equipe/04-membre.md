@@ -1,11 +1,15 @@
 ---
-nom: Jérémy Besneau
-role: Colistier
-profession: Menuisier
+nom: Sandrine Vasseur
+role: Colistière
+profession: Référente Financière
 photo: ""
-motivation: "J'ai à cœur de m'impliquer dans la vie de mon village, de participer à son quotidien. Partager mes connaissances, écouter, apprendre des autres et agir concrètement sont pour moi essentiels. Je crois que c'est en étant pleinement présents aujourd'hui, en avançant ensemble pas à pas, que nous construisons un avenir solide pour notre commune."
+motivation: "Je désire contribuer à réunir l'ensemble des habitants autour de notre commune, œuvrer à l'amélioration de la qualité de vie de tous, redonner du lien entre les citoyens et leurs élus et faire de mes compétences professionnelles un atout à la bonne gestion de la commune."
 ordre: 4
+age: 53
+hameau: Le Regard
+village: Entremont
+enfants: 2
 position:
-  x: 28.4
-  y: 43.4
+  x: 50
+  y: 50
 ---

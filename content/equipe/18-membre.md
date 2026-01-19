@@ -1,10 +1,14 @@
 ---
-nom: Membre 18
+nom: Arthur Jalle
 role: Colistier
-profession: À compléter
+profession: Paysagiste
 photo: ""
-motivation: "À compléter"
+motivation: "Je souhaite restaurer une âme de village dans notre commune qui m'est chère, renforcer les liens intergénérationnels et encourager l'engagement de la jeunesse, afin de construire ensemble l'avenir."
 ordre: 18
+age: 25
+hameau: La Cellaz
+village: Entremont
+enfants: 0
 position:
   x: 78.6
   y: 51.2

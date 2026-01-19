@@ -1,11 +1,15 @@
 ---
-nom: Chantal Abbé-Décarroux
-role: Colistière
-profession: Auxiliaire de vie
+nom: Jérôme Lambersend
+role: Colistier
+profession: Opérateur Régleur bois
 photo: ""
-motivation: "Parce qu'il est nécessaire pour chaque citoyen de s'engager à tour de rôle pour la vie de la commune, afin d'en connaître son fonctionnement."
+motivation: "Je souhaiterais contribuer à rationnaliser le fonctionnement de la vie municipale. J'ai à cœur certains projets, notamment celui de développer et mettre en valeur les sentiers pédestres de la commune."
 ordre: 10
+age: 52
+hameau: Le Villard
+village: Petit-Bornand
+enfants: 1
 position:
-  x: 46.4
-  y: 41.7
+  x: 50
+  y: 50
 ---

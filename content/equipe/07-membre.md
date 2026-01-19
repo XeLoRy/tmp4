@@ -1,11 +1,15 @@
 ---
-nom: Louise Loop
+nom: Aurélie Chatain
 role: Colistière
-profession: Analyste Financier
+profession: Puéricultrice
 photo: ""
-motivation: "Je me joins à un nouvel élan rempli d'énergie, où participer à la vie de notre commune est au centre du projet. Un projet où les habitants sont les premiers concernés, où la valorisation de la commune et du territoire est indispensable, où Glières Val de Borne existe, évolue, et avance de façon pérenne."
+motivation: "Je me présente sur cette liste, car je crois que l'action municipale doit avant tout servir le collectif et l'intérêt général. Dans une commune née de la fusion de deux villages, je souhaite contribuer à recréer du lien, du vivre-ensemble et un véritable esprit de village de montagne, fondé sur l'entraide et l'écoute."
 ordre: 7
+age: 41
+hameau: Pont Nord
+village: Entremont
+enfants: 2
 position:
-  x: 37.4
-  y: 39.2
+  x: 50
+  y: 50
 ---

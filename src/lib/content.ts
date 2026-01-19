@@ -13,6 +13,10 @@ export interface Membre {
   photo: string;
   motivation: string;
   ordre: number;
+  age?: number;
+  hameau?: string;
+  village?: string;
+  enfants?: number;
   position: {
     x: number;
     y: number;
