@@ -9,8 +9,7 @@ const thematiquesData = [
     slug: "citoyennete",
     title: "Citoyenneté",
     icon: "/images/pictos/citoyennete.png",
-    subtitle: "Remettre de la citoyenneté dans la vie du village",
-    objectif: "Une équipe municipale à l'écoute, responsable et tournée vers l'avenir.",
+    objectif: "Remettre de la citoyenneté dans la vie du village. Une équipe municipale à l'écoute, responsable et tournée vers l'avenir.",
     engagements: [
       {
         titre: "Écouter et impliquer les habitants : renforcer la participation citoyenne",
@@ -46,8 +45,7 @@ const thematiquesData = [
     slug: "solidarite",
     title: "Cohésion et Solidarité",
     icon: "/images/pictos/solidarite.png",
-    subtitle: "Soutenir jeunesse, familles, séniors et renforcer les liens intergénérationnels",
-    objectif: "Une commune dynamique et solidaire où il fait bon grandir, s'épanouir et vieillir",
+    objectif: "Soutenir jeunesse, familles, séniors et renforcer les liens intergénérationnels. Une commune dynamique et solidaire où il fait bon grandir, s'épanouir et vieillir.",
     engagements: [
       {
         titre: "Entraide à toutes les générations",
@@ -81,8 +79,7 @@ const thematiquesData = [
     slug: "vie-locale",
     title: "Vie Locale",
     icon: "/images/pictos/vie-locale.png",
-    subtitle: "Renforcer la vie locale et le lien social entre les habitants",
-    objectif: "Renforcer la vie locale et le lien social entre les habitants",
+    objectif: "Renforcer la vie locale et le lien social entre les habitants.",
     engagements: [
       {
         titre: "Construction d'un centre de services de proximité au Petit-Bornand",
@@ -126,8 +123,7 @@ const thematiquesData = [
     slug: "economie",
     title: "Économie et Environnement",
     icon: "/images/pictos/economie.png",
-    subtitle: "Préserver et valoriser l'économie locale",
-    objectif: "Être acteurs d'un développement raisonné",
+    objectif: "Préserver et valoriser l'économie locale. Être acteurs d'un développement raisonné.",
     engagements: [
       {
         titre: "Soutenir agriculteurs et producteurs locaux, favoriser les circuits-courts",
@@ -163,8 +159,7 @@ const thematiquesData = [
     slug: "rayonnement",
     title: "Rayonnement",
     icon: "/images/pictos/rayonnement.png",
-    subtitle: "Faire rayonner notre territoire",
-    objectif: "Faire de chacun d'entre nous un ambassadeur fier de son territoire et de son histoire",
+    objectif: "Faire rayonner notre territoire. Faire de chacun d'entre nous un ambassadeur fier de son territoire et de son histoire.",
     engagements: [
       {
         titre: "Aider au développement d'événements et de manifestations culturelles, sportives…",
@@ -246,12 +241,12 @@ export default function ThematiquesPage() {
 
       {/* Sticky Navigation */}
       <div
-        className={`fixed top-16 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300 ${
+        className={`fixed top-16 sm:top-24 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300 ${
           showStickyNav ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 py-2">
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide justify-center">
+          <div className="flex gap-3 sm:gap-2 overflow-x-auto scrollbar-hide justify-start sm:justify-center px-2">
             {thematiquesData.map((theme) => (
               <a
                 key={theme.slug}
@@ -314,16 +309,13 @@ export default function ThematiquesPage() {
                   <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
                     <div className="p-8">
                       {/* Header */}
-                      <div className="flex items-center gap-4 mb-2">
+                      <div className="flex items-center gap-4 mb-6">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={theme.icon} alt={theme.title} className="w-14 h-14" />
                         <h2 className="text-2xl font-bold text-foreground">
                           {theme.title}
                         </h2>
                       </div>
-                      <p className="text-lg text-primary font-medium mb-6 ml-16">
-                        {theme.subtitle}
-                      </p>
 
                       {/* Engagements */}
                       <div className="space-y-4">
@@ -401,7 +393,7 @@ export default function ThematiquesPage() {
                         <h3 className="font-semibold text-primary mb-2">
                           Notre objectif :
                         </h3>
-                        <p className="text-lg text-foreground-muted italic">
+                        <p className="text-lg text-foreground font-semibold">
                           {theme.objectif}
                         </p>
                       </div>
