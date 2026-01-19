@@ -210,6 +210,7 @@
       <div class="header">
         <h1>Positionnement des membres</h1>
         <div class="buttons">
+          <button class="btn-secondary" onclick="spreadInGrid()">Repartir en grille</button>
           <button class="btn-secondary" onclick="resetPositions()">Reinitialiser</button>
           <button class="btn-secondary" onclick="exportJSON()">Exporter JSON</button>
           <button class="btn-primary" id="saveBtn" onclick="saveToGitHub()">Sauvegarder sur GitHub</button>
@@ -454,6 +455,29 @@
       document.removeEventListener('mouseup', stopDrag);
       document.removeEventListener('touchmove', drag);
       document.removeEventListener('touchend', stopDrag);
+    }
+
+    function spreadInGrid() {
+      const count = membres.length;
+      const cols = Math.ceil(Math.sqrt(count));
+      const rows = Math.ceil(count / cols);
+
+      const marginX = 8;
+      const marginY = 15;
+      const availableWidth = 100 - (marginX * 2);
+      const availableHeight = 100 - (marginY * 2);
+
+      membres.forEach((membre, index) => {
+        const col = index % cols;
+        const row = Math.floor(index / cols);
+
+        membre.position.x = marginX + (col + 0.5) * (availableWidth / cols);
+        membre.position.y = marginY + (row + 0.5) * (availableHeight / rows);
+      });
+
+      renderCircles();
+      renderList();
+      showStatus('Cercles repartis en grille', 'success');
     }
 
     function resetPositions() {
