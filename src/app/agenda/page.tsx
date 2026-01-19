@@ -174,7 +174,7 @@ export default function AgendaPage() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case "reunion": return "bg-primary";
-      case "cafe": return "bg-amber-600";
+      case "cafe": return "bg-orange-400";
       default: return "bg-gray-500";
     }
   };
@@ -182,7 +182,7 @@ export default function AgendaPage() {
   const getTypeBgLight = (type: string) => {
     switch (type) {
       case "reunion": return "from-primary/10 to-primary/5";
-      case "cafe": return "from-amber-500/10 to-amber-500/5";
+      case "cafe": return "from-orange-300/20 to-orange-300/5";
       default: return "from-gray-500/10 to-gray-500/5";
     }
   };
