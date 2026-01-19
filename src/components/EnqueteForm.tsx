@@ -3,9 +3,12 @@
 import { useState } from 'react';
 
 const PRIORITES = [
+  'Citoyenneté et transparence',
   'Sécurité et tranquillité',
-  'Environnement et espaces verts',
+  'Environnement et espaces naturels',
+  'Agriculture et producteurs locaux',
   'Commerces et vie économique',
+  'Tourisme',
   'Jeunesse et écoles',
   'Seniors et solidarité',
   'Culture et associations',
