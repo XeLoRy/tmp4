@@ -10,6 +10,6 @@ hameau: Encombe
 village: Petit-Bornand
 enfants: 3
 position:
-  x: 72.6
-  y: 39.1
+  x: 72.3
+  y: 38
 ---

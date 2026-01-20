@@ -1,227 +1,27 @@
 [
-  {
-    "filename": "01-membre.md",
-    "nom": "Mickaël Maistre",
-    "ordre": 1,
-    "position": {
-      "x": 51.5,
-      "y": 31.8
-    }
-  },
-  {
-    "filename": "02-membre.md",
-    "nom": "Hélène Plouvier",
-    "ordre": 2,
-    "position": {
-      "x": 46.3,
-      "y": 35
-    }
-  },
-  {
-    "filename": "03-membre.md",
-    "nom": "Guillaume Le Car",
-    "ordre": 3,
-    "position": {
-      "x": 82.8,
-      "y": 28.9
-    }
-  },
-  {
-    "filename": "04-membre.md",
-    "nom": "Sandrine Vasseur",
-    "ordre": 4,
-    "position": {
-      "x": 33.6,
-      "y": 42.7
-    }
-  },
-  {
-    "filename": "05-membre.md",
-    "nom": "Sébastien Basthard-Bogain",
-    "ordre": 5,
-    "position": {
-      "x": 62.1,
-      "y": 36.9
-    }
-  },
-  {
-    "filename": "06-membre.md",
-    "nom": "Isabelle Charré",
-    "ordre": 6,
-    "position": {
-      "x": 9.8,
-      "y": 38.3
-    }
-  },
-  {
-    "filename": "07-membre.md",
-    "nom": "Aurélie Chatain",
-    "ordre": 7,
-    "position": {
-      "x": 34.6,
-      "y": 32.9
-    }
-  },
-  {
-    "filename": "08-membre.md",
-    "nom": "Mélanie Gros",
-    "ordre": 8,
-    "position": {
-      "x": 72.6,
-      "y": 39.1
-    }
-  },
-  {
-    "filename": "09-membre.md",
-    "nom": "Anabelle Goisque",
-    "ordre": 9,
-    "position": {
-      "x": 66.8,
-      "y": 36
-    }
-  },
-  {
-    "filename": "10-membre.md",
-    "nom": "Jérôme Lambersend",
-    "ordre": 10,
-    "position": {
-      "x": 80.3,
-      "y": 35.7
-    }
-  },
-  {
-    "filename": "11-membre.md",
-    "nom": "Laetitia Brunet",
-    "ordre": 11,
-    "position": {
-      "x": 47.4,
-      "y": 31.4
-    }
-  },
-  {
-    "filename": "12-membre.md",
-    "nom": "Benoît Perillat-Boiteux",
-    "ordre": 12,
-    "position": {
-      "x": 41.1,
-      "y": 30.3
-    }
-  },
-  {
-    "filename": "13-membre.md",
-    "nom": "Chantal Abbe-Decarroux",
-    "ordre": 13,
-    "position": {
-      "x": 65.2,
-      "y": 31.1
-    }
-  },
-  {
-    "filename": "14-membre.md",
-    "nom": "Robin Donzel",
-    "ordre": 14,
-    "position": {
-      "x": 61.4,
-      "y": 29.3
-    }
-  },
-  {
-    "filename": "15-membre.md",
-    "nom": "William Bories",
-    "ordre": 15,
-    "position": {
-      "x": 14.6,
-      "y": 30.7
-    }
-  },
-  {
-    "filename": "16-membre.md",
-    "nom": "Louise Loop",
-    "ordre": 16,
-    "position": {
-      "x": 30.3,
-      "y": 35.9
-    }
-  },
-  {
-    "filename": "17-membre.md",
-    "nom": "Sabrina Perrissin-Fabert",
-    "ordre": 17,
-    "position": {
-      "x": 56.3,
-      "y": 31.1
-    }
-  },
-  {
-    "filename": "18-membre.md",
-    "nom": "Arthur Jalle",
-    "ordre": 18,
-    "position": {
-      "x": 75.3,
-      "y": 27.8
-    }
-  },
-  {
-    "filename": "19-membre.md",
-    "nom": "Clémence Baille",
-    "ordre": 19,
-    "position": {
-      "x": 87.2,
-      "y": 37.7
-    }
-  },
-  {
-    "filename": "20-membre.md",
-    "nom": "Gabriel Guillaume",
-    "ordre": 20,
-    "position": {
-      "x": 18.8,
-      "y": 37.7
-    }
-  },
-  {
-    "filename": "21-membre.md",
-    "nom": "Antoine Angelloz-Nicoud",
-    "ordre": 21,
-    "position": {
-      "x": 69.4,
-      "y": 32.3
-    }
-  },
-  {
-    "filename": "22-membre.md",
-    "nom": "Carole Arvis-Combier",
-    "ordre": 22,
-    "position": {
-      "x": 56.8,
-      "y": 36.8
-    }
-  },
-  {
-    "filename": "23-membre.md",
-    "nom": "Thierry Debornes",
-    "ordre": 23,
-    "position": {
-      "x": 24,
-      "y": 34.6
-    }
-  },
-  {
-    "filename": "24-membre.md",
-    "nom": "Jérémy Besneau",
-    "ordre": 24,
-    "position": {
-      "x": 27.6,
-      "y": 34.4
-    }
-  },
-  {
-    "filename": "25-membre.md",
-    "nom": "Constan Pochat-Cottilloux",
-    "ordre": 25,
-    "position": {
-      "x": 38.2,
-      "y": 36.2
-    }
-  }
+  {"filename": "01-membre.md", "nom": "Mickaël Maistre", "ordre": 1, "position": {"x": 51.5, "y": 31.8}},
+  {"filename": "02-membre.md", "nom": "Hélène Plouvier", "ordre": 2, "position": {"x": 46.3, "y": 35}},
+  {"filename": "03-membre.md", "nom": "Guillaume Le Car", "ordre": 3, "position": {"x": 82.8, "y": 28.9}},
+  {"filename": "04-membre.md", "nom": "Sandrine Vasseur", "ordre": 4, "position": {"x": 33.6, "y": 42.7}},
+  {"filename": "05-membre.md", "nom": "Sébastien Basthard-Bogain", "ordre": 5, "position": {"x": 62.1, "y": 36.9}},
+  {"filename": "06-membre.md", "nom": "Isabelle Charré", "ordre": 6, "position": {"x": 43, "y": 41.2}},
+  {"filename": "07-membre.md", "nom": "Aurélie Chatain", "ordre": 7, "position": {"x": 34.6, "y": 32.9}},
+  {"filename": "08-membre.md", "nom": "Mélanie Gros", "ordre": 8, "position": {"x": 72.3, "y": 38}},
+  {"filename": "09-membre.md", "nom": "Anabelle Goisque", "ordre": 9, "position": {"x": 65.2, "y": 31.1}},
+  {"filename": "10-membre.md", "nom": "Jérôme Lambersend", "ordre": 10, "position": {"x": 80.3, "y": 35.7}},
+  {"filename": "11-membre.md", "nom": "Laetitia Brunet", "ordre": 11, "position": {"x": 47.4, "y": 31.4}},
+  {"filename": "12-membre.md", "nom": "Benoît Perillat-Boiteux", "ordre": 12, "position": {"x": 41.1, "y": 30.3}},
+  {"filename": "13-membre.md", "nom": "Chantal Abbe-Decarroux", "ordre": 13, "position": {"x": 86.8, "y": 37.9}},
+  {"filename": "14-membre.md", "nom": "Robin Donzel", "ordre": 14, "position": {"x": 61.4, "y": 29.3}},
+  {"filename": "15-membre.md", "nom": "William Bories", "ordre": 15, "position": {"x": 14.6, "y": 30.7}},
+  {"filename": "16-membre.md", "nom": "Louise Loop", "ordre": 16, "position": {"x": 30.3, "y": 35.9}},
+  {"filename": "17-membre.md", "nom": "Sabrina Perrissin-Fabert", "ordre": 17, "position": {"x": 56.3, "y": 31.1}},
+  {"filename": "18-membre.md", "nom": "Arthur Jalle", "ordre": 18, "position": {"x": 75.3, "y": 27.8}},
+  {"filename": "19-membre.md", "nom": "Clémence Baille", "ordre": 19, "position": {"x": 9.9, "y": 37.9}},
+  {"filename": "20-membre.md", "nom": "Gabriel Guillaume", "ordre": 20, "position": {"x": 18.8, "y": 37.7}},
+  {"filename": "21-membre.md", "nom": "Antoine Angelloz-Nicoud", "ordre": 21, "position": {"x": 69.4, "y": 32.3}},
+  {"filename": "22-membre.md", "nom": "Carole Arvis-Combier", "ordre": 22, "position": {"x": 56.8, "y": 36.8}},
+  {"filename": "23-membre.md", "nom": "Thierry Debornes", "ordre": 23, "position": {"x": 24, "y": 34.6}},
+  {"filename": "24-membre.md", "nom": "Jérémy Besneau", "ordre": 24, "position": {"x": 27.6, "y": 34.4}},
+  {"filename": "25-membre.md", "nom": "Constan Pochat-Cottilloux", "ordre": 25, "position": {"x": 38.2, "y": 36.2}}
 ]

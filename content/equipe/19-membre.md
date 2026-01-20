@@ -10,6 +10,6 @@ hameau: Saxias
 village: Petit-Bornand
 enfants: 0
 position:
-  x: 87.2
-  y: 37.7
+  x: 9.9
+  y: 37.9
 ---

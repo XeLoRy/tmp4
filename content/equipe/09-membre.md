@@ -10,6 +10,6 @@ hameau: Le Regard
 village: Entremont
 enfants: 3
 position:
-  x: 66.8
-  y: 36
+  x: 65.2
+  y: 31.1
 ---
