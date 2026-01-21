@@ -14,19 +14,19 @@ const thematiquesData = [
       {
         titre: "Écouter et impliquer les habitants : renforcer la participation citoyenne",
         actions: [
-          "Permanences hebdomadaires du Maire et/ou un adjoint tous les samedis matin",
+          "Permanences hebdomadaires du Maire et/ou un adjoint tous les samedis matins",
           "Commissions ouvertes aux élus et habitants volontaires",
           "Création et mise en place d'un conseil municipal des jeunes",
           "Participation des habitants sur les sujets importants : consultations, réunions publiques, référendum",
-          "Gestion transparente (finances, urbanisme,...) avec un élu référent par thématique clairement identifié et disponible"
+          "Gestion transparente (finances, urbanisme, vie associative, vie scolaire...) avec un élu référent par thématique clairement identifié et disponible"
         ]
       },
       {
-        titre: "Défendre les intérêts de la Commune et de ses habitants avec les partenaires institutionnels",
+        titre: "Défendre les intérêts de la commune et de ses habitants avec les partenaires institutionnels",
         actions: [
-          "Avoir un partenariat exigeant avec la CCFG : participation constructive mais défense de nos intérêts",
+          "Avoir un partenariat exigeant avec la CCFG : participation constructive tout en défendant nos intérêts",
           "Consultation et implication de toutes les associations et acteurs concernés dans la conception des projets",
-          "Construire les projets en étroite collaboration avec nos partenaires institutionnels (Département, Région,…)",
+          "Construire les projets en étroite collaboration avec nos partenaires institutionnels (Département, Région, régies, syndicats mixtes…)",
           "Communiquer sur les compétences des différents partenaires d'une Mairie"
         ]
       },
@@ -36,7 +36,7 @@ const thematiquesData = [
           "Site internet régulièrement mis à jour",
           "Bulletin municipal annuel et lettres d'information mensuelles",
           "Réseaux sociaux",
-          "Affichage public d'informations de la vie municipale"
+          "Affichage public des informations de la vie municipale"
         ]
       }
     ]
@@ -50,26 +50,26 @@ const thematiquesData = [
       {
         titre: "Entraide à toutes les générations",
         actions: [
-          "Accompagnement des habitants pour faciliter leur vie quotidienne grâce aux outils digitaux (covoiturage, démarches administratives, services à la personne, entraide entre habitants...)",
+          "Accompagnement des habitants pour faciliter leur vie quotidienne grâce aux outils digitaux (covoiturage, démarches administratives, services à la personnes, entraide entre habitants...)",
           "Soutenir la mise en place de rencontres intergénérationnelles entre les enfants des écoles et les anciens du village",
-          "Aménager des lieux de rencontre intergénérationnelle (jeux de société, babyfoot, ping-pong, etc)"
+          "Aménager des lieux de rencontre intergénérationnelle (jeux de société, babyfoot, ping-pong...)"
         ]
       },
       {
         titre: "Soutenir les écoles",
         actions: [
           "Création d'un poste d'éducateur sportif (ETAPS) pour le sport scolaire et les activités extrascolaires",
-          "Créer des espaces d'ombre pour l'été dans les 2 écoles",
-          "Mettre en place un accompagnement aux devoirs après la classe",
+          "Création d'espaces d'ombre pour l'été dans les 2 écoles",
+          "Mise en place d'un accompagnement aux devoirs après la classe",
           "Augmentation de l'aide financière pour les sorties pédagogiques"
         ]
       },
       {
         titre: "Favoriser le sport-santé",
         actions: [
-          "Mise en place d'un chèque sport/culture pour tous les jeunes de la Commune de 4 à 20 ans",
+          "Mise en place d'un chèque sport/culture pour tous les jeunes de la commune de 4 à 20 ans",
           "Réflexion autour de la création d'un pôle compétition en ski nordique",
-          "Étude du réaménagement de l'ancien stade du Petit Bornand en un espace multisport (tennis, padel, sports collectifs…)",
+          "Étude pour améliorer et enrichir l'espace multi-sports de l'ancien stade de Petit-Bornand (tennis, padel, sports collectifs…)",
           "Intervention de l'ETAPS auprès des seniors"
         ]
       }
@@ -84,24 +84,24 @@ const thematiquesData = [
       {
         titre: "Construction d'un centre de services de proximité au Petit-Bornand",
         actions: [
-          "Une Maison médicale (médecin, cabinet d'infirmière libérale, professions paramédicales, espace bien-être…)",
-          "Une salle polyvalente pour les associations, les réunions publiques et les fêtes privées (anniversaires, baptêmes, cousinades,…)",
-          "Des logements adaptés pour personnes âgées en perte d'autonomie pour qu'elles restent au village",
+          "Une maison médicale (médecin, cabinet d'infirmiers(ères), professions paramédicales et de bien-être…)",
+          "Une salle polyvalente pour les associations, les réunions publiques et les fêtes privées (anniversaires, baptêmes, cousinades…)",
+          "Des logements adaptés pour personnes âgées en perte d'autonomie pour qu'elles puissent rester au village",
           "Un dispositif d'hébergements d'urgence"
         ]
       },
       {
         titre: "Valoriser les associations et encourager les initiatives locales",
         actions: [
-          "Création d'un service à la vie associative pour apporter un réel soutien aux associations par tous les moyens dont dispose la Commune (humains, financiers, locaux à disposition, communication, planning des rendez-vous associatifs…)",
+          "Création d'un service vie associative pour apporter un réel soutien aux associations par tous les moyens dont dispose la commune (humains, financiers, locaux à disposition, communication, planning des rendez-vous associatifs…)",
           "Organiser une soirée pour remercier et valoriser les associations",
-          "Harmoniser la gestion de la cantine et du péri-scolaire entre les écoles du Petit-Bornand et d'Entremont"
+          "Harmoniser la gestion de la cantine et du périscolaire entre les écoles de Petit-Bornand et d'Entremont"
         ]
       },
       {
         titre: "Création d'une salle de motricité et d'un réfectoire à l'école d'Entremont",
         actions: [
-          "Associer le nouveau réfectoire et la nouvelle salle de motricité dans un même projet, en liaison avec la CCFG",
+          "Associer le nouveau réfectoire et la nouvelle salle de motricité dans un même projet, en collaboration avec la CCFG",
           "Anticiper la possibilité d'une future cuisine sur place",
           "Associer l'APE et l'équipe enseignante au projet"
         ]
@@ -109,10 +109,10 @@ const thematiquesData = [
       {
         titre: "Mobilités douces, sécurisation",
         actions: [
-          "Étude et réalisation d'un passage à mobilité douce reliant les deux villages en concertation avec les propriétaires et les habitants",
+          "Etudier la possibilité de mettre en place un passage à mobilité douce reliant les deux villages en concertation avec les propriétaires et les habitants",
           "Stimuler le covoiturage entre les habitants",
-          "Réhabilitation des abris-bus et sécurisation, créations de parkings-vélo à proximité",
-          "Création/réfections des liaisons douces entre les hameaux",
+          "Réhabilitation et sécurisation des abribus, créations de parkings-vélo à proximité",
+          "Création/réfection des liaisons douces entre les hameaux",
           "Sécurisation des voies piétonnes sur la RD12 en concertation avec la CCFG",
           "Rétablissement de l'éclairage public à des horaires adaptés pour la sécurité"
         ]
@@ -128,25 +128,26 @@ const thematiquesData = [
       {
         titre: "Soutenir agriculteurs et producteurs locaux, favoriser les circuits-courts",
         actions: [
-          "Entretenir notre caractère rural en préservant les terres agricoles pour nos agriculteurs",
-          "Étudier le projet d'installation d'un maraîcher sur la Commune ou mener un état des lieux des espaces naturels accessibles pour installer des agriculteurs diversifiés à échelle humaine (maraîchers, arboriculteurs, céréaliers)",
-          "Garantir l'accès aux alpages pour les agriculteurs et aux propriétaires (y compris Lessy et les Auges)",
-          "Créer un annuaire des producteurs locaux à destination des habitants et des touristes"
+          "Entretenir notre caractère rural en préservant les terres agricoles pour nos agriculteurs.",
+          "Mener un état des lieux des espaces naturels accessibles pour installer des agriculteurs diversifiés à échelle humaine (maraîchers, arboriculteurs, céréaliers)",
+          "Garantir l'accès aux alpages pour les agriculteurs et pour les propriétaires (y compris Lessy et les Auges)",
+          "Créer un annuaire des producteurs locaux à destinations des habitants et des touristes"
         ]
       },
       {
         titre: "Soutenir le tissu économique",
         actions: [
-          "Étudier la faisabilité d'une zone artisanale pour favoriser l'installation des jeunes artisans de la Commune",
+          "Etudier la faisabilité d'une zone artisanale pour favoriser l'installation des jeunes artisans de la commune",
           "Agrandir le marché dominical en l'installant sur les terrains communaux en connexion avec le centre de service de proximité",
           "Favoriser l'affouage pour entretenir nos forêts et permettre aux habitants de se chauffer à moindre coût",
-          "Réflexion participative sur la gestion et l'avenir des bâtiments communaux (Ancienne Poste, maisons Pédat, Caouin, Dénarié,...)"
+          "Réflexion participative sur la gestion et l'avenir des bâtiments communaux (Ancienne Poste, maisons Pédat, Caouin, Dénarié...)",
+          "Favoriser les projets pour maintenir et développer le logement permanent"
         ]
       },
       {
         titre: "Préserver notre environnement",
         actions: [
-          "Mettre en place une « Journée de la Commune » en mobilisant tous les volontaires pour des travaux d'aménagement du village/collecte de déchets, avec garde d'enfants et repas citoyen",
+          "Mettre en place une « Journée de la Commune » en mobilisant tous les volontaires pour des travaux d'aménagement du village/collecte de déchets, avec garde d'enfants et repas citoyen.",
           "Mettre en place une véritable politique de la gestion environnementale et financière de nos forêts avec l'ONF",
           "Faire un point sur l'assainissement collectif en cours pour chaque hameau et sa progression future",
           "Proposer des ateliers de sensibilisation autour de l'environnement aux écoles et aux habitants (fresque climat, faune et flore, gestion et préservation des ressources…)",
@@ -162,9 +163,9 @@ const thematiquesData = [
     objectif: "Faire rayonner notre territoire. Faire de chacun d'entre nous un ambassadeur fier de son territoire et de son histoire.",
     engagements: [
       {
-        titre: "Aider au développement d'événements et de manifestations culturelles, sportives…",
+        titre: "Aider au développement d'événements et de manifestations culturelles, sportives,…",
         actions: [
-          "Soutenir les fêtes de village (moyens financiers, humains, matériel)",
+          "Soutenir les fêtes de village (moyen financiers, humains, matériel)",
           "Installer sapins de Noël et illuminations dans les 2 villages",
           "Soutenir les initiatives de créations d'événements culturels (son et lumière, concerts, musique classique, conférences…)"
         ]
@@ -173,7 +174,7 @@ const thematiquesData = [
         titre: "Préserver et valoriser le patrimoine naturel et culturel",
         actions: [
           "Valoriser les acteurs du patrimoine de la commune pour préserver et transmettre nos richesses patrimoniales et historiques",
-          "Entretenir et valoriser le bâti patrimonial (chapelles des hameaux, fours à bois,…)",
+          "Entretenir et valoriser le bâti patrimonial (chapelles des hameaux, fours à bois...)",
           "Soutenir les chasseurs et les pêcheurs dans la préservation et la sensibilisation de la gestion de la faune"
         ]
       },
@@ -184,7 +185,7 @@ const thematiquesData = [
           "Mise en place d'un guide pratique des services et activités du village (activités culturelles, sportives, de pleine nature, transports, hébergements, restauration…)",
           "Développer l'image d'un tourisme responsable en soutenant l'entretien et le nettoyage des sentiers et en valorisant durablement les espaces naturels",
           "Soutenir la mise en place de balades thématiques (produits locaux, artisanat, histoire…)",
-          "Valoriser et développer les hébergements touristiques (camping municipal, gîtes, meublés…)"
+          "Valoriser les hébergements touristiques (camping municipal, gîtes, meublés…)"
         ]
       }
     ]
