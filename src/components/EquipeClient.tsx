@@ -16,15 +16,15 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
     <>
       {/* Photo de groupe interactive */}
       <section className="py-16 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-2xl overflow-hidden shadow-lg h-[400px] sm:h-[500px] lg:h-[600px]">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="relative rounded-2xl overflow-hidden shadow-lg" style={{ aspectRatio: '16/9' }}>
             {photoGroupe ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={photoGroupe}
                 alt="Photo de groupe de l'équipe"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: '50% 25%', transform: 'scale(2.5)', transformOrigin: '50% 25%' }}
+                style={{ objectPosition: '50% 35%' }}
               />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center text-foreground-muted bg-primary-light/20">
@@ -49,12 +49,12 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
                 {/* Cercle cliquable - très subtil */}
                 <span
                   className={`
-                    block w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full
-                    border-2 border-white/40 bg-transparent
+                    block w-10 h-10 sm:w-12 sm:h-12 rounded-full
+                    border border-white/15 bg-transparent
                     transition-all duration-300 ease-out
                     ${hoveredMembre === membre.slug
                       ? 'bg-white/30 border-white/70 ring-2 ring-white/50 scale-110'
-                      : 'hover:bg-white/20 hover:border-white/60'}
+                      : 'hover:bg-white/15 hover:border-white/40'}
                   `}
                 />
 
@@ -84,7 +84,7 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
                 onClick={() => setSelectedMembre(membre)}
                 className="group bg-white rounded-xl p-4 shadow-sm hover:shadow-md hover:scale-105 transition-all text-center"
               >
-                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 mx-auto rounded-full bg-primary-light/30 mb-3 flex items-center justify-center text-primary font-semibold text-xl sm:text-2xl overflow-hidden">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-primary-light/30 mb-3 flex items-center justify-center text-primary font-semibold text-lg sm:text-xl overflow-hidden">
                   {membre.photo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={membre.photo} alt={membre.nom} className="w-full h-full object-cover" />
