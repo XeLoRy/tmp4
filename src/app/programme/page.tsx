@@ -67,7 +67,7 @@ const thematiquesData = [
       {
         titre: "Favoriser le sport-santé",
         actions: [
-          "Mise en place d'un chèque sport/culture pour tous les jeunes de la commune de 4 à 20 ans",
+          "Mise en place d'un chèque sport/culture pour tous les jeunes de la commune de 3 à 20 ans",
           "Réflexion autour de la création d'un pôle compétition en ski nordique",
           "Étude pour améliorer et enrichir l'espace multi-sports de l'ancien stade de Petit-Bornand (tennis, padel, sports collectifs…)",
           "Intervention de l'ETAPS auprès des seniors"
