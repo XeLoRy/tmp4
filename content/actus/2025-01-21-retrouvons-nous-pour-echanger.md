@@ -12,7 +12,7 @@ Une équipe unie, dynamique, aux compétences complémentaires et profondément 
 
 **Venez échanger ! Nous vous attendons nombreux :**
 
-### Cafés-rencontre le dimanche de 9h à 12h :
+**Cafés-rencontre le dimanche de 9h à 12h :**
 
 - 25/01 - Marché de Petit-Bornand
 - 01/02 - Parking France Service
@@ -22,7 +22,7 @@ Une équipe unie, dynamique, aux compétences complémentaires et profondément 
 - 01/03 - Termine
 - 07/03 - Foyer rural - Petit-Bornand
 
-### Réunions publiques à 20h30 :
+**Réunions publiques à 20h30 :**
 
 - 11/03 - Foyer rural - Petit-Bornand
 - 13/03 - Salle d'animation - Entremont
