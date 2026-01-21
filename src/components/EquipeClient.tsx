@@ -77,14 +77,14 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
       {/* Grille alternative */}
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
             {membres.map((membre) => (
               <button
                 key={membre.slug}
                 onClick={() => setSelectedMembre(membre)}
                 className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all text-center"
               >
-                <div className="w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 mx-auto rounded-full bg-primary-light/30 mb-4 flex items-center justify-center text-primary font-semibold text-2xl sm:text-3xl overflow-hidden">
+                <div className="w-40 h-40 sm:w-52 sm:h-52 lg:w-64 lg:h-64 mx-auto rounded-full bg-primary-light/30 mb-4 flex items-center justify-center text-primary font-semibold text-3xl sm:text-4xl overflow-hidden">
                   {membre.photo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={membre.photo} alt={membre.nom} className="w-full h-full object-cover" />
