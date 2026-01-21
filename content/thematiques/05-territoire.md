@@ -10,7 +10,7 @@ engagements:
 
 ### 1. Aider au développement d'événements et de manifestations culturelles, sportives,…
 
-- Soutenir les fêtes de village (moyen financiers, humains, matériel)
+- Soutenir les fêtes de village (moyens financiers, humains, matériels)
 - Installer sapins de Noël et illuminations dans les 2 villages
 - Soutenir les initiatives de créations d'événements culturels (son et lumière, concerts, musique classique, conférences…)
 

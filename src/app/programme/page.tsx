@@ -128,19 +128,19 @@ const thematiquesData = [
       {
         titre: "Soutenir agriculteurs et producteurs locaux, favoriser les circuits-courts",
         actions: [
-          "Entretenir notre caractère rural en préservant les terres agricoles pour nos agriculteurs.",
+          "Entretenir notre caractère rural en préservant les terres agricoles pour nos agriculteurs",
           "Mener un état des lieux des espaces naturels accessibles pour installer des agriculteurs diversifiés à échelle humaine (maraîchers, arboriculteurs, céréaliers)",
           "Garantir l'accès aux alpages pour les agriculteurs et pour les propriétaires (y compris Lessy et les Auges)",
-          "Créer un annuaire des producteurs locaux à destinations des habitants et des touristes"
+          "Créer un annuaire des producteurs locaux à destination des habitants et des touristes"
         ]
       },
       {
         titre: "Soutenir le tissu économique",
         actions: [
           "Etudier la faisabilité d'une zone artisanale pour favoriser l'installation des jeunes artisans de la commune",
-          "Agrandir le marché dominical en l'installant sur les terrains communaux en connexion avec le centre de service de proximité",
+          "Agrandir le marché dominical en l'installant sur les terrains communaux en connexion avec le centre de services de proximité",
           "Favoriser l'affouage pour entretenir nos forêts et permettre aux habitants de se chauffer à moindre coût",
-          "Réflexion participative sur la gestion et l'avenir des bâtiments communaux (Ancienne Poste, maisons Pédat, Caouin, Dénarié...)",
+          "Réflexion participative sur la gestion et l'avenir des bâtiments communaux (ancienne Poste, maisons Pédat, Caouin, Dénarié...)",
           "Favoriser les projets pour maintenir et développer le logement permanent"
         ]
       },
@@ -165,7 +165,7 @@ const thematiquesData = [
       {
         titre: "Aider au développement d'événements et de manifestations culturelles, sportives,…",
         actions: [
-          "Soutenir les fêtes de village (moyen financiers, humains, matériel)",
+          "Soutenir les fêtes de village (moyens financiers, humains, matériels)",
           "Installer sapins de Noël et illuminations dans les 2 villages",
           "Soutenir les initiatives de créations d'événements culturels (son et lumière, concerts, musique classique, conférences…)"
         ]
