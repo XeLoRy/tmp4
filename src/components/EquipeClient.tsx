@@ -17,14 +17,14 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
       {/* Photo de groupe interactive */}
       <section className="py-16 bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-2xl overflow-hidden shadow-lg" style={{ aspectRatio: '16/9' }}>
+          <div className="relative rounded-2xl overflow-hidden shadow-lg" style={{ aspectRatio: '16/6' }}>
             {photoGroupe ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={photoGroupe}
                 alt="Photo de groupe de l'équipe"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: '50% 35%' }}
+                style={{ objectPosition: '50% 32%' }}
               />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center text-foreground-muted bg-primary-light/20">
@@ -49,12 +49,12 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
                 {/* Cercle cliquable - très subtil */}
                 <span
                   className={`
-                    block w-10 h-10 sm:w-12 sm:h-12 rounded-full
-                    border border-white/15 bg-transparent
+                    block w-14 h-14 sm:w-16 sm:h-16 rounded-full
+                    border-2 border-white/30 bg-transparent
                     transition-all duration-300 ease-out
                     ${hoveredMembre === membre.slug
                       ? 'bg-white/30 border-white/70 ring-2 ring-white/50 scale-110'
-                      : 'hover:bg-white/15 hover:border-white/40'}
+                      : 'hover:bg-white/15 hover:border-white/50'}
                   `}
                 />
 
