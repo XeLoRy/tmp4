@@ -1,6 +1,6 @@
 ---
 title: Retrouvons-nous pour échanger !
-date: 2025-01-15T10:00:00.000Z
+date: 2025-01-21T10:00:00.000Z
 image: "/images/equipe.webp"
 category: Événement
 excerpt: Une équipe unie, dynamique, aux compétences complémentaires et profondément attachée à notre territoire s'engage pour vous.
