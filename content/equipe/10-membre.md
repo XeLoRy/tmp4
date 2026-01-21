@@ -2,7 +2,7 @@
 nom: Jérôme Lambersend
 role: Colistier
 profession: Opérateur Régleur bois
-photo: "/images/equipe/Jérome.jpg"
+photo: "/images/equipe/jerome.png"
 motivation: "Je souhaiterais contribuer à rationnaliser le fonctionnement de la vie municipale. J'ai à cœur certains projets, notamment celui de développer et mettre en valeur les sentiers pédestres de la commune."
 ordre: 10
 age: 52

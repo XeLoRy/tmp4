@@ -2,7 +2,7 @@
 nom: Arthur Jalle
 role: Colistier
 profession: Paysagiste
-photo: "/images/equipe/Arthur.jpg"
+photo: "/images/equipe/arthur.png"
 motivation: "Je souhaite restaurer une âme de village dans notre commune qui m'est chère, renforcer les liens intergénérationnels et encourager l'engagement de la jeunesse, afin de construire ensemble l'avenir."
 ordre: 18
 age: 25
