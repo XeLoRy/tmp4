@@ -3,7 +3,7 @@ title: Rayonnement
 icon: "/images/pictos/rayonnement.png"
 ordre: 5
 engagements:
-  - "Aider au développement d'événements et de manifestations culturelles, sportives…"
+  - "Aider au développement d'événements et de manifestations culturelles, sportives,…"
   - "Préserver et valoriser le patrimoine naturel et culturel"
   - "Tourisme"
 ---
