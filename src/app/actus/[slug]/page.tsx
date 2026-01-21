@@ -96,7 +96,7 @@ export default async function ArticlePage({ params }: Props) {
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/thematiques"
+                href="/programme"
                 className="inline-flex justify-center rounded-full bg-white px-8 py-3 text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors"
               >
                 Découvrir notre programme

@@ -54,7 +54,7 @@ export default function Home() {
 
               <div className="flex flex-row gap-1.5 sm:gap-4 justify-center">
                 <Link
-                  href="/thematiques"
+                  href="/programme"
                   className="inline-flex justify-center rounded-full bg-white px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-lg font-medium text-primary hover:bg-primary hover:text-white transition-colors shadow-lg sm:min-w-[200px]"
                 >
                   Notre programme
@@ -156,7 +156,7 @@ export default function Home() {
               {thematiques.map((theme) => (
                 <Link
                   key={theme.slug}
-                  href={`/thematiques#${theme.slug}`}
+                  href={`/programme#${theme.slug}`}
                   className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow text-center"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -173,7 +173,7 @@ export default function Home() {
 
             <div className="text-center mt-10">
               <Link
-                href="/thematiques"
+                href="/programme"
                 className="inline-flex items-center text-primary font-medium hover:underline"
               >
                 Voir le détail de notre programme
