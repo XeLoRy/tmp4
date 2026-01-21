@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { marked } from "marked";
 
 const contentDirectory = path.join(process.cwd(), "content");
 
@@ -152,7 +153,11 @@ export function getArticles(): Article[] {
 export function getArticle(slug: string): Article | null {
   try {
     const data = parseMarkdownFile<Omit<Article, "slug">>(`actus/${slug}.md`);
-    return { ...data, slug };
+    return {
+      ...data,
+      slug,
+      content: marked(data.content) as string
+    };
   } catch {
     return null;
   }
