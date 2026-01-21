@@ -32,11 +32,11 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
               </div>
             )}
 
-            {/* Zones cliquables - cercles visibles pour positionnement */}
+            {/* Zones cliquables - cercles visibles pour positionnement (masqués sur mobile) */}
             {membres.map((membre) => (
               <button
                 key={membre.slug}
-                className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
+                className="hidden sm:absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
                 style={{
                   left: `${membre.position.x}%`,
                   top: `${membre.position.y}%`,
@@ -68,7 +68,7 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
             ))}
           </div>
 
-          <p className="text-center text-foreground-muted mt-4 text-sm">
+          <p className="hidden sm:block text-center text-foreground-muted mt-4 text-sm">
             Survolez et cliquez sur un membre de l&apos;équipe pour en savoir plus
           </p>
         </div>
