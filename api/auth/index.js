@@ -1,98 +1,108 @@
-const fetch = require('node-fetch');
-
+// GitHub auth proxy - bypasses OAuth and uses server-side token
 module.exports = async function (context, req) {
-  context.log('=== AUTH FUNCTION START ===');
-  context.log('Query params:', JSON.stringify(req.query));
+  context.log('=== AUTH FUNCTION (PROXY MODE) ===');
 
-  const code = req.query.code;
-  const clientId = process.env.GITHUB_CLIENT_ID;
-  const clientSecret = process.env.GITHUB_CLIENT_SECRET;
-  const redirectUri = 'https://wonderful-coast-0605c9403.4.azurestaticapps.net/api/auth';
+  // Get admin token from query param
+  const adminToken = req.query.admin_token;
+  context.log('Admin token present:', adminToken ? 'YES' : 'NO');
 
-  context.log('ClientID:', clientId ? 'SET' : 'NOT SET');
-  context.log('ClientSecret:', clientSecret ? 'SET' : 'NOT SET');
-  context.log('Code:', code ? 'PRESENT' : 'NOT PRESENT');
+  // Validate admin session
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-  if (!code) {
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo,user`;
-    context.log('Redirecting to GitHub:', authUrl);
-
+  if (!ADMIN_PASSWORD || !GITHUB_TOKEN) {
+    context.log('ERROR: Missing environment variables');
     context.res = {
-      status: 302,
-      headers: { 'Location': authUrl },
-      body: ''
+      status: 500,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      body: errorHtml('Configuration serveur manquante')
     };
     return;
   }
 
-  try {
-    context.log('Exchanging code for token...');
-    const response = await fetch('https://github.com/login/oauth/access_token', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        client_id: clientId,
-        client_secret: clientSecret,
-        code: code
-      })
-    });
-
-    const data = await response.json();
-    context.log('GitHub response:', JSON.stringify(data));
-
-    if (data.error) {
-      context.log('ERROR from GitHub:', data.error);
-      context.res = {
-        status: 400,
-        headers: { 'Content-Type': 'text/plain' },
-        body: `Error: ${data.error_description || data.error}`
-      };
-      return;
+  // Verify admin token
+  let isValid = false;
+  if (adminToken) {
+    try {
+      const decoded = Buffer.from(adminToken, 'base64').toString();
+      const parts = decoded.split(':');
+      if (parts.length >= 3 && parts[0] === 'admin' && parts[2] === ADMIN_PASSWORD) {
+        const timestamp = parseInt(parts[1]);
+        const now = Date.now();
+        // Token valid for 24 hours
+        if (now - timestamp < 86400000) {
+          isValid = true;
+        }
+      }
+    } catch (e) {
+      context.log('Token decode error:', e.message);
     }
+  }
 
-    const token = data.access_token;
-    context.log('Token received:', token ? 'YES (length: ' + token.length + ')' : 'NO');
+  if (!isValid) {
+    context.log('Invalid admin session - returning error');
+    context.res = {
+      status: 200, // Return 200 with error page so popup can show message
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      body: errorHtml('Session expirée. Veuillez vous reconnecter.')
+    };
+    return;
+  }
 
-    // Retourner le HTML directement pour preserver window.opener
-    const callbackHtml = `<!DOCTYPE html>
+  context.log('Admin session valid - returning GitHub token');
+
+  // Return success HTML that sends the token to parent window
+  const callbackHtml = `<!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8"><title>Authentification</title></head>
-<body style="font-family:system-ui;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;">
-<p id="status">Authentification en cours...</p>
+<body style="font-family:system-ui;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#f5f5f5;">
+<div style="text-align:center;padding:20px;">
+  <p id="status" style="color:#333;font-size:16px;">Authentification en cours...</p>
+</div>
 <script>
 (function() {
   var status = document.getElementById('status');
-  var token = "${token}";
+  var token = "${GITHUB_TOKEN}";
   var message = 'authorization:github:success:' + JSON.stringify({token: token, provider: 'github'});
 
   if (window.opener) {
     window.opener.postMessage('authorizing:github', '*');
     setTimeout(function() {
       window.opener.postMessage(message, '*');
-      status.textContent = 'Connecte! Fermeture...';
-      setTimeout(function() { window.close(); }, 1000);
+      status.textContent = 'Connecté ! Fermeture...';
+      status.style.color = '#22c55e';
+      setTimeout(function() { window.close(); }, 500);
     }, 100);
   } else {
-    status.textContent = 'Erreur: fermez cette fenetre et reessayez.';
+    status.textContent = 'Erreur: fenêtre parent non trouvée. Fermez et réessayez.';
+    status.style.color = '#ef4444';
   }
 })();
 </script>
 </body>
 </html>`;
 
-    context.res = {
-      status: 200,
-      headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      body: callbackHtml
-    };
-  } catch (error) {
-    context.res = {
-      status: 500,
-      headers: { 'Content-Type': 'text/plain' },
-      body: `Error: ${error.message}`
-    };
-  }
+  context.res = {
+    status: 200,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    body: callbackHtml
+  };
 };
+
+function errorHtml(message) {
+  return `<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Erreur d'authentification</title></head>
+<body style="font-family:system-ui;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#fef2f2;">
+<div style="text-align:center;padding:20px;">
+  <p style="color:#ef4444;font-size:16px;">${message}</p>
+  <button onclick="window.close()" style="margin-top:10px;padding:8px 16px;background:#ef4444;color:white;border:none;border-radius:4px;cursor:pointer;">Fermer</button>
+</div>
+<script>
+if (window.opener) {
+  window.opener.postMessage('authorization:github:error:' + JSON.stringify({error: '${message}'}), '*');
+}
+</script>
+</body>
+</html>`;
+}

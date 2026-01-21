@@ -50,6 +50,9 @@
       }
     </script>
     <script>
+      // Get admin token to pass to auth endpoint
+      const adminToken = localStorage.getItem('admin_token') || '';
+
       CMS.init({
         config: {
           backend: {
@@ -57,7 +60,7 @@
             repo: 'XeLoRy/tmp4',
             branch: 'main',
             base_url: 'https://wonderful-coast-0605c9403.4.azurestaticapps.net',
-            auth_endpoint: '/api/auth'
+            auth_endpoint: '/api/auth?admin_token=' + encodeURIComponent(adminToken)
           },
           publish_mode: 'editorial_workflow',
           media_folder: 'public/images',

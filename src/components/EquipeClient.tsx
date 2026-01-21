@@ -84,7 +84,7 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
                 onClick={() => setSelectedMembre(membre)}
                 className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all text-center"
               >
-                <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-96 lg:h-96 mx-auto rounded-full bg-primary-light/30 mb-4 flex items-center justify-center text-primary font-semibold text-4xl sm:text-5xl overflow-hidden">
+                <div className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 mx-auto rounded-full bg-primary-light/30 mb-4 flex items-center justify-center text-primary font-semibold text-4xl sm:text-5xl overflow-hidden">
                   {membre.photo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={membre.photo} alt={membre.nom} className="w-full h-full object-cover" />
