@@ -1,21 +1,26 @@
 ---
-title: Lancement officiel de notre campagne
+title: Retrouvons-nous pour échanger !
 date: 2025-01-15T10:00:00.000Z
-image: ""
+image: "/images/equipe.webp"
 category: Événement
-excerpt: C'est avec enthousiasme que nous lançons officiellement notre campagne pour les municipales 2026.
+excerpt: Une équipe unie, dynamique, aux compétences complémentaires et profondément attachée à notre territoire s'engage pour vous.
 ---
 
-## Une nouvelle page s'ouvre
+C'est avec enthousiasme que nous lançons officiellement notre campagne pour les municipales 2026. Une équipe unie, dynamique, aux compétences complémentaires et profondément attachée à notre territoire s'engage pour vous représenter et être à votre écoute pour porter des projets responsables, sensés, utiles et justes pour notre quotidien et l'avenir de Glières-Val-de-Borne.
 
-C'est avec beaucoup d'enthousiasme que nous vous annonçons le lancement officiel de notre liste "Une Énergie Commune" pour les élections municipales de 2026.
+**Venez échanger ! Nous vous attendons nombreux :**
 
-Notre équipe, composée de citoyens engagés issus de tous horizons, est unie par une même vision : construire ensemble l'avenir de notre village.
+### Cafés-rencontre le dimanche de 9h à 12h :
 
-### Nos prochains rendez-vous
+- **25/01** - Marché de Petit-Bornand
+- **01/02** - Parking France Service
+- **08/02** - Beffay
+- **15/02** - La Ville
+- **22/02** - Kiosque - Entremont
+- **01/03** - Termine
+- **07/03** - Foyer rural - Petit-Bornand
 
-- **20 janvier** : Première réunion publique à la salle des fêtes
-- **Février** : Lancement de l'enquête citoyenne
-- **Mars** : Présentation de notre programme complet
+### Réunions publiques à 20h30 :
 
-Rejoignez-nous dans cette belle aventure !
+- **11/03** - Foyer rural - Petit-Bornand
+- **13/03** - Salle d'animation - Entremont
