@@ -10,7 +10,11 @@ C'est avec enthousiasme que nous lançons officiellement notre campagne pour les
 
 Une équipe unie, dynamique, aux compétences complémentaires et profondément attachée à notre territoire s'engage pour vous représenter et être à votre écoute pour porter des projets responsables, sensés, utiles et justes pour notre quotidien et l'avenir de Glières-Val-de-Borne.
 
+&nbsp;
+
 **Venez échanger ! Nous vous attendons nombreux :**
+
+&nbsp;
 
 **Cafés-rencontre le dimanche de 9h à 12h :**
 
@@ -21,6 +25,8 @@ Une équipe unie, dynamique, aux compétences complémentaires et profondément 
 - 22/02 - Kiosque - Entremont
 - 01/03 - Termine
 - 07/03 - Foyer rural - Petit-Bornand
+
+&nbsp;
 
 **Réunions publiques à 20h30 :**
 
