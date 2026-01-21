@@ -246,7 +246,7 @@ export default function Home() {
             <h2 className="font-cursive text-3xl sm:text-4xl text-white mb-6">
               Votre avis nous intéresse !
             </h2>
-            <p className="text-lg text-primary-light max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-white max-w-2xl mx-auto mb-8">
               Participez à notre enquête citoyenne et contribuez à construire
               le programme qui vous ressemble.
             </p>

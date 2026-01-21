@@ -174,7 +174,7 @@ export default function AgendaPage() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case "reunion": return "bg-primary";
-      case "cafe": return "bg-orange-400";
+      case "cafe": return "bg-accent";
       default: return "bg-gray-500";
     }
   };
@@ -182,7 +182,7 @@ export default function AgendaPage() {
   const getTypeBgLight = (type: string) => {
     switch (type) {
       case "reunion": return "from-primary/10 to-primary/5";
-      case "cafe": return "from-orange-300/20 to-orange-300/5";
+      case "cafe": return "from-accent/20 to-accent/5";
       default: return "from-gray-500/10 to-gray-500/5";
     }
   };
@@ -338,7 +338,7 @@ export default function AgendaPage() {
             <h2 className="font-cursive text-3xl text-white mb-4">
               Vous souhaitez nous rencontrer ?
             </h2>
-            <p className="text-lg text-primary-light max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-white max-w-2xl mx-auto mb-8">
               Contactez-nous pour organiser un rendez-vous personnalisé.
             </p>
             <Link

@@ -41,7 +41,7 @@ export default function ParticiperPage() {
             <h2 className="font-cursive text-3xl text-white mb-4">
               Vous souhaitez aller plus loin ?
             </h2>
-            <p className="text-lg text-primary-light mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-white mb-8 max-w-2xl mx-auto">
               Rejoignez notre liste de soutiens ou contribuez à la campagne.
             </p>
             <a

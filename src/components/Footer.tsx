@@ -13,7 +13,7 @@ export default function Footer() {
               alt="Une Énergie Commune"
               className="h-16 w-auto"
             />
-            <p className="mt-4 text-sm text-gray-400">
+            <p className="mt-4 text-sm text-white/80">
               Avec engagement, transparence et ouverture, ENSEMBLE pour Glières-Val-de-Borne&nbsp;!
             </p>
             {/* Social icons */}
@@ -22,7 +22,7 @@ export default function Footer() {
                 href="https://www.instagram.com/une_energie_commune/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-primary-light transition-colors"
+                className="text-white/80 hover:text-primary-light transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -33,7 +33,7 @@ export default function Footer() {
                 href="https://www.facebook.com/profile.php?id=61585981854300"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-primary-light transition-colors"
+                className="text-white/80 hover:text-primary-light transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -50,22 +50,22 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link href="/equipe" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/equipe" className="text-sm text-white/80 hover:text-white transition-colors">
                   L&apos;équipe
                 </Link>
               </li>
               <li>
-                <Link href="/programme" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/programme" className="text-sm text-white/80 hover:text-white transition-colors">
                   Nos 5 thématiques
                 </Link>
               </li>
               <li>
-                <Link href="/actus" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/actus" className="text-sm text-white/80 hover:text-white transition-colors">
                   Actualités
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/contact" className="text-sm text-white/80 hover:text-white transition-colors">
                   Contact
                 </Link>
               </li>
@@ -79,12 +79,12 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link href="/participer#enquete" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/participer#enquete" className="text-sm text-white/80 hover:text-white transition-colors">
                   Enquête citoyenne
                 </Link>
               </li>
               <li>
-                <Link href="/participer#soutenir" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/participer#soutenir" className="text-sm text-white/80 hover:text-white transition-colors">
                   Soutenir notre liste
                 </Link>
               </li>
@@ -93,7 +93,7 @@ export default function Footer() {
                   href="https://www.helloasso.com/associations/une-energie-commune-pour-glieres-val-de-borne"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                  className="text-sm text-white/80 hover:text-white transition-colors"
                 >
                   Faire un don
                 </a>
@@ -104,19 +104,19 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-white/80">
               © {new Date().getFullYear()} Une Énergie Commune. Tous droits réservés.
             </p>
             <div className="flex gap-6">
-              <Link href="/mentions-legales" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <Link href="/mentions-legales" className="text-sm text-white/80 hover:text-white transition-colors">
                 Mentions légales
               </Link>
-              <Link href="/confidentialite" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <Link href="/confidentialite" className="text-sm text-white/80 hover:text-white transition-colors">
                 Politique de confidentialité
               </Link>
             </div>
           </div>
-          <p className="text-center text-xs text-gray-400 mt-6">
+          <p className="text-center text-xs text-white/80 mt-6">
             Site réalisé par{" "}
             <a
               href="https://www.itbubbly.com/"

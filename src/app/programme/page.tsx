@@ -424,7 +424,7 @@ export default function ThematiquesPage() {
             <h2 className="font-cursive text-3xl text-white mb-4">
               Ce programme vous parle ?
             </h2>
-            <p className="text-lg text-primary-light mb-8">
+            <p className="text-lg text-white mb-8">
               Participez à notre enquête citoyenne pour enrichir notre projet
             </p>
             <a

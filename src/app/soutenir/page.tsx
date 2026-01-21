@@ -265,7 +265,7 @@ export default function SoutenirPage() {
             <h2 className="font-cursive text-3xl text-white mb-4">
               Envie de vous impliquer davantage ?
             </h2>
-            <p className="text-lg text-primary-light mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-white mb-8 max-w-2xl mx-auto">
               Rejoignez notre équipe de bénévoles pour distribuer des tracts,
               organiser des événements ou simplement échanger avec les habitants.
             </p>

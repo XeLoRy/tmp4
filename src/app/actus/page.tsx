@@ -98,7 +98,7 @@ export default function ActusPage() {
             <h2 className="font-cursive text-3xl text-white mb-4">
               Restez informé(e)
             </h2>
-            <p className="text-lg text-primary-light mb-8">
+            <p className="text-lg text-white mb-8">
               Inscrivez-vous à notre newsletter pour ne rien manquer de notre campagne
             </p>
             <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
