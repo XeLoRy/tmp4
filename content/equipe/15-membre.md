@@ -3,7 +3,7 @@ nom: William Bories
 role: Colistier
 profession: Ingénieur informatique
 photo: "/images/equipe/william.png"
-motivation: "J'aimerais faire de ce village un lieu ouvert et chaleureux, où les nouveaux habitants sont accueillis et où l'entraide devient la norme."
+motivation: "Apporter mes compétences là où elles sont utiles, écouter vraiment les habitants, accueillir les idées nouvelles et renforcer l'entraide : voilà ce qui me motive."
 ordre: 15
 age: 39
 hameau: Sérès
