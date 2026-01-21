@@ -105,7 +105,7 @@ export default function ActusPage() {
               <input
                 type="email"
                 placeholder="Votre email"
-                className="flex-1 rounded-full px-6 py-3 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="flex-1 rounded-full px-6 py-3 bg-transparent border-2 border-white text-white placeholder:text-white focus:outline-none focus:ring-2 focus:ring-accent"
               />
               <button
                 type="submit"
