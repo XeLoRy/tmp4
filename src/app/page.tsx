@@ -288,25 +288,27 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {articles.length > 0 ? (
                 articles.map((article) => (
-                  <article key={article.slug} className="bg-background rounded-xl overflow-hidden shadow-sm">
-                    <div className="h-48 bg-primary-light/20">
-                      {article.image && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
-                      )}
-                    </div>
-                    <div className="p-6">
-                      <p className="text-sm text-foreground-muted mb-2">
-                        {new Date(article.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
-                      </p>
-                      <h3 className="font-semibold text-foreground mb-2">
-                        {article.title}
-                      </h3>
-                      <p className="text-sm text-foreground-muted">
-                        {article.excerpt}
-                      </p>
-                    </div>
-                  </article>
+                  <Link key={article.slug} href={`/actus/${article.slug}`}>
+                    <article className="bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                      <div className="h-48 bg-primary-light/20">
+                        {article.image && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+                        )}
+                      </div>
+                      <div className="p-6">
+                        <p className="text-sm text-foreground-muted mb-2">
+                          {new Date(article.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
+                        </p>
+                        <h3 className="font-semibold text-foreground mb-2 hover:text-primary transition-colors">
+                          {article.title}
+                        </h3>
+                        <p className="text-sm text-foreground-muted">
+                          {article.excerpt}
+                        </p>
+                      </div>
+                    </article>
+                  </Link>
                 ))
               ) : (
                 <p className="text-foreground-muted col-span-3 text-center py-8">
