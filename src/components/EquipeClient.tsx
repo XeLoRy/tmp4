@@ -77,14 +77,14 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
       {/* Grille alternative */}
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8">
             {membres.map((membre) => (
               <button
                 key={membre.slug}
                 onClick={() => setSelectedMembre(membre)}
-                className="group bg-white rounded-xl p-4 shadow-sm hover:shadow-md hover:scale-105 transition-all text-center"
+                className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all text-center"
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-primary-light/30 mb-3 flex items-center justify-center text-primary font-semibold text-lg sm:text-xl overflow-hidden">
+                <div className="w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 mx-auto rounded-full bg-primary-light/30 mb-4 flex items-center justify-center text-primary font-semibold text-2xl sm:text-3xl overflow-hidden">
                   {membre.photo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={membre.photo} alt={membre.nom} className="w-full h-full object-cover" />
@@ -92,10 +92,10 @@ export default function EquipeClient({ membres, photoGroupe }: EquipeClientProps
                     membre.nom.split(" ").map(n => n[0]).join("")
                   )}
                 </div>
-                <h3 className="font-medium text-foreground group-hover:text-primary transition-colors text-sm sm:text-base">
+                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-base sm:text-lg">
                   {membre.nom}
                 </h3>
-                <p className="text-xs sm:text-sm text-foreground-muted truncate">
+                <p className="text-sm text-foreground-muted truncate">
                   {membre.profession}
                 </p>
               </button>
