@@ -4,7 +4,7 @@ icon: "/images/pictos/citoyennete.png"
 ordre: 1
 engagements:
   - "Écouter et impliquer les habitants : renforcer la participation citoyenne"
-  - "Défendre les intérêts de la Commune et de ses habitants avec les partenaires institutionnels"
+  - "Défendre les intérêts de la commune et de ses habitants avec les partenaires institutionnels"
   - "Communication claire et régulière"
 ---
 
