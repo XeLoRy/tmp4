@@ -244,18 +244,17 @@ export default function SoutenirPage() {
 
             <div className="bg-background rounded-2xl p-8 text-center">
               <p className="text-foreground-muted mb-4">
-                Les dons sont gérés de manière transparente via HelloAsso.
+                Vous souhaitez soutenir financièrement notre campagne ?
+                Contactez-nous directement et nous vous expliquerons les modalités.
               </p>
               <p className="text-sm text-foreground-muted/80 mb-6">
                 Note : les dons ne sont malheureusement pas déductibles des impôts.
               </p>
               <a
-                href="https://www.helloasso.com/associations/une-energie-commune-pour-glieres-val-de-borne"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/contact"
                 className="inline-flex justify-center rounded-full bg-accent px-8 py-3 text-lg font-medium text-white hover:bg-accent-light hover:text-foreground transition-colors"
               >
-                Faire un don sur HelloAsso
+                Nous contacter
               </a>
             </div>
           </div>
