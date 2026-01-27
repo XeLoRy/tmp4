@@ -88,16 +88,6 @@ export default function Footer() {
                   Soutenir notre liste
                 </Link>
               </li>
-              <li>
-                <a
-                  href="https://www.helloasso.com/associations/une-energie-commune-pour-glieres-val-de-borne"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-white/80 hover:text-white transition-colors"
-                >
-                  Faire un don
-                </a>
-              </li>
             </ul>
           </div>
         </div>
