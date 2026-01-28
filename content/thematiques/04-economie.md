@@ -20,7 +20,7 @@ engagements:
 - Etudier la faisabilité d'une zone artisanale pour favoriser l'installation des jeunes artisans de la commune
 - Agrandir le marché dominical en l'installant sur les terrains communaux en connexion avec le centre de services de proximité
 - Favoriser l'affouage pour entretenir nos forêts et permettre aux habitants de se chauffer à moindre coût
-- Réflexion participative sur la gestion et l'avenir des bâtiments communaux (ancienne Poste, maisons Pédat, Caouin, Dénarié...)
+- Réflexion participative sur la gestion et l'avenir des bâtiments communaux (ancienne Poste, maisons Pédat, Cavouin, Dénarié...)
 - Favoriser les projets pour maintenir et développer le logement permanent
 
 ### 3. Préserver notre environnement
