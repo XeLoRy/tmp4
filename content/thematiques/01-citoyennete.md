@@ -20,7 +20,7 @@ engagements:
 
 - Avoir un partenariat exigeant avec la CCFG : participation constructive tout en défendant nos intérêts
 - Consultation et implication de toutes les associations et acteurs concernés dans la conception des projets
-- Construire les projets en étroite collaboration avec nos partenaires institutionnels (Département, Région, régies, syndicats mixtes…)
+- Construire les projets en étroite collaboration avec nos partenaires institutionnels (Département, Région, parlementaires, régies, syndicats mixtes…)
 - Communiquer sur les compétences des différents partenaires d'une Mairie
 
 ### Communication claire et régulière
