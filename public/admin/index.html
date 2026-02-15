@@ -6,56 +6,16 @@
     <meta name="robots" content="noindex" />
     <title>Admin - Une Énergie Commune</title>
     <script>
-      // Check authentication
+      // Check admin authentication
       (function() {
         const token = localStorage.getItem('admin_token');
         const tokenExpiry = localStorage.getItem('admin_token_expiry');
 
         if (!token || !tokenExpiry || Date.now() >= parseInt(tokenExpiry)) {
-          // Not logged in or token expired
           localStorage.removeItem('admin_token');
           localStorage.removeItem('admin_token_expiry');
           window.location.href = '/admin/login.html';
         }
-      })();
-    </script>
-    <script>window.CMS_MANUAL_INIT = true;</script>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <script>
-      // Intercept OAuth popup: fetch GitHub token from our API instead
-      (function() {
-        const originalOpen = window.open;
-        window.open = function(url) {
-          // Only intercept Decap CMS auth popup (calls to /api/auth)
-          if (url && url.indexOf('/api/auth') !== -1) {
-            console.log('Intercepted OAuth popup, fetching token from API...');
-            const adminToken = localStorage.getItem('admin_token') || '';
-            fetch('/api/github-token', {
-              headers: { 'Authorization': 'Bearer ' + adminToken }
-            })
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-              if (data.token) {
-                var message = 'authorization:github:success:' + JSON.stringify({
-                  token: data.token,
-                  provider: 'github'
-                });
-                window.postMessage(message, '*');
-                console.log('GitHub token injected successfully');
-              } else {
-                console.error('No token in API response:', data);
-              }
-            })
-            .catch(function(err) {
-              console.error('Failed to fetch GitHub token:', err);
-              // Fallback: open the real popup
-              originalOpen.apply(window, arguments);
-            });
-            // Return a fake window object so Decap CMS doesn't crash
-            return { closed: false, close: function() {} };
-          }
-          return originalOpen.apply(window, arguments);
-        };
       })();
     </script>
     <style>
@@ -74,10 +34,20 @@
         font-family: system-ui, sans-serif;
       }
       .logout-btn:hover { background: #c82333; }
+      #loading-msg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: system-ui, sans-serif;
+        color: #666;
+        font-size: 18px;
+      }
     </style>
   </head>
   <body>
     <button class="logout-btn" onclick="logout()">Déconnexion</button>
+    <div id="loading-msg">Chargement du CMS...</div>
     <script>
       function logout() {
         localStorage.removeItem('admin_token');
@@ -85,144 +55,207 @@
         localStorage.removeItem('netlify-cms-user');
         window.location.href = '/admin/login.html';
       }
-    </script>
-    <script>
-      const adminToken = localStorage.getItem('admin_token') || '';
 
-      CMS.init({
-        config: {
-          backend: {
-            name: 'github',
-            repo: 'XeLoRy/tmp4',
-            branch: 'main',
-            base_url: 'https://wonderful-coast-0605c9403.4.azurestaticapps.net',
-            auth_endpoint: '/api/auth?admin_token=' + encodeURIComponent(adminToken)
-          },
-          publish_mode: 'editorial_workflow',
-          media_folder: 'public/images',
-          public_folder: '/images',
-          locale: 'fr',
-          collections: [
-            {
-              name: 'pages',
-              label: 'Pages',
-              files: [
+      // Step 1: Fetch GitHub token from our API, then load CMS
+      (async function() {
+        const adminToken = localStorage.getItem('admin_token') || '';
+
+        // Fetch the GitHub token server-side
+        try {
+          const response = await fetch('/api/github-token', {
+            headers: { 'Authorization': 'Bearer ' + adminToken }
+          });
+          const data = await response.json();
+          console.log('GitHub token API response:', response.status, data.token ? 'token present' : 'no token');
+
+          if (response.ok && data.token) {
+            // Store in the format Decap CMS expects
+            localStorage.setItem('netlify-cms-user', JSON.stringify({
+              token: data.token,
+              backendName: 'github',
+              login: '',
+              name: 'Admin'
+            }));
+            console.log('GitHub token stored in localStorage');
+          } else {
+            console.error('Failed to get GitHub token:', data);
+          }
+        } catch (e) {
+          console.error('Error fetching GitHub token:', e);
+        }
+
+        // Step 2: Load Decap CMS script dynamically
+        window.CMS_MANUAL_INIT = true;
+
+        // Intercept window.open as fallback (in case CMS still tries OAuth)
+        var originalOpen = window.open;
+        window.open = function(url) {
+          if (url && url.indexOf('/api/auth') !== -1) {
+            console.log('Intercepted OAuth popup');
+            fetch('/api/github-token', {
+              headers: { 'Authorization': 'Bearer ' + adminToken }
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+              if (data.token) {
+                window.postMessage(
+                  'authorization:github:success:' + JSON.stringify({ token: data.token, provider: 'github' }),
+                  '*'
+                );
+              }
+            })
+            .catch(function(err) {
+              originalOpen.apply(window, arguments);
+            });
+            return { closed: false, close: function() {} };
+          }
+          return originalOpen.apply(window, arguments);
+        };
+
+        var script = document.createElement('script');
+        script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+        script.onload = function() {
+          document.getElementById('loading-msg').style.display = 'none';
+
+          CMS.init({
+            config: {
+              backend: {
+                name: 'github',
+                repo: 'XeLoRy/tmp4',
+                branch: 'main',
+                base_url: 'https://wonderful-coast-0605c9403.4.azurestaticapps.net',
+                auth_endpoint: '/api/auth?admin_token=' + encodeURIComponent(adminToken)
+              },
+              publish_mode: 'editorial_workflow',
+              media_folder: 'public/images',
+              public_folder: '/images',
+              locale: 'fr',
+              collections: [
                 {
-                  name: 'accueil',
-                  label: 'Page d\'accueil',
-                  file: 'content/pages/accueil.md',
-                  fields: [
-                    { label: 'Titre Hero', name: 'heroTitle', widget: 'string' },
-                    { label: 'Citation Hero', name: 'heroCitation', widget: 'string' },
-                    { label: 'Nom tête de liste', name: 'teteDeListe', widget: 'string' },
-                    { label: 'Rôle tête de liste', name: 'tetteDeListeRole', widget: 'string' },
-                    { label: 'Texte engagement', name: 'engagementTexte', widget: 'text' }
+                  name: 'pages',
+                  label: 'Pages',
+                  files: [
+                    {
+                      name: 'accueil',
+                      label: 'Page d\'accueil',
+                      file: 'content/pages/accueil.md',
+                      fields: [
+                        { label: 'Titre Hero', name: 'heroTitle', widget: 'string' },
+                        { label: 'Citation Hero', name: 'heroCitation', widget: 'string' },
+                        { label: 'Nom tête de liste', name: 'teteDeListe', widget: 'string' },
+                        { label: 'Rôle tête de liste', name: 'tetteDeListeRole', widget: 'string' },
+                        { label: 'Texte engagement', name: 'engagementTexte', widget: 'text' }
+                      ]
+                    },
+                    {
+                      name: 'edito',
+                      label: 'Édito (Mot du candidat)',
+                      file: 'content/pages/edito.md',
+                      fields: [
+                        { label: 'Titre de la page', name: 'titre', widget: 'string' },
+                        { label: 'Nom tête de liste', name: 'teteDeListe', widget: 'string' },
+                        { label: 'Rôle', name: 'role', widget: 'string' },
+                        { label: 'Contenu (Markdown)', name: 'body', widget: 'markdown' }
+                      ]
+                    }
                   ]
                 },
                 {
-                  name: 'edito',
-                  label: 'Édito (Mot du candidat)',
-                  file: 'content/pages/edito.md',
+                  name: 'equipe',
+                  label: 'Équipe',
+                  folder: 'content/equipe',
+                  create: true,
+                  slug: '{{slug}}',
                   fields: [
-                    { label: 'Titre de la page', name: 'titre', widget: 'string' },
-                    { label: 'Nom tête de liste', name: 'teteDeListe', widget: 'string' },
-                    { label: 'Rôle', name: 'role', widget: 'string' },
-                    { label: 'Contenu (Markdown)', name: 'body', widget: 'markdown' }
+                    { label: 'Nom', name: 'nom', widget: 'string' },
+                    { label: 'Rôle', name: 'role', widget: 'string', default: 'Colistier' },
+                    { label: 'Profession', name: 'profession', widget: 'string' },
+                    { label: 'Photo', name: 'photo', widget: 'image', required: false },
+                    { label: 'Motivation', name: 'motivation', widget: 'text' },
+                    { label: 'Ordre', name: 'ordre', widget: 'number', default: 10 },
+                    {
+                      label: 'Position sur photo',
+                      name: 'position',
+                      widget: 'object',
+                      fields: [
+                        { label: 'X (%)', name: 'x', widget: 'number', default: 50 },
+                        { label: 'Y (%)', name: 'y', widget: 'number', default: 50 }
+                      ]
+                    }
                   ]
-                }
-              ]
-            },
-            {
-              name: 'equipe',
-              label: 'Équipe',
-              folder: 'content/equipe',
-              create: true,
-              slug: '{{slug}}',
-              fields: [
-                { label: 'Nom', name: 'nom', widget: 'string' },
-                { label: 'Rôle', name: 'role', widget: 'string', default: 'Colistier' },
-                { label: 'Profession', name: 'profession', widget: 'string' },
-                { label: 'Photo', name: 'photo', widget: 'image', required: false },
-                { label: 'Motivation', name: 'motivation', widget: 'text' },
-                { label: 'Ordre', name: 'ordre', widget: 'number', default: 10 },
+                },
                 {
-                  label: 'Position sur photo',
-                  name: 'position',
-                  widget: 'object',
+                  name: 'thematiques',
+                  label: 'Thématiques',
+                  folder: 'content/thematiques',
+                  create: true,
+                  slug: '{{slug}}',
                   fields: [
-                    { label: 'X (%)', name: 'x', widget: 'number', default: 50 },
-                    { label: 'Y (%)', name: 'y', widget: 'number', default: 50 }
+                    { label: 'Titre', name: 'title', widget: 'string' },
+                    { label: 'Icône', name: 'icon', widget: 'string' },
+                    { label: 'Description', name: 'description', widget: 'string' },
+                    { label: 'Ordre', name: 'ordre', widget: 'number', default: 1 },
+                    { label: 'Engagements', name: 'engagements', widget: 'list', field: { label: 'Engagement', name: 'engagement', widget: 'string' } },
+                    { label: 'Contenu', name: 'body', widget: 'markdown', required: false }
+                  ]
+                },
+                {
+                  name: 'actus',
+                  label: 'Actualités',
+                  folder: 'content/actus',
+                  create: true,
+                  slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+                  fields: [
+                    { label: 'Titre', name: 'title', widget: 'string' },
+                    { label: 'Date', name: 'date', widget: 'datetime' },
+                    { label: 'Image', name: 'image', widget: 'image', required: false },
+                    { label: 'Catégorie', name: 'category', widget: 'select', options: ['Événement', 'Communiqué', 'Terrain', 'Programme'] },
+                    { label: 'Extrait', name: 'excerpt', widget: 'text' },
+                    { label: 'Contenu', name: 'body', widget: 'markdown' }
+                  ]
+                },
+                {
+                  name: 'agenda',
+                  label: 'Agenda',
+                  folder: 'content/agenda',
+                  create: true,
+                  slug: '{{slug}}',
+                  fields: [
+                    { label: 'Titre', name: 'titre', widget: 'string' },
+                    { label: 'Date', name: 'date', widget: 'datetime', date_format: 'YYYY-MM-DD', time_format: false },
+                    { label: 'Heure', name: 'heure', widget: 'string', hint: 'Ex: 20h30 ou 8h00 - 12h00' },
+                    { label: 'Lieu', name: 'lieu', widget: 'string', hint: 'Ex: Salle du Foyer Rural' },
+                    { label: 'Ville', name: 'ville', widget: 'string', hint: 'Ex: Petit-Bornand' },
+                    { label: 'Type', name: 'type', widget: 'select', options: [
+                      { label: 'Réunion publique', value: 'reunion' },
+                      { label: 'Permanence', value: 'permanence' },
+                      { label: 'Porte-à-porte', value: 'porte-a-porte' },
+                      { label: 'Marché', value: 'marche' }
+                    ]},
+                    { label: 'Description', name: 'description', widget: 'text' }
                   ]
                 }
-              ]
-            },
-            {
-              name: 'thematiques',
-              label: 'Thématiques',
-              folder: 'content/thematiques',
-              create: true,
-              slug: '{{slug}}',
-              fields: [
-                { label: 'Titre', name: 'title', widget: 'string' },
-                { label: 'Icône', name: 'icon', widget: 'string' },
-                { label: 'Description', name: 'description', widget: 'string' },
-                { label: 'Ordre', name: 'ordre', widget: 'number', default: 1 },
-                { label: 'Engagements', name: 'engagements', widget: 'list', field: { label: 'Engagement', name: 'engagement', widget: 'string' } },
-                { label: 'Contenu', name: 'body', widget: 'markdown', required: false }
-              ]
-            },
-            {
-              name: 'actus',
-              label: 'Actualités',
-              folder: 'content/actus',
-              create: true,
-              slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
-              fields: [
-                { label: 'Titre', name: 'title', widget: 'string' },
-                { label: 'Date', name: 'date', widget: 'datetime' },
-                { label: 'Image', name: 'image', widget: 'image', required: false },
-                { label: 'Catégorie', name: 'category', widget: 'select', options: ['Événement', 'Communiqué', 'Terrain', 'Programme'] },
-                { label: 'Extrait', name: 'excerpt', widget: 'text' },
-                { label: 'Contenu', name: 'body', widget: 'markdown' }
-              ]
-            },
-            {
-              name: 'agenda',
-              label: 'Agenda',
-              folder: 'content/agenda',
-              create: true,
-              slug: '{{slug}}',
-              fields: [
-                { label: 'Titre', name: 'titre', widget: 'string' },
-                { label: 'Date', name: 'date', widget: 'datetime', date_format: 'YYYY-MM-DD', time_format: false },
-                { label: 'Heure', name: 'heure', widget: 'string', hint: 'Ex: 20h30 ou 8h00 - 12h00' },
-                { label: 'Lieu', name: 'lieu', widget: 'string', hint: 'Ex: Salle du Foyer Rural' },
-                { label: 'Ville', name: 'ville', widget: 'string', hint: 'Ex: Petit-Bornand' },
-                { label: 'Type', name: 'type', widget: 'select', options: [
-                  { label: 'Réunion publique', value: 'reunion' },
-                  { label: 'Permanence', value: 'permanence' },
-                  { label: 'Porte-à-porte', value: 'porte-a-porte' },
-                  { label: 'Marché', value: 'marche' }
-                ]},
-                { label: 'Description', name: 'description', widget: 'text' }
               ]
             }
-          ]
-        }
-      });
+          });
 
-      // Auto-click the "Login with GitHub" button when it appears
-      var autoLoginObserver = new MutationObserver(function() {
-        var loginBtn = document.querySelector('[class*="LoginButton"]') ||
-                       document.querySelector('button[class*="login"]') ||
-                       document.querySelector('#nc-root button');
-        if (loginBtn && loginBtn.textContent.indexOf('GitHub') !== -1) {
-          console.log('Auto-clicking GitHub login button');
-          autoLoginObserver.disconnect();
-          loginBtn.click();
-        }
-      });
-      autoLoginObserver.observe(document.body, { childList: true, subtree: true });
+          // Fallback: auto-click "Login with GitHub" if it still appears
+          var observer = new MutationObserver(function() {
+            var buttons = document.querySelectorAll('button');
+            for (var i = 0; i < buttons.length; i++) {
+              if (buttons[i].textContent.indexOf('GitHub') !== -1 ||
+                  buttons[i].textContent.indexOf('Login') !== -1) {
+                console.log('Auto-clicking login button:', buttons[i].textContent);
+                observer.disconnect();
+                buttons[i].click();
+                break;
+              }
+            }
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
+        };
+        document.head.appendChild(script);
+      })();
     </script>
   </body>
 </html>
