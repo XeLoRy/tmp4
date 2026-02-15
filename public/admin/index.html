@@ -62,9 +62,7 @@
 
         // Fetch the GitHub token server-side
         try {
-          const response = await fetch('/api/github-token', {
-            headers: { 'Authorization': 'Bearer ' + adminToken }
-          });
+          const response = await fetch('/api/github-token?admin_token=' + encodeURIComponent(adminToken));
           const data = await response.json();
           console.log('GitHub token API response:', response.status, data.token ? 'token present' : 'no token');
 
@@ -92,9 +90,7 @@
         window.open = function(url) {
           if (url && url.indexOf('/api/auth') !== -1) {
             console.log('Intercepted OAuth popup');
-            fetch('/api/github-token', {
-              headers: { 'Authorization': 'Bearer ' + adminToken }
-            })
+            fetch('/api/github-token?admin_token=' + encodeURIComponent(adminToken))
             .then(function(r) { return r.json(); })
             .then(function(data) {
               if (data.token) {
@@ -107,7 +103,7 @@
             .catch(function(err) {
               originalOpen.apply(window, arguments);
             });
-            return { closed: false, close: function() {} };
+            return { closed: false, close: function() {}, focus: function() {} };
           }
           return originalOpen.apply(window, arguments);
         };

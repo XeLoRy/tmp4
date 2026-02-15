@@ -16,9 +16,8 @@ module.exports = async function (context, req) {
   }
 
   try {
-    // Get admin token from Authorization header
-    const authHeader = req.headers['authorization'] || '';
-    const adminToken = authHeader.replace('Bearer ', '');
+    // Get admin token from query param or Authorization header
+    const adminToken = req.query.admin_token || (req.headers['authorization'] || '').replace('Bearer ', '');
 
     if (!adminToken) {
       context.res = {
