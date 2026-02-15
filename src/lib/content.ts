@@ -207,6 +207,61 @@ export function getSiteConfig(): SiteConfig {
   }
 }
 
+// Thématiques avec engagements détaillés (parsés depuis le markdown)
+export interface EngagementDetail {
+  titre: string;
+  actions: string[];
+}
+
+export interface ThematiqueDetail {
+  slug: string;
+  title: string;
+  icon: string;
+  description: string;
+  ordre: number;
+  engagements: EngagementDetail[];
+  objectif: string;
+}
+
+export function getThematiquesDetail(): ThematiqueDetail[] {
+  const files = getMarkdownFiles("thematiques");
+  const thematiques = files.map((file) => {
+    const data = parseMarkdownFile<Omit<Thematique, "slug">>(`thematiques/${file}`);
+    const slug = file.replace(".md", "");
+
+    // Parse markdown body into structured engagements
+    const engagements: EngagementDetail[] = [];
+    const sections = data.content.split(/^###\s+/m).filter(Boolean);
+
+    for (const section of sections) {
+      if (section.startsWith("##") || section.trim().startsWith("## ")) continue;
+      const lines = section.split("\n");
+      const titre = lines[0].replace(/^\d+\.\s*/, "").trim();
+      if (!titre) continue;
+
+      const actions: string[] = [];
+      for (const line of lines.slice(1)) {
+        const match = line.match(/^[\*\-]\s+(.+)/);
+        if (match) actions.push(match[1].trim());
+      }
+      engagements.push({ titre, actions });
+    }
+
+    // Extract objectif from "## Notre objectif" section
+    const objectifMatch = data.content.match(/## Notre objectif\s+([\s\S]*?)$/);
+    let objectif = data.description || "";
+    if (objectifMatch) {
+      objectif = objectifMatch[1]
+        .replace(/\*\*/g, "")
+        .replace(/\\\s*/g, " ")
+        .trim();
+    }
+
+    return { slug, title: data.title, icon: data.icon, description: data.description, ordre: data.ordre, engagements, objectif };
+  });
+  return thematiques.sort((a, b) => a.ordre - b.ordre);
+}
+
 // Agenda
 export function getEvenements(): Evenement[] {
   const files = getMarkdownFiles("agenda");
