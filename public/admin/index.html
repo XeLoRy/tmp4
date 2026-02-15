@@ -85,24 +85,53 @@
         // Step 2: Load Decap CMS script dynamically
         window.CMS_MANUAL_INIT = true;
 
-        // Intercept window.open as fallback (in case CMS still tries OAuth)
+        // Store GitHub token for use in interceptor
+        var githubToken = null;
+        try {
+          var stored = JSON.parse(localStorage.getItem('netlify-cms-user') || '{}');
+          githubToken = stored.token;
+        } catch(e) {}
+
+        // Intercept window.open: bypass OAuth popup entirely
         var originalOpen = window.open;
         window.open = function(url) {
           if (url && url.indexOf('/api/auth') !== -1) {
-            console.log('Intercepted OAuth popup');
-            fetch('/api/github-token?admin_token=' + encodeURIComponent(adminToken))
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-              if (data.token) {
-                window.postMessage(
-                  'authorization:github:success:' + JSON.stringify({ token: data.token, provider: 'github' }),
-                  '*'
-                );
-              }
-            })
-            .catch(function(err) {
-              originalOpen.apply(window, arguments);
-            });
+            console.log('Intercepted OAuth popup, token available:', !!githubToken);
+
+            if (githubToken) {
+              // Send handshake first, then auth token (mimics real OAuth popup flow)
+              setTimeout(function() {
+                window.postMessage('authorizing:github', '*');
+                console.log('Sent authorizing:github handshake');
+              }, 100);
+              setTimeout(function() {
+                var msg = 'authorization:github:success:' + JSON.stringify({ token: githubToken, provider: 'github' });
+                window.postMessage(msg, '*');
+                console.log('Sent authorization success message');
+              }, 300);
+            } else {
+              // No cached token, try fetching
+              fetch('/api/github-token?admin_token=' + encodeURIComponent(adminToken))
+              .then(function(r) { return r.json(); })
+              .then(function(data) {
+                if (data.token) {
+                  setTimeout(function() {
+                    window.postMessage('authorizing:github', '*');
+                  }, 50);
+                  setTimeout(function() {
+                    window.postMessage(
+                      'authorization:github:success:' + JSON.stringify({ token: data.token, provider: 'github' }),
+                      '*'
+                    );
+                    console.log('Sent authorization success from API');
+                  }, 200);
+                }
+              })
+              .catch(function(err) {
+                console.error('Fallback to real popup:', err);
+                originalOpen.apply(window, arguments);
+              });
+            }
             return { closed: false, close: function() {}, focus: function() {} };
           }
           return originalOpen.apply(window, arguments);
