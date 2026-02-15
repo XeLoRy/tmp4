@@ -26,7 +26,7 @@ module.exports = async function (context, req) {
     try {
       const decoded = Buffer.from(adminToken, 'base64').toString();
       const parts = decoded.split(':');
-      if (parts.length >= 3 && parts[0] === 'admin' && parts[2] === ADMIN_PASSWORD) {
+      if (parts.length >= 3 && parts[0] === 'admin' && parts.slice(2).join(':') === ADMIN_PASSWORD) {
         const timestamp = parseInt(parts[1]);
         const now = Date.now();
         // Token valid for 24 hours
