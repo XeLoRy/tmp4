@@ -21,6 +21,32 @@
     </script>
     <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      // Pre-fetch GitHub token to bypass OAuth login screen
+      async function prefetchGitHubToken() {
+        const adminToken = localStorage.getItem('admin_token');
+        if (!adminToken) return false;
+
+        try {
+          const response = await fetch('/api/github-token', {
+            headers: { 'Authorization': 'Bearer ' + adminToken }
+          });
+          if (!response.ok) return false;
+          const data = await response.json();
+          if (data.token) {
+            // Inject token in the format Decap CMS expects
+            localStorage.setItem('netlify-cms-user', JSON.stringify({
+              token: data.token,
+              backendName: 'github'
+            }));
+            return true;
+          }
+        } catch (e) {
+          console.log('Failed to prefetch GitHub token:', e);
+        }
+        return false;
+      }
+    </script>
     <style>
       .logout-btn {
         position: fixed;
@@ -50,10 +76,13 @@
       }
     </script>
     <script>
-      // Get admin token to pass to auth endpoint
-      const adminToken = localStorage.getItem('admin_token') || '';
+      // Pre-fetch GitHub token then initialize CMS
+      (async function() {
+        await prefetchGitHubToken();
 
-      CMS.init({
+        const adminToken = localStorage.getItem('admin_token') || '';
+
+        CMS.init({
         config: {
           backend: {
             name: 'github',
@@ -174,6 +203,7 @@
           ]
         }
       });
+      })();
     </script>
   </body>
 </html>
