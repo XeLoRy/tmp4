@@ -22,30 +22,41 @@
     <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      // Pre-fetch GitHub token to bypass OAuth login screen
-      async function prefetchGitHubToken() {
-        const adminToken = localStorage.getItem('admin_token');
-        if (!adminToken) return false;
-
-        try {
-          const response = await fetch('/api/github-token', {
-            headers: { 'Authorization': 'Bearer ' + adminToken }
-          });
-          if (!response.ok) return false;
-          const data = await response.json();
-          if (data.token) {
-            // Inject token in the format Decap CMS expects
-            localStorage.setItem('netlify-cms-user', JSON.stringify({
-              token: data.token,
-              backendName: 'github'
-            }));
-            return true;
+      // Intercept OAuth popup: fetch GitHub token from our API instead
+      (function() {
+        const originalOpen = window.open;
+        window.open = function(url) {
+          // Only intercept Decap CMS auth popup (calls to /api/auth)
+          if (url && url.indexOf('/api/auth') !== -1) {
+            console.log('Intercepted OAuth popup, fetching token from API...');
+            const adminToken = localStorage.getItem('admin_token') || '';
+            fetch('/api/github-token', {
+              headers: { 'Authorization': 'Bearer ' + adminToken }
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+              if (data.token) {
+                var message = 'authorization:github:success:' + JSON.stringify({
+                  token: data.token,
+                  provider: 'github'
+                });
+                window.postMessage(message, '*');
+                console.log('GitHub token injected successfully');
+              } else {
+                console.error('No token in API response:', data);
+              }
+            })
+            .catch(function(err) {
+              console.error('Failed to fetch GitHub token:', err);
+              // Fallback: open the real popup
+              originalOpen.apply(window, arguments);
+            });
+            // Return a fake window object so Decap CMS doesn't crash
+            return { closed: false, close: function() {} };
           }
-        } catch (e) {
-          console.log('Failed to prefetch GitHub token:', e);
-        }
-        return false;
-      }
+          return originalOpen.apply(window, arguments);
+        };
+      })();
     </script>
     <style>
       .logout-btn {
@@ -76,13 +87,9 @@
       }
     </script>
     <script>
-      // Pre-fetch GitHub token then initialize CMS
-      (async function() {
-        await prefetchGitHubToken();
+      const adminToken = localStorage.getItem('admin_token') || '';
 
-        const adminToken = localStorage.getItem('admin_token') || '';
-
-        CMS.init({
+      CMS.init({
         config: {
           backend: {
             name: 'github',
@@ -203,7 +210,19 @@
           ]
         }
       });
-      })();
+
+      // Auto-click the "Login with GitHub" button when it appears
+      var autoLoginObserver = new MutationObserver(function() {
+        var loginBtn = document.querySelector('[class*="LoginButton"]') ||
+                       document.querySelector('button[class*="login"]') ||
+                       document.querySelector('#nc-root button');
+        if (loginBtn && loginBtn.textContent.indexOf('GitHub') !== -1) {
+          console.log('Auto-clicking GitHub login button');
+          autoLoginObserver.disconnect();
+          loginBtn.click();
+        }
+      });
+      autoLoginObserver.observe(document.body, { childList: true, subtree: true });
     </script>
   </body>
 </html>
