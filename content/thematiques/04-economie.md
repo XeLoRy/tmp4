@@ -1,7 +1,7 @@
 ---
 title: Économie et Environnement
 icon: /images/pictos/economie.png
-description: Préserver et valoriser l'économie locale.   Être acteurs d'un
+description: Préserver et valoriser l'économie locale. Être acteurs d'un
   développement raisonné.
 ordre: 4
 engagements:
