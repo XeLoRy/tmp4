@@ -6,7 +6,7 @@ ordre: 3
 engagements:
   - "Construire un centre de services de proximité au Petit-Bornand avec :"
   - Valoriser les associations et encourager les initiatives locales
-  - Création d'une salle de motricité et d'un réfectoire à l'école d'Entremont
+  - Créer une salle de motricité et un réfectoire à l'école d'Entremont
   - Améliorer la mobilité douce et sécuriser les espaces publics
 ---
 ### 1. Construire un centre de services de proximité au Petit-Bornand avec :
@@ -22,7 +22,7 @@ engagements:
 * Organiser une soirée pour remercier et valoriser les associations
 * Harmoniser la gestion de la cantine et du périscolaire entre les écoles de Petit-Bornand et d'Entremont
 
-### 3. Créer une salle de motricité et d'un réfectoire à l'école d'Entremont
+### 3. Créer une salle de motricité et un réfectoire à l'école d'Entremont
 
 * Associer le nouveau réfectoire et la nouvelle salle de motricité dans un même projet, en collaboration avec la CCFG
 * Anticiper la possibilité d'une future cuisine sur place
