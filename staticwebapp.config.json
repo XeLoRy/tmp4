@@ -10,10 +10,25 @@
     "rewrite": "/index.html",
     "exclude": ["/api/*", "/images/*", "/admin/*", "/_next/*", "*.{css,js,json,yml,yaml,png,jpg,jpeg,gif,svg,ico,webp,html,txt}"]
   },
+  "globalHeaders": {
+    "Cache-Control": "no-cache, must-revalidate"
+  },
   "routes": [
     {
       "route": "/api/*",
       "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/_next/static/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "route": "/images/*",
+      "headers": {
+        "Cache-Control": "public, max-age=86400"
+      }
     }
   ]
 }
