@@ -201,6 +201,9 @@ export default function EnqueteForm() {
           <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
             Email <span className="text-red-500">*</span>
           </label>
+          <p className="text-xs text-foreground-muted mb-2">
+            Afin de garantir l&apos;authenticité de votre participation, un code de vérification vous sera envoyé par email.
+          </p>
           <div className="flex gap-2">
             <input
               type="email"

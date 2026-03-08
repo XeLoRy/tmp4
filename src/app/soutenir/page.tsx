@@ -205,6 +205,9 @@ export default function SoutenirPage() {
                       <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                         Email *
                       </label>
+                      <p className="text-xs text-foreground-muted mb-2">
+                        Pour garantir la fiabilité des soutiens, nous vérifions votre adresse email par un code à usage unique.
+                      </p>
                       <div className="flex gap-2">
                         <input
                           type="email"
