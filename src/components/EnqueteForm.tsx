@@ -36,6 +36,14 @@ export default function EnqueteForm() {
   const [loadedAt] = useState(() => Date.now());
   const [honeypot, setHoneypot] = useState('');
 
+  // OTP state
+  const [emailVerified, setEmailVerified] = useState(false);
+  const [otpToken, setOtpToken] = useState('');
+  const [otpCode, setOtpCode] = useState('');
+  const [otpStatus, setOtpStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [otpError, setOtpError] = useState('');
+  const [verifiedEmail, setVerifiedEmail] = useState('');
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -45,6 +53,49 @@ export default function EnqueteForm() {
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
+
+    // Reset email verification if email changes
+    if (name === 'email' && value !== verifiedEmail) {
+      setEmailVerified(false);
+      setOtpStatus('idle');
+      setOtpCode('');
+    }
+  };
+
+  const handleRequestOtp = async () => {
+    const email = formData.email.trim();
+    if (!email) {
+      setOtpError('Veuillez entrer votre email.');
+      return;
+    }
+
+    setOtpStatus('sending');
+    setOtpError('');
+
+    try {
+      const response = await fetch('/api/verify-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Erreur');
+      setOtpToken(result.token);
+      setVerifiedEmail(email);
+      setOtpStatus('sent');
+    } catch (err) {
+      setOtpStatus('error');
+      setOtpError(err instanceof Error ? err.message : "Erreur lors de l'envoi du code.");
+    }
+  };
+
+  const handleVerifyOtp = () => {
+    if (otpCode.length === 6) {
+      setEmailVerified(true);
+      setOtpError('');
+    } else {
+      setOtpError('Le code doit contenir 6 chiffres.');
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -52,11 +103,27 @@ export default function EnqueteForm() {
     setStatus('loading');
     setErrorMessage('');
 
+    if (formData.email !== verifiedEmail) {
+      setStatus('error');
+      setErrorMessage("L'email a changé depuis la vérification. Veuillez vérifier à nouveau.");
+      setEmailVerified(false);
+      setOtpStatus('idle');
+      setOtpCode('');
+      return;
+    }
+
     try {
       const response = await fetch('/api/enquete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, website: honeypot, _timestamp: loadedAt, _fingerprint: collectFingerprint() }),
+        body: JSON.stringify({
+          ...formData,
+          website: honeypot,
+          _timestamp: loadedAt,
+          _fingerprint: collectFingerprint(),
+          _otpCode: otpCode,
+          _otpToken: otpToken,
+        }),
       });
 
       const data = await response.json();
@@ -73,6 +140,10 @@ export default function EnqueteForm() {
           commentaire: '',
           newsletter: false,
         });
+        setEmailVerified(false);
+        setOtpStatus('idle');
+        setOtpCode('');
+        setOtpToken('');
       } else {
         setStatus('error');
         setErrorMessage(data.error || 'Une erreur est survenue');
@@ -82,6 +153,8 @@ export default function EnqueteForm() {
       setErrorMessage('Impossible de soumettre le formulaire. Réessayez plus tard.');
     }
   };
+
+  const isBusy = status === 'loading';
 
   if (status === 'success') {
     return (
@@ -128,15 +201,65 @@ export default function EnqueteForm() {
           <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
             Email <span className="text-red-500">*</span>
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary"
-          />
+          <div className="flex gap-2">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              disabled={emailVerified}
+              className="flex-1 rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
+            />
+            {!emailVerified && (
+              <button
+                type="button"
+                onClick={handleRequestOtp}
+                disabled={otpStatus === 'sending'}
+                className="rounded-lg bg-primary/10 text-primary px-4 py-3 text-sm font-medium hover:bg-primary/20 transition-colors disabled:opacity-50 whitespace-nowrap"
+              >
+                {otpStatus === 'sending' ? 'Envoi...' : otpStatus === 'sent' ? 'Renvoyer' : 'Vérifier'}
+              </button>
+            )}
+            {emailVerified && (
+              <span className="flex items-center text-green-600 text-sm font-medium px-3">
+                Vérifié
+              </span>
+            )}
+          </div>
+
+          {/* OTP input */}
+          {otpStatus === 'sent' && !emailVerified && (
+            <div className="mt-3 p-4 bg-blue-50 rounded-lg">
+              <p className="text-sm text-blue-800 mb-2">
+                Un code à 6 chiffres a été envoyé à votre email.
+              </p>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]{6}"
+                  maxLength={6}
+                  placeholder="000000"
+                  value={otpCode}
+                  onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                  className="flex-1 rounded-lg px-4 py-2 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-primary text-center text-lg tracking-widest font-mono"
+                />
+                <button
+                  type="button"
+                  onClick={handleVerifyOtp}
+                  className="rounded-lg bg-primary px-4 py-2 text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+                >
+                  Confirmer
+                </button>
+              </div>
+            </div>
+          )}
+
+          {otpError && (
+            <p className="text-red-500 text-sm mt-1">{otpError}</p>
+          )}
         </div>
       </div>
 
@@ -228,10 +351,10 @@ export default function EnqueteForm() {
       {/* Submit */}
       <button
         type="submit"
-        disabled={status === 'loading'}
+        disabled={isBusy || !emailVerified}
         className="w-full rounded-full bg-primary px-6 py-3 text-white font-medium hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {status === 'loading' ? 'Envoi en cours...' : 'Envoyer mes réponses'}
+        {isBusy ? 'Envoi en cours...' : !emailVerified ? 'Vérifiez votre email pour continuer' : 'Envoyer mes réponses'}
       </button>
 
       <p className="text-xs text-foreground-muted text-center">

@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { sanitizeData, getCorsHeaders, runSecurityChecks, sendSecurityAlert, getAttackerDetails } = require('../shared/security');
+const { sanitizeData, getCorsHeaders, runSecurityChecks, sendSecurityAlert, getAttackerDetails, verifyOtpToken } = require('../shared/security');
 
 const TENANT_ID = process.env.GRAPH_TENANT_ID;
 const CLIENT_ID = process.env.GRAPH_CLIENT_ID;
@@ -188,6 +188,16 @@ module.exports = async function (context, req) {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         body: JSON.stringify({ error: 'Email invalide' })
+      };
+      return;
+    }
+
+    // OTP verification
+    if (!verifyOtpToken(data.email, rawData._otpCode, rawData._otpToken)) {
+      context.res = {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'Code de vérification invalide ou expiré. Veuillez vérifier votre email à nouveau.' })
       };
       return;
     }

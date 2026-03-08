@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { collectFingerprint } from "@/lib/fingerprint";
@@ -10,16 +10,74 @@ export default function SoutenirPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [loadedAt] = useState(() => Date.now());
 
+  // OTP state
+  const [emailVerified, setEmailVerified] = useState(false);
+  const [otpToken, setOtpToken] = useState("");
+  const [otpCode, setOtpCode] = useState("");
+  const [otpStatus, setOtpStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [otpError, setOtpError] = useState("");
+  const [verifiedEmail, setVerifiedEmail] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleRequestOtp = async () => {
+    const form = formRef.current;
+    if (!form) return;
+    const email = (new FormData(form).get("email") as string || "").trim();
+    if (!email) {
+      setOtpError("Veuillez entrer votre email.");
+      return;
+    }
+
+    setOtpStatus("sending");
+    setOtpError("");
+
+    try {
+      const response = await fetch("/api/verify-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Erreur");
+      setOtpToken(result.token);
+      setVerifiedEmail(email);
+      setOtpStatus("sent");
+    } catch (err) {
+      setOtpStatus("error");
+      setOtpError(err instanceof Error ? err.message : "Erreur lors de l'envoi du code.");
+    }
+  };
+
+  const handleVerifyOtp = () => {
+    if (otpCode.length === 6) {
+      setEmailVerified(true);
+      setOtpError("");
+    } else {
+      setOtpError("Le code doit contenir 6 chiffres.");
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
     setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
+    const email = (formData.get("email") as string || "").trim();
+
+    if (email !== verifiedEmail) {
+      setStatus("error");
+      setErrorMessage("L'email a changé depuis la vérification. Veuillez vérifier à nouveau.");
+      setEmailVerified(false);
+      setOtpStatus("idle");
+      setOtpCode("");
+      return;
+    }
+
     const data = {
       prenom: formData.get("prenom") as string,
       nom: formData.get("nom") as string,
-      email: formData.get("email") as string,
+      email,
       telephone: formData.get("telephone") as string,
       message: formData.get("message") as string,
       afficherPublic: formData.get("afficherPublic") === "on",
@@ -28,6 +86,8 @@ export default function SoutenirPage() {
       website: formData.get("website") as string,
       _timestamp: loadedAt,
       _fingerprint: collectFingerprint(),
+      _otpCode: otpCode,
+      _otpToken: otpToken,
     };
 
     try {
@@ -45,11 +105,17 @@ export default function SoutenirPage() {
 
       setStatus("success");
       (e.target as HTMLFormElement).reset();
+      setEmailVerified(false);
+      setOtpStatus("idle");
+      setOtpCode("");
+      setOtpToken("");
     } catch (err) {
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Une erreur est survenue. Veuillez réessayer.");
     }
   };
+
+  const isBusy = status === "sending";
 
   return (
     <>
@@ -98,7 +164,7 @@ export default function SoutenirPage() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   {/* Honeypot - invisible to humans */}
                   <div className="absolute -left-[9999px]" aria-hidden="true">
                     <label htmlFor="website">Website</label>
@@ -115,7 +181,7 @@ export default function SoutenirPage() {
                         id="prenom"
                         name="prenom"
                         required
-                        disabled={status === "sending"}
+                        disabled={isBusy}
                         className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
                       />
                     </div>
@@ -128,7 +194,7 @@ export default function SoutenirPage() {
                         id="nom"
                         name="nom"
                         required
-                        disabled={status === "sending"}
+                        disabled={isBusy}
                         className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
                       />
                     </div>
@@ -139,14 +205,63 @@ export default function SoutenirPage() {
                       <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                         Email *
                       </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        disabled={status === "sending"}
-                        className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
-                      />
+                      <div className="flex gap-2">
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          disabled={isBusy || emailVerified}
+                          className="flex-1 rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
+                        />
+                        {!emailVerified && (
+                          <button
+                            type="button"
+                            onClick={handleRequestOtp}
+                            disabled={otpStatus === "sending"}
+                            className="rounded-lg bg-primary/10 text-primary px-4 py-3 text-sm font-medium hover:bg-primary/20 transition-colors disabled:opacity-50 whitespace-nowrap"
+                          >
+                            {otpStatus === "sending" ? "Envoi..." : otpStatus === "sent" ? "Renvoyer" : "Vérifier"}
+                          </button>
+                        )}
+                        {emailVerified && (
+                          <span className="flex items-center text-green-600 text-sm font-medium px-3">
+                            Vérifié
+                          </span>
+                        )}
+                      </div>
+
+                      {/* OTP input */}
+                      {otpStatus === "sent" && !emailVerified && (
+                        <div className="mt-3 p-4 bg-blue-50 rounded-lg">
+                          <p className="text-sm text-blue-800 mb-2">
+                            Un code à 6 chiffres a été envoyé à votre email.
+                          </p>
+                          <div className="flex gap-2">
+                            <input
+                              type="text"
+                              inputMode="numeric"
+                              pattern="[0-9]{6}"
+                              maxLength={6}
+                              placeholder="000000"
+                              value={otpCode}
+                              onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                              className="flex-1 rounded-lg px-4 py-2 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-primary text-center text-lg tracking-widest font-mono"
+                            />
+                            <button
+                              type="button"
+                              onClick={handleVerifyOtp}
+                              className="rounded-lg bg-primary px-4 py-2 text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+                            >
+                              Confirmer
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {otpError && (
+                        <p className="text-red-500 text-sm mt-1">{otpError}</p>
+                      )}
                     </div>
                     <div>
                       <label htmlFor="telephone" className="block text-sm font-medium text-foreground mb-2">
@@ -156,7 +271,7 @@ export default function SoutenirPage() {
                         type="tel"
                         id="telephone"
                         name="telephone"
-                        disabled={status === "sending"}
+                        disabled={isBusy}
                         className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
                       />
                     </div>
@@ -170,7 +285,7 @@ export default function SoutenirPage() {
                       id="message"
                       name="message"
                       rows={4}
-                      disabled={status === "sending"}
+                      disabled={isBusy}
                       placeholder="Partagez vos motivations..."
                       className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary resize-none disabled:bg-gray-100"
                     />
@@ -182,7 +297,7 @@ export default function SoutenirPage() {
                         type="checkbox"
                         id="afficherPublic"
                         name="afficherPublic"
-                        disabled={status === "sending"}
+                        disabled={isBusy}
                         className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
                       />
                       <label htmlFor="afficherPublic" className="text-sm text-foreground-muted cursor-pointer">
@@ -195,7 +310,7 @@ export default function SoutenirPage() {
                         type="checkbox"
                         id="faireDon"
                         name="faireDon"
-                        disabled={status === "sending"}
+                        disabled={isBusy}
                         className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
                       />
                       <label htmlFor="faireDon" className="text-sm text-foreground-muted cursor-pointer">
@@ -209,7 +324,7 @@ export default function SoutenirPage() {
                         id="rgpd"
                         name="rgpd"
                         required
-                        disabled={status === "sending"}
+                        disabled={isBusy}
                         className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
                       />
                       <label htmlFor="rgpd" className="text-sm text-foreground-muted cursor-pointer">
@@ -227,10 +342,10 @@ export default function SoutenirPage() {
 
                   <button
                     type="submit"
-                    disabled={status === "sending"}
+                    disabled={isBusy || !emailVerified}
                     className="w-full rounded-full bg-primary px-6 py-3 text-white font-medium hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {status === "sending" ? "Envoi en cours..." : "Valider mon soutien"}
+                    {isBusy ? "Envoi en cours..." : !emailVerified ? "Vérifiez votre email pour continuer" : "Valider mon soutien"}
                   </button>
                 </form>
               )}

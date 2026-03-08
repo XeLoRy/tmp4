@@ -4,6 +4,7 @@
  */
 
 const fetch = require('node-fetch');
+const crypto = require('crypto');
 
 const TENANT_ID = process.env.GRAPH_TENANT_ID;
 const CLIENT_ID = process.env.GRAPH_CLIENT_ID;
@@ -338,6 +339,23 @@ function runSecurityChecks(context, req, data, textFields, formName) {
   return null; // All checks passed
 }
 
+// Verify OTP token from verify-email endpoint
+function verifyOtpToken(email, otpCode, otpToken) {
+  if (!email || !otpCode || !otpToken) return false;
+  const parts = otpToken.split(':');
+  if (parts.length !== 2) return false;
+  const [signature, expiresAt] = parts;
+  if (Date.now() > Number(expiresAt)) return false;
+  const expected = crypto.createHmac('sha256', CLIENT_SECRET)
+    .update(`${email.toLowerCase()}:${otpCode}:${expiresAt}`)
+    .digest('hex');
+  try {
+    return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+  } catch {
+    return false;
+  }
+}
+
 module.exports = {
   escapeHtml,
   sanitizeData,
@@ -351,4 +369,5 @@ module.exports = {
   runSecurityChecks,
   sendSecurityAlert,
   getAttackerDetails,
+  verifyOtpToken,
 };
