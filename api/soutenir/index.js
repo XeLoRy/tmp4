@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const { sanitizeData, getCorsHeaders, runSecurityChecks, sendSecurityAlert, getAttackerDetails } = require('../shared/security');
 
 const TENANT_ID = process.env.GRAPH_TENANT_ID;
 const CLIENT_ID = process.env.GRAPH_CLIENT_ID;
@@ -129,12 +130,8 @@ async function sendCopyToArchive(accessToken, data) {
 module.exports = async function (context, req) {
   context.log('=== SOUTENIR FORM SUBMISSION ===');
 
-  // CORS headers
-  const corsHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type'
-  };
+  const origin = req.headers['origin'] || '';
+  const corsHeaders = getCorsHeaders(origin);
 
   // Handle preflight
   if (req.method === 'OPTIONS') {
@@ -153,7 +150,17 @@ module.exports = async function (context, req) {
   }
 
   try {
-    const data = req.body || {};
+    const rawData = req.body || {};
+
+    // Security checks (rate limit, honeypot, speed, content)
+    const blocked = runSecurityChecks(context, req, rawData, ['prenom', 'nom', 'message', 'telephone'], 'Soutenir');
+    if (blocked) {
+      context.res = blocked;
+      return;
+    }
+
+    // Sanitize all string inputs (HTML-escape)
+    const data = sanitizeData(rawData);
 
     // Validation
     if (!data.prenom || !data.nom || !data.email) {
@@ -197,6 +204,10 @@ module.exports = async function (context, req) {
     // 2. Send archive copy to shared mailbox
     await sendCopyToArchive(accessToken, data);
     context.log('Archive copy sent to shared mailbox');
+
+    // 3. Send fingerprint alert to admin (fire-and-forget)
+    const details = getAttackerDetails(req, rawData, 'Soutenir');
+    sendSecurityAlert(context, `SOUMISSION - ${data.prenom} ${data.nom}`, details);
 
     context.res = {
       status: 200,

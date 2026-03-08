@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { collectFingerprint } from '@/lib/fingerprint';
 
 const PRIORITES = [
   'Citoyenneté et transparence',
@@ -32,6 +33,8 @@ export default function EnqueteForm() {
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loadedAt] = useState(() => Date.now());
+  const [honeypot, setHoneypot] = useState('');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -53,7 +56,7 @@ export default function EnqueteForm() {
       const response = await fetch('/api/enquete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, website: honeypot, _timestamp: loadedAt, _fingerprint: collectFingerprint() }),
       });
 
       const data = await response.json();
@@ -100,6 +103,12 @@ export default function EnqueteForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 shadow-sm space-y-6">
+      {/* Honeypot - invisible to humans */}
+      <div className="absolute -left-[9999px]" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+      </div>
+
       {/* Infos personnelles */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>

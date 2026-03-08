@@ -3,10 +3,12 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { collectFingerprint } from "@/lib/fingerprint";
 
 export default function SoutenirPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loadedAt] = useState(() => Date.now());
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,6 +25,9 @@ export default function SoutenirPage() {
       afficherPublic: formData.get("afficherPublic") === "on",
       faireDon: formData.get("faireDon") === "on",
       rgpd: formData.get("rgpd") === "on",
+      website: formData.get("website") as string,
+      _timestamp: loadedAt,
+      _fingerprint: collectFingerprint(),
     };
 
     try {
@@ -94,6 +99,12 @@ export default function SoutenirPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot - invisible to humans */}
+                  <div className="absolute -left-[9999px]" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="prenom" className="block text-sm font-medium text-foreground mb-2">
