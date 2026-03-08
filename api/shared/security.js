@@ -183,7 +183,7 @@ async function sendSecurityAlert(context, reason, details) {
         body: {
           contentType: 'HTML',
           content: `
-            <h2 style="color:#c0392b;">Alerte sécurité - Soumission bloquée</h2>
+            <h2 style="color:#c0392b;">Alerte sécurité - ${escapeHtml(reason)}</h2>
             <table style="border-collapse:collapse;width:100%;max-width:600px;">
               <tr><td style="padding:8px;border:1px solid #ddd;background:#fdecea;"><strong>Raison</strong></td><td style="padding:8px;border:1px solid #ddd;">${escapeHtml(reason)}</td></tr>
               <tr><td style="padding:8px;border:1px solid #ddd;background:#fdecea;"><strong>Date</strong></td><td style="padding:8px;border:1px solid #ddd;">${new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })}</td></tr>
