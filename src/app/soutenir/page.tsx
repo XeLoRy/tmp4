@@ -17,12 +17,11 @@ export default function SoutenirPage() {
   const [otpStatus, setOtpStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [otpError, setOtpError] = useState("");
   const [verifiedEmail, setVerifiedEmail] = useState("");
+  const [emailInput, setEmailInput] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleRequestOtp = async () => {
-    const form = formRef.current;
-    if (!form) return;
-    const email = (new FormData(form).get("email") as string || "").trim();
+    const email = emailInput.trim();
     if (!email) {
       setOtpError("Veuillez entrer votre email.");
       return;
@@ -57,27 +56,25 @@ export default function SoutenirPage() {
     }
   };
 
+  const handleResetEmail = () => {
+    setEmailVerified(false);
+    setOtpStatus("idle");
+    setOtpCode("");
+    setOtpToken("");
+    setVerifiedEmail("");
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
     setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
-    const email = (formData.get("email") as string || "").trim();
-
-    if (email !== verifiedEmail) {
-      setStatus("error");
-      setErrorMessage("L'email a changé depuis la vérification. Veuillez vérifier à nouveau.");
-      setEmailVerified(false);
-      setOtpStatus("idle");
-      setOtpCode("");
-      return;
-    }
 
     const data = {
       prenom: formData.get("prenom") as string,
       nom: formData.get("nom") as string,
-      email,
+      email: verifiedEmail,
       telephone: formData.get("telephone") as string,
       message: formData.get("message") as string,
       afficherPublic: formData.get("afficherPublic") === "on",
@@ -105,10 +102,8 @@ export default function SoutenirPage() {
 
       setStatus("success");
       (e.target as HTMLFormElement).reset();
-      setEmailVerified(false);
-      setOtpStatus("idle");
-      setOtpCode("");
-      setOtpToken("");
+      handleResetEmail();
+      setEmailInput("");
     } catch (err) {
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Une erreur est survenue. Veuillez réessayer.");
@@ -171,104 +166,121 @@ export default function SoutenirPage() {
                     <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="prenom" className="block text-sm font-medium text-foreground mb-2">
-                        Prénom *
-                      </label>
-                      <input
-                        type="text"
-                        id="prenom"
-                        name="prenom"
-                        required
-                        disabled={isBusy}
-                        className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="nom" className="block text-sm font-medium text-foreground mb-2">
-                        Nom *
-                      </label>
-                      <input
-                        type="text"
-                        id="nom"
-                        name="nom"
-                        required
-                        disabled={isBusy}
-                        className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
-                      />
-                    </div>
-                  </div>
+                  {/* Email + OTP verification — first step */}
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
+                      Email *
+                    </label>
+                    <p className="text-xs text-foreground-muted mb-3">
+                      Pour garantir la fiabilité des soutiens, nous vérifions votre adresse email par un code à usage unique.
+                    </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                        Email *
-                      </label>
-                      <p className="text-xs text-foreground-muted mb-2">
-                        Pour garantir la fiabilité des soutiens, nous vérifions votre adresse email par un code à usage unique.
-                      </p>
-                      <div className="flex gap-2">
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          disabled={isBusy || emailVerified}
-                          className="flex-1 rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
-                        />
-                        {!emailVerified && (
+                    {emailVerified ? (
+                      <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <span className="text-green-600 font-medium text-sm flex-1">
+                          {verifiedEmail}
+                        </span>
+                        <span className="text-green-600 text-sm font-medium">Vérifié</span>
+                        <button
+                          type="button"
+                          onClick={handleResetEmail}
+                          className="text-xs text-foreground-muted hover:text-foreground underline"
+                        >
+                          Modifier
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="flex gap-2">
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            value={emailInput}
+                            onChange={(e) => setEmailInput(e.target.value)}
+                            placeholder="votre@email.fr"
+                            className="flex-1 rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                          />
                           <button
                             type="button"
                             onClick={handleRequestOtp}
                             disabled={otpStatus === "sending"}
-                            className="rounded-lg bg-primary/10 text-primary px-4 py-3 text-sm font-medium hover:bg-primary/20 transition-colors disabled:opacity-50 whitespace-nowrap"
+                            className="rounded-lg bg-primary text-white px-5 py-3 text-sm font-medium hover:bg-primary-dark transition-colors disabled:opacity-50 whitespace-nowrap"
                           >
-                            {otpStatus === "sending" ? "Envoi..." : otpStatus === "sent" ? "Renvoyer" : "Vérifier"}
+                            {otpStatus === "sending" ? "Envoi..." : otpStatus === "sent" ? "Renvoyer le code" : "Envoyer le code"}
                           </button>
-                        )}
-                        {emailVerified && (
-                          <span className="flex items-center text-green-600 text-sm font-medium px-3">
-                            Vérifié
-                          </span>
-                        )}
-                      </div>
-
-                      {/* OTP input */}
-                      {otpStatus === "sent" && !emailVerified && (
-                        <div className="mt-3 p-4 bg-blue-50 rounded-lg">
-                          <p className="text-sm text-blue-800 mb-2">
-                            Un code à 6 chiffres a été envoyé à votre email.
-                          </p>
-                          <div className="flex gap-2">
-                            <input
-                              type="text"
-                              inputMode="numeric"
-                              pattern="[0-9]{6}"
-                              maxLength={6}
-                              placeholder="000000"
-                              value={otpCode}
-                              onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
-                              className="flex-1 rounded-lg px-4 py-2 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-primary text-center text-lg tracking-widest font-mono"
-                            />
-                            <button
-                              type="button"
-                              onClick={handleVerifyOtp}
-                              className="rounded-lg bg-primary px-4 py-2 text-white text-sm font-medium hover:bg-primary-dark transition-colors"
-                            >
-                              Confirmer
-                            </button>
-                          </div>
                         </div>
-                      )}
 
-                      {otpError && (
-                        <p className="text-red-500 text-sm mt-1">{otpError}</p>
-                      )}
+                        {/* OTP input */}
+                        {otpStatus === "sent" && (
+                          <div className="mt-3 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <p className="text-sm text-blue-800 mb-3">
+                              Un code à 6 chiffres a été envoyé à <strong>{verifiedEmail}</strong>. Vérifiez aussi vos spams.
+                            </p>
+                            <div className="flex gap-2">
+                              <input
+                                type="text"
+                                inputMode="numeric"
+                                pattern="[0-9]{6}"
+                                maxLength={6}
+                                placeholder="000000"
+                                value={otpCode}
+                                onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                                className="flex-1 rounded-lg px-4 py-3 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-primary text-center text-xl tracking-[0.3em] font-mono"
+                              />
+                              <button
+                                type="button"
+                                onClick={handleVerifyOtp}
+                                className="rounded-lg bg-primary px-5 py-3 text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+                              >
+                                Confirmer
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </>
+                    )}
+
+                    {otpError && (
+                      <p className="text-red-500 text-sm mt-2">{otpError}</p>
+                    )}
+                  </div>
+
+                  {/* Rest of form — only active after email verification */}
+                  <div className={!emailVerified ? "opacity-50 pointer-events-none" : ""}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                      <div>
+                        <label htmlFor="prenom" className="block text-sm font-medium text-foreground mb-2">
+                          Prénom *
+                        </label>
+                        <input
+                          type="text"
+                          id="prenom"
+                          name="prenom"
+                          required
+                          disabled={isBusy}
+                          className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="nom" className="block text-sm font-medium text-foreground mb-2">
+                          Nom *
+                        </label>
+                        <input
+                          type="text"
+                          id="nom"
+                          name="nom"
+                          required
+                          disabled={isBusy}
+                          className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
+                        />
+                      </div>
                     </div>
-                    <div>
+
+                    <div className="mb-6">
                       <label htmlFor="telephone" className="block text-sm font-medium text-foreground mb-2">
-                        Téléphone
+                        Téléphone (optionnel)
                       </label>
                       <input
                         type="tel"
@@ -278,78 +290,78 @@ export default function SoutenirPage() {
                         className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-gray-100"
                       />
                     </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                      Pourquoi je soutiens cette candidature (optionnel)
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      disabled={isBusy}
-                      placeholder="Partagez vos motivations..."
-                      className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary resize-none disabled:bg-gray-100"
-                    />
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <input
-                        type="checkbox"
-                        id="afficherPublic"
-                        name="afficherPublic"
-                        disabled={isBusy}
-                        className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
-                      />
-                      <label htmlFor="afficherPublic" className="text-sm text-foreground-muted cursor-pointer">
-                        J&apos;accepte que mon nom figure dans la liste publique des soutiens
+                    <div className="mb-6">
+                      <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                        Pourquoi je soutiens cette candidature (optionnel)
                       </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={4}
+                        disabled={isBusy}
+                        placeholder="Partagez vos motivations..."
+                        className="w-full rounded-lg px-4 py-3 border border-primary-light/30 focus:outline-none focus:ring-2 focus:ring-primary resize-none disabled:bg-gray-100"
+                      />
                     </div>
 
-                    <div className="flex items-start gap-3">
-                      <input
-                        type="checkbox"
-                        id="faireDon"
-                        name="faireDon"
-                        disabled={isBusy}
-                        className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
-                      />
-                      <label htmlFor="faireDon" className="text-sm text-foreground-muted cursor-pointer">
-                        Je souhaite également faire un don pour soutenir la campagne
-                      </label>
+                    <div className="space-y-4 mb-6">
+                      <div className="flex items-start gap-3">
+                        <input
+                          type="checkbox"
+                          id="afficherPublic"
+                          name="afficherPublic"
+                          disabled={isBusy}
+                          className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
+                        />
+                        <label htmlFor="afficherPublic" className="text-sm text-foreground-muted cursor-pointer">
+                          J&apos;accepte que mon nom figure dans la liste publique des soutiens
+                        </label>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <input
+                          type="checkbox"
+                          id="faireDon"
+                          name="faireDon"
+                          disabled={isBusy}
+                          className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
+                        />
+                        <label htmlFor="faireDon" className="text-sm text-foreground-muted cursor-pointer">
+                          Je souhaite également faire un don pour soutenir la campagne
+                        </label>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <input
+                          type="checkbox"
+                          id="rgpd"
+                          name="rgpd"
+                          required
+                          disabled={isBusy}
+                          className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
+                        />
+                        <label htmlFor="rgpd" className="text-sm text-foreground-muted cursor-pointer">
+                          J&apos;accepte que mes données soient utilisées pour recevoir des informations
+                          sur la campagne. Elles ne seront jamais partagées avec des tiers. *
+                        </label>
+                      </div>
                     </div>
 
-                    <div className="flex items-start gap-3">
-                      <input
-                        type="checkbox"
-                        id="rgpd"
-                        name="rgpd"
-                        required
-                        disabled={isBusy}
-                        className="mt-0.5 w-5 h-5 flex-shrink-0 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed"
-                      />
-                      <label htmlFor="rgpd" className="text-sm text-foreground-muted cursor-pointer">
-                        J&apos;accepte que mes données soient utilisées pour recevoir des informations
-                        sur la campagne. Elles ne seront jamais partagées avec des tiers. *
-                      </label>
-                    </div>
+                    {status === "error" && (
+                      <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm mb-6">
+                        {errorMessage}
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isBusy || !emailVerified}
+                      className="w-full rounded-full bg-primary px-6 py-3 text-white font-medium hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isBusy ? "Envoi en cours..." : "Valider mon soutien"}
+                    </button>
                   </div>
-
-                  {status === "error" && (
-                    <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm">
-                      {errorMessage}
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isBusy || !emailVerified}
-                    className="w-full rounded-full bg-primary px-6 py-3 text-white font-medium hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isBusy ? "Envoi en cours..." : !emailVerified ? "Vérifiez votre email pour continuer" : "Valider mon soutien"}
-                  </button>
                 </form>
               )}
             </div>

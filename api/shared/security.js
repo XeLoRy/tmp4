@@ -179,7 +179,7 @@ async function sendSecurityAlert(context, reason, details) {
 
     const emailContent = {
       message: {
-        subject: `[SECURITE] Soumission bloquée - ${reason}`,
+        subject: `[SECURITE] ${reason}`,
         body: {
           contentType: 'HTML',
           content: `
@@ -288,7 +288,7 @@ function runSecurityChecks(context, req, data, textFields, formName) {
 
   // Rate limiting
   if (isRateLimited(clientIp)) {
-    const reason = 'RATE_LIMIT';
+    const reason = 'BLOQUÉ - Trop de soumissions (rate limit)';
     logAttackerDetails(context, details, reason);
     sendSecurityAlert(context, reason, details);
     return {
@@ -300,7 +300,7 @@ function runSecurityChecks(context, req, data, textFields, formName) {
 
   // Honeypot
   if (isHoneypotTriggered(data)) {
-    const reason = 'HONEYPOT (bot détecté)';
+    const reason = 'BLOQUÉ - Bot détecté (honeypot)';
     logAttackerDetails(context, details, reason);
     sendSecurityAlert(context, reason, details);
     // Return 200 to not alert the bot
@@ -313,7 +313,7 @@ function runSecurityChecks(context, req, data, textFields, formName) {
 
   // Timestamp (too fast)
   if (isSubmittedTooFast(data)) {
-    const reason = 'TOO_FAST (soumission trop rapide)';
+    const reason = 'BLOQUÉ - Soumission trop rapide (bot)';
     logAttackerDetails(context, details, reason);
     sendSecurityAlert(context, reason, details);
     return {
@@ -326,7 +326,7 @@ function runSecurityChecks(context, req, data, textFields, formName) {
   // Content validation (bad words, URLs, HTML)
   const contentCheck = validateContent(data, textFields);
   if (!contentCheck.valid) {
-    const reason = `CONTENU INTERDIT: ${contentCheck.error}`;
+    const reason = `BLOQUÉ - Contenu interdit`;
     logAttackerDetails(context, details, reason);
     sendSecurityAlert(context, reason, details);
     return {
