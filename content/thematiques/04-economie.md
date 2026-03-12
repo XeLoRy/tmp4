@@ -12,6 +12,12 @@ engagements:
 ---
 ### 1. Assainir et maîtriser les finances de la commune
 
+* Un budget de fonctionnement mieux géré : 
+
+  * Réalisation d'économies dans les dépenses : frais de communication contrôlés, frais d'études de projets maîtrisés, appels d'offre pour assurer une juste concurrence profitable au budget communal...
+  * Optimisation des recettes : recherche active de subventions, gestion financière de nos forêts, gestion et devenir des bâtiments communaux...
+* Pour consolider le budget d'investissement et améliorer les capacités de financement pour les projets.
+
 ### 2. Soutenir agriculteurs et producteurs locaux, favoriser les circuits courts
 
 * Entretenir notre caractère rural en préservant les terres agricoles pour nos agriculteurs
