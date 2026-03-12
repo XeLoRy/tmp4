@@ -27,8 +27,8 @@ engagements:
 * Renforcer l'identité propre de Glières-Val-de-Borne en affirmant son caractère de village rural et montagnard
 * Promouvoir les richesses naturelles, culturelles, historiques et les activités de pleine nature
 * Valoriser les hébergements touristiques (camping municipal, gîtes, meublés…), les producteurs locaux et les artisans
-* Améliorer l'offre : entretien des sentiers, valorisation des espaces naturels, signalétique, création de balades thématiques...
-* Recenser et diffuser l'offre : guide pratique, site internet, réseaux sociaux, à destination des habitants, des socioprofessionnels et des touristes
+* Améliorer l'offre touristique : entretien des sentiers, valorisation des espaces naturels, signalétique, création de balades thématiques...
+* Recenser et diffuser l'offre touristique : guide pratique, site internet, réseaux sociaux, à destination des habitants, des socioprofessionnels et des touristes
 
 ## Notre objectif
 
