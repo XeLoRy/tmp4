@@ -33,4 +33,4 @@ engagements:
 ## Notre objectif
 
 **Faire rayonner notre territoire.** \
-**Faire de chacun d'entre nous un ambassadeur fier de son territoire et de son histoire.**
+**Faire de chacun d'entre nous un ambassadeur fier de ce territoire et de son histoire.**
