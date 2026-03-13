@@ -241,8 +241,16 @@ export function getThematiquesDetail(): ThematiqueDetail[] {
 
       const actions: string[] = [];
       for (const line of lines.slice(1)) {
-        const match = line.match(/^[\*\-]\s+(.+)/);
-        if (match) actions.push(match[1].trim());
+        // Match top-level bullets
+        const topMatch = line.match(/^[\*\-]\s+(.+)/);
+        // Match nested bullets (indented with spaces)
+        const nestedMatch = line.match(/^\s+[\*\-]\s+(.+)/);
+        if (topMatch) {
+          actions.push(topMatch[1].trim());
+        } else if (nestedMatch) {
+          // Add nested items with a dash prefix to distinguish them
+          actions.push("– " + nestedMatch[1].trim());
+        }
       }
       engagements.push({ titre, actions });
     }

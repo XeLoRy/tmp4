@@ -202,12 +202,16 @@ export default function ProgrammeClient({ thematiquesData }: { thematiquesData: 
                               {isExpanded && (
                                 <div className="px-4 pb-4">
                                   <ul className="ml-8 space-y-2 border-l-2 border-primary/30 pl-4">
-                                    {engagement.actions.map((action, actionIndex) => (
-                                      <li key={actionIndex} className="text-sm text-foreground-muted flex items-start gap-2">
-                                        <span className="text-primary font-bold">&bull;</span>
-                                        <span>{action}</span>
-                                      </li>
-                                    ))}
+                                    {engagement.actions.map((action, actionIndex) => {
+                                      const isNested = action.startsWith("– ");
+                                      const displayText = isNested ? action.slice(2) : action;
+                                      return (
+                                        <li key={actionIndex} className={`text-sm text-foreground-muted flex items-start gap-2 ${isNested ? 'ml-6' : ''}`}>
+                                          <span className="text-primary font-bold">{isNested ? '◦' : '•'}</span>
+                                          <span>{displayText}</span>
+                                        </li>
+                                      );
+                                    })}
                                   </ul>
                                 </div>
                               )}
